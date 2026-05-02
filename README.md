@@ -1,1 +1,1 @@
-# Maths-class-10-
+# Maths-class-10
