@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 - Some Applications of Trigonometry (Exercise 9.1)</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warning: #ca8a04;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; position: relative; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; position: relative; }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-tab {
+            padding: 12px 24px;
+            border: none;
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+        }
+        .nav-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .nav-tab.active { background: var(--primary); color: white; }
+
+        /* Sections */
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Notes */
+        .note-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .note-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .note-card h3 { color: var(--primary-dark); margin-bottom: 8px; font-size: 1.1rem; }
+        .note-card ul { padding-left: 18px; }
+        .note-card li { margin-bottom: 6px; color: var(--text-light); }
+        .formula-box {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .formula-box .highlight { color: #60a5fa; font-weight: bold; }
+
+        /* MCQ Questions */
+        .question-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .q-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .question-text { font-size: 1.05rem; font-weight: 500; line-height: 1.5; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        @media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+        .option-btn {
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            background: var(--card);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.25s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-btn:hover { border-color: var(--primary); background: #eff6ff; }
+        .option-btn.correct { 
+            border-color: var(--success); 
+            background: #f0fdf4; 
+            color: var(--success);
+            font-weight: 600;
+        }
+        .option-btn.wrong { 
+            border-color: var(--danger); 
+            background: #fef2f2; 
+            color: var(--danger);
+        }
+        .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+        .solution-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--success);
+            animation: slideDown 0.4s ease;
+        }
+        .solution-box.show { display: block; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
+
+        .solution-title {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        .step {
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #bbf7d0;
+            font-size: 0.95rem;
+        }
+        .step-number {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-weight: 700;
+        }
+        .final-answer {
+            margin-top: 14px;
+            padding: 14px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Visualizer */
+        .viz-container {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        .viz-canvas {
+            width: 100%;
+            height: 350px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+        }
+        .viz-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .viz-control label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+        .viz-control input, .viz-control select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        .viz-control input:focus, .viz-control select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .viz-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
+            width: 100%;
+        }
+        .viz-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+        /* Calculator */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .calc-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        .calc-input-group {
+            margin-bottom: 14px;
+        }
+        .calc-input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .calc-result {
+            margin-top: 16px;
+            padding: 16px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Progress */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-trig { background: #dbeafe; color: #1d4ed8; }
+        .badge-geo { background: #dcfce7; color: #16a34a; }
+        .badge-app { background: #fef3c7; color: #b45309; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+    <div class="hero">
+        <h1>📐 Some Applications of Trigonometry</h1>
+        <p>NCERT Class 10 Mathematics | Exercise 9.1 | Interactive Solutions</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('notes')">📝 Important Notes</button>
+            <button class="nav-tab" onclick="showSection('mcq')">❓ MCQ Practice (15 Qs)</button>
+            <button class="nav-tab" onclick="showSection('visualizer')">📊 Visualizer</button>
+            <button class="nav-tab" onclick="showSection('calculator')">🧮 Calculators</button>
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div id="notes" class="section active">
+            <div class="card">
+                <div class="card-title">🎯 Key Concepts from Exercise 9.1</div>
+                <p style="color: var(--text-light); margin-bottom: 16px;">These are the fundamental principles you need to solve every problem in this exercise.</p>
+                <div class="note-grid">
+                    <div class="note-card">
+                        <h3>📐 Line of Sight</h3>
+                        <ul>
+                            <li>The line drawn from the eye of an observer to the point in the object viewed.</li>
+                            <li>It forms the hypotenuse in most right triangle problems.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>📏 Angle of Elevation</h3>
+                        <ul>
+                            <li>Angle formed by line of sight with horizontal when object is <strong>above</strong> eye level.</li>
+                            <li>Used when looking UP at towers, kites, balloons, etc.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>📉 Angle of Depression</h3>
+                        <ul>
+                            <li>Angle formed by line of sight with horizontal when object is <strong>below</strong> eye level.</li>
+                            <li>Used when looking DOWN at ships, cars, foot of tower, etc.</li>
+                            <li><strong>Key:</strong> Angle of depression = Angle of elevation (alternate angles)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>⚠️ Observer Height</h3>
+                        <ul>
+                            <li>Always subtract observer's height from total height when angle is measured from eye level.</li>
+                            <li>Example: Boy (1.5m) looking at 30m building → Effective height = 28.5m</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>🌳 Broken Tree Problems</h3>
+                        <ul>
+                            <li>Original height = Standing part + Broken part (hypotenuse)</li>
+                            <li>Broken part acts as the hypotenuse of the right triangle formed.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>🔄 Relative Motion</h3>
+                        <ul>
+                            <li>For moving objects (cars, balloons), use uniform speed concept.</li>
+                            <li>Distance = Speed × Time. Ratios help find unknown times.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📚 Essential Formulas</div>
+                <div class="formula-box">
+                    <span class="highlight">sin θ</span> = Perpendicular / Hypotenuse &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span class="highlight">cos θ</span> = Base / Hypotenuse &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span class="highlight">tan θ</span> = Perpendicular / Base
+                </div>
+                <div class="formula-box">
+                    <span class="highlight">Standard Values:</span><br>
+                    sin 30° = 1/2 &nbsp;&nbsp; cos 30° = √3/2 &nbsp;&nbsp; tan 30° = 1/√3<br>
+                    sin 45° = 1/√2 &nbsp;&nbsp; cos 45° = 1/√2 &nbsp;&nbsp; tan 45° = 1<br>
+                    sin 60° = √3/2 &nbsp;&nbsp; cos 60° = 1/2 &nbsp;&nbsp; tan 60° = √3
+                </div>
+                <div class="formula-box">
+                    <span class="highlight">Key Identities:</span><br>
+                    tan θ = sin θ / cos θ &nbsp;&nbsp;|&nbsp;&nbsp; sin²θ + cos²θ = 1 &nbsp;&nbsp;|&nbsp;&nbsp; 1 + tan²θ = sec²θ
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Problem-Solving Strategy</div>
+                <div style="display: grid; gap: 12px;">
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">1</span> <strong>Draw the diagram</strong> — Always sketch the situation first. Mark all known values.</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">2</span> <strong>Identify the right triangle</strong> — Find where the 90° angle is.</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">3</span> <strong>Choose the correct ratio</strong> — sin (opp/hyp), cos (adj/hyp), or tan (opp/adj).</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">4</span> <strong>Substitute values</strong> — Use standard angle values. Rationalize denominators.</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">5</span> <strong>Check units</strong> — Ensure all measurements are in the same unit (meters).</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MCQ SECTION -->
+        <div id="mcq" class="section">
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">1</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">A circus artist is climbing a 20 m long rope, which is tightly stretched and tied from the top of a vertical pole to the ground. Find the height of the pole, if the angle made by the rope with the ground level is 30°.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-1">
+                    <button class="option-btn" onclick="checkAnswer(1, 0, 0, this)">10 m</button>
+<button class="option-btn" onclick="checkAnswer(1, 1, 0, this)">15 m</button>
+<button class="option-btn" onclick="checkAnswer(1, 2, 0, this)">20 m</button>
+<button class="option-btn" onclick="checkAnswer(1, 3, 0, this)">10√3 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-1">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let AB be the pole and AC be the rope.</div>
+<div class="step"><span class="step-number">2</span>Given: AC = 20 m, ∠ACB = 30°</div>
+<div class="step"><span class="step-number">3</span>In right ΔABC: sin 30° = AB/AC</div>
+<div class="step"><span class="step-number">4</span>AB = AC × sin 30° = 20 × 1/2 = 10 m</div>
+<div class="step"><span class="step-number">5</span>Therefore, the height of the pole is 10 m.</div>
+
+                    <div class="final-answer">🎯 Final Answer: 10 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">2</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">A tree breaks due to storm and the broken part bends so that the top of the tree touches the ground making an angle 30° with it. The distance between the foot of the tree to the point where the top touches the ground is 8 m. Find the height of the tree.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-2">
+                    <button class="option-btn" onclick="checkAnswer(2, 0, 0, this)">8√3 m</button>
+<button class="option-btn" onclick="checkAnswer(2, 1, 0, this)">16 m</button>
+<button class="option-btn" onclick="checkAnswer(2, 2, 0, this)">8(2+√3) m</button>
+<button class="option-btn" onclick="checkAnswer(2, 3, 0, this)">24/√3 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-2">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let the tree break at point A, with standing part AB and broken part AC touching ground at C.</div>
+<div class="step"><span class="step-number">2</span>Given: BC = 8 m, ∠ACB = 30°</div>
+<div class="step"><span class="step-number">3</span>In right ΔABC: tan 30° = AB/BC ⇒ AB = 8 × tan 30° = 8/√3 m</div>
+<div class="step"><span class="step-number">4</span>cos 30° = BC/AC ⇒ AC = 8/cos 30° = 16/√3 m</div>
+<div class="step"><span class="step-number">5</span>Total height = AB + AC = 8/√3 + 16/√3 = 24/√3 = 8√3 m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the height of the tree is 8√3 m (≈ 13.86 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 8√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">3</div>
+                    <div>
+                        <span class="badge badge-app">Application</span>
+                        <div class="question-text">A contractor plans to install two slides. For children below 5 years: height 1.5 m, inclined at 30°. For older children: height 3 m, inclined at 60°. What should be the length of the slide in each case?</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-3">
+                    <button class="option-btn" onclick="checkAnswer(3, 0, 0, this)">3 m and 2√3 m</button>
+<button class="option-btn" onclick="checkAnswer(3, 1, 0, this)">3 m and 3√3 m</button>
+<button class="option-btn" onclick="checkAnswer(3, 2, 0, this)">1.5 m and 3 m</button>
+<button class="option-btn" onclick="checkAnswer(3, 3, 0, this)">3 m and 6 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-3">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>For younger children: sin 30° = 1.5/L₁ ⇒ L₁ = 1.5/sin 30° = 1.5/(1/2) = 3 m</div>
+<div class="step"><span class="step-number">2</span>For older children: sin 60° = 3/L₂ ⇒ L₂ = 3/sin 60° = 3/(√3/2) = 6/√3 = 2√3 m</div>
+<div class="step"><span class="step-number">3</span>Therefore, lengths are 3 m and 2√3 m (≈ 3.46 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 3 m and 2√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">4</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">The angle of elevation of the top of a tower from a point on the ground, which is 30 m away from the foot of the tower, is 30°. Find the height of the tower.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-4">
+                    <button class="option-btn" onclick="checkAnswer(4, 0, 0, this)">10√3 m</button>
+<button class="option-btn" onclick="checkAnswer(4, 1, 0, this)">15 m</button>
+<button class="option-btn" onclick="checkAnswer(4, 2, 0, this)">30/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(4, 3, 0, this)">10 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-4">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let AB be the tower and C be the point on ground.</div>
+<div class="step"><span class="step-number">2</span>Given: BC = 30 m, ∠ACB = 30°</div>
+<div class="step"><span class="step-number">3</span>In right ΔABC: tan 30° = AB/BC</div>
+<div class="step"><span class="step-number">4</span>AB = 30 × tan 30° = 30 × (1/√3) = 30/√3 = 10√3 m</div>
+<div class="step"><span class="step-number">5</span>Therefore, the height of the tower is 10√3 m (≈ 17.32 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 10√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">5</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">A kite is flying at a height of 60 m above the ground. The string attached to the kite is temporarily tied to a point on the ground. The inclination of the string with the ground is 60°. Find the length of the string.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-5">
+                    <button class="option-btn" onclick="checkAnswer(5, 0, 0, this)">40√3 m</button>
+<button class="option-btn" onclick="checkAnswer(5, 1, 0, this)">60/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(5, 2, 0, this)">120/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(5, 3, 0, this)">40 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-5">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let A be the kite, C be the point on ground, and AC be the string.</div>
+<div class="step"><span class="step-number">2</span>Given: AB = 60 m (height), ∠ACB = 60°</div>
+<div class="step"><span class="step-number">3</span>In right ΔABC: sin 60° = AB/AC</div>
+<div class="step"><span class="step-number">4</span>AC = AB/sin 60° = 60/(√3/2) = 120/√3 = 40√3 m</div>
+<div class="step"><span class="step-number">5</span>Therefore, the length of the string is 40√3 m (≈ 69.28 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 40√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">6</div>
+                    <div>
+                        <span class="badge badge-app">Application</span>
+                        <div class="question-text">A 1.5 m tall boy is standing at some distance from a 30 m tall building. The angle of elevation from his eyes to the top of the building increases from 30° to 60° as he walks towards the building. Find the distance he walked towards the building.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-6">
+                    <button class="option-btn" onclick="checkAnswer(6, 0, 0, this)">19√3 m</button>
+<button class="option-btn" onclick="checkAnswer(6, 1, 0, this)">28.5√3 m</button>
+<button class="option-btn" onclick="checkAnswer(6, 2, 0, this)">57/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(6, 3, 0, this)">19 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-6">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Height of building above boy's eyes = 30 - 1.5 = 28.5 m</div>
+<div class="step"><span class="step-number">2</span>Initial distance (d₁): tan 30° = 28.5/d₁ ⇒ d₁ = 28.5√3 m</div>
+<div class="step"><span class="step-number">3</span>Final distance (d₂): tan 60° = 28.5/d₂ ⇒ d₂ = 28.5/√3 m</div>
+<div class="step"><span class="step-number">4</span>Distance walked = d₁ - d₂ = 28.5√3 - 28.5/√3</div>
+<div class="step"><span class="step-number">5</span>= 28.5(√3 - 1/√3) = 28.5(2/√3) = 57/√3 = 19√3 m</div>
+<div class="step"><span class="step-number">6</span>Therefore, he walked 19√3 m (≈ 32.91 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 19√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">7</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">From a point on the ground, the angles of elevation of the bottom and the top of a transmission tower fixed at the top of a 20 m high building are 45° and 60° respectively. Find the height of the tower.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-7">
+                    <button class="option-btn" onclick="checkAnswer(7, 0, 0, this)">20(√3-1) m</button>
+<button class="option-btn" onclick="checkAnswer(7, 1, 0, this)">20√3 m</button>
+<button class="option-btn" onclick="checkAnswer(7, 2, 0, this)">20(√3+1) m</button>
+<button class="option-btn" onclick="checkAnswer(7, 3, 0, this)">20 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-7">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let building height = 20 m, tower height = h, distance from point = d</div>
+<div class="step"><span class="step-number">2</span>For bottom of tower: tan 45° = 20/d ⇒ d = 20 m</div>
+<div class="step"><span class="step-number">3</span>For top of tower: tan 60° = (20+h)/d = (20+h)/20</div>
+<div class="step"><span class="step-number">4</span>√3 = (20+h)/20 ⇒ 20+h = 20√3</div>
+<div class="step"><span class="step-number">5</span>h = 20√3 - 20 = 20(√3 - 1) m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the height of the tower is 20(√3-1) m (≈ 14.64 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 20(√3-1) m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">8</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">A statue, 1.6 m tall, stands on the top of a pedestal. From a point on the ground, the angle of elevation of the top of the statue is 60° and from the same point the angle of elevation of the top of the pedestal is 45°. Find the height of the pedestal.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-8">
+                    <button class="option-btn" onclick="checkAnswer(8, 0, 0, this)">0.8(√3+1) m</button>
+<button class="option-btn" onclick="checkAnswer(8, 1, 0, this)">1.6(√3-1) m</button>
+<button class="option-btn" onclick="checkAnswer(8, 2, 0, this)">0.8√3 m</button>
+<button class="option-btn" onclick="checkAnswer(8, 3, 0, this)">1.6/(√3-1) m</button>
+
+                </div>
+                <div class="solution-box" id="solution-8">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let pedestal height = h, distance from point = d</div>
+<div class="step"><span class="step-number">2</span>For top of pedestal: tan 45° = h/d ⇒ d = h</div>
+<div class="step"><span class="step-number">3</span>For top of statue: tan 60° = (h+1.6)/d = (h+1.6)/h</div>
+<div class="step"><span class="step-number">4</span>h√3 = h + 1.6 ⇒ h(√3 - 1) = 1.6</div>
+<div class="step"><span class="step-number">5</span>h = 1.6/(√3-1) = 1.6(√3+1)/2 = 0.8(√3+1) m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the height of the pedestal is 0.8(√3+1) m (≈ 2.19 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 0.8(√3+1) m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">9</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">The angle of elevation of the top of a building from the foot of the tower is 30° and the angle of elevation of the top of the tower from the foot of the building is 60°. If the tower is 50 m high, find the height of the building.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-9">
+                    <button class="option-btn" onclick="checkAnswer(9, 0, 0, this)">50/3 m</button>
+<button class="option-btn" onclick="checkAnswer(9, 1, 0, this)">50/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(9, 2, 0, this)">50√3 m</button>
+<button class="option-btn" onclick="checkAnswer(9, 3, 0, this)">25 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-9">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let building height = h, distance between tower and building = d</div>
+<div class="step"><span class="step-number">2</span>From foot of tower: tan 30° = h/d ⇒ d = h√3</div>
+<div class="step"><span class="step-number">3</span>From foot of building: tan 60° = 50/d ⇒ d = 50/√3</div>
+<div class="step"><span class="step-number">4</span>Therefore: h√3 = 50/√3</div>
+<div class="step"><span class="step-number">5</span>h = 50/3 m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the height of the building is 50/3 m (≈ 16.67 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 50/3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">10</div>
+                    <div>
+                        <span class="badge badge-geo">Geometry</span>
+                        <div class="question-text">Two poles of equal heights are standing opposite each other on either side of the road, which is 80 m wide. From a point between them on the road, the angles of elevation of the top of the poles are 60° and 30°, respectively. Find the height of the poles and the distances of the point from the poles.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-10">
+                    <button class="option-btn" onclick="checkAnswer(10, 0, 0, this)">Height=20√3 m, Distances=20 m and 60 m</button>
+<button class="option-btn" onclick="checkAnswer(10, 1, 0, this)">Height=40 m, Distances=20 m and 60 m</button>
+<button class="option-btn" onclick="checkAnswer(10, 2, 0, this)">Height=20√3 m, Distances=40 m and 40 m</button>
+<button class="option-btn" onclick="checkAnswer(10, 3, 0, this)">Height=80/√3 m, Distances=20 m and 60 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-10">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let height of each pole = h, point P is at distance x from first pole and (80-x) from second.</div>
+<div class="step"><span class="step-number">2</span>From first pole: tan 60° = h/x ⇒ h = x√3</div>
+<div class="step"><span class="step-number">3</span>From second pole: tan 30° = h/(80-x) ⇒ h = (80-x)/√3</div>
+<div class="step"><span class="step-number">4</span>Equating: x√3 = (80-x)/√3 ⇒ 3x = 80-x ⇒ 4x = 80 ⇒ x = 20 m</div>
+<div class="step"><span class="step-number">5</span>Distance from second pole = 80-20 = 60 m</div>
+<div class="step"><span class="step-number">6</span>Height h = 20√3 m (≈ 34.64 m)</div>
+<div class="step"><span class="step-number">7</span>Therefore, height = 20√3 m and distances are 20 m and 60 m.</div>
+
+                    <div class="final-answer">🎯 Final Answer: Height=20√3 m, Distances=20 m and 60 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">11</div>
+                    <div>
+                        <span class="badge badge-geo">Geometry</span>
+                        <div class="question-text">A TV tower stands vertically on a bank of a canal. From a point on the other bank directly opposite the tower, the angle of elevation of the top of the tower is 60°. From another point 20 m away from this point on the line joining this point to the foot of the tower, the angle of elevation of the top of the tower is 30°. Find the height of the tower and the width of the canal.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-11">
+                    <button class="option-btn" onclick="checkAnswer(11, 0, 0, this)">Height=10√3 m, Width=10 m</button>
+<button class="option-btn" onclick="checkAnswer(11, 1, 0, this)">Height=20 m, Width=10 m</button>
+<button class="option-btn" onclick="checkAnswer(11, 2, 0, this)">Height=10√3 m, Width=20 m</button>
+<button class="option-btn" onclick="checkAnswer(11, 3, 0, this)">Height=20√3 m, Width=10 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-11">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let tower height = h, width of canal = w</div>
+<div class="step"><span class="step-number">2</span>From opposite bank: tan 60° = h/w ⇒ h = w√3</div>
+<div class="step"><span class="step-number">3</span>From point 20 m away: tan 30° = h/(w+20) ⇒ h = (w+20)/√3</div>
+<div class="step"><span class="step-number">4</span>Equating: w√3 = (w+20)/√3 ⇒ 3w = w+20 ⇒ 2w = 20 ⇒ w = 10 m</div>
+<div class="step"><span class="step-number">5</span>Height h = 10√3 m (≈ 17.32 m)</div>
+<div class="step"><span class="step-number">6</span>Therefore, height of tower = 10√3 m and width of canal = 10 m.</div>
+
+                    <div class="final-answer">🎯 Final Answer: Height=10√3 m, Width=10 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">12</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">From the top of a 7 m high building, the angle of elevation of the top of a cable tower is 60° and the angle of depression of its foot is 45°. Determine the height of the tower.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-12">
+                    <button class="option-btn" onclick="checkAnswer(12, 0, 0, this)">7(√3+1) m</button>
+<button class="option-btn" onclick="checkAnswer(12, 1, 0, this)">7√3 m</button>
+<button class="option-btn" onclick="checkAnswer(12, 2, 0, this)">14 m</button>
+<button class="option-btn" onclick="checkAnswer(12, 3, 0, this)">7(√3-1) m</button>
+
+                </div>
+                <div class="solution-box" id="solution-12">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let tower height = H, distance between buildings = d</div>
+<div class="step"><span class="step-number">2</span>Angle of depression to foot = 45°, so tan 45° = 7/d ⇒ d = 7 m</div>
+<div class="step"><span class="step-number">3</span>Angle of elevation to top = 60°, so tan 60° = (H-7)/d = (H-7)/7</div>
+<div class="step"><span class="step-number">4</span>√3 = (H-7)/7 ⇒ H-7 = 7√3</div>
+<div class="step"><span class="step-number">5</span>H = 7 + 7√3 = 7(√3+1) m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the height of the tower is 7(√3+1) m (≈ 19.12 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 7(√3+1) m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">13</div>
+                    <div>
+                        <span class="badge badge-trig">Trigonometry</span>
+                        <div class="question-text">As observed from the top of a 75 m high lighthouse from the sea-level, the angles of depression of two ships are 30° and 45°. If one ship is exactly behind the other on the same side of the lighthouse, find the distance between the two ships.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-13">
+                    <button class="option-btn" onclick="checkAnswer(13, 0, 0, this)">75(√3-1) m</button>
+<button class="option-btn" onclick="checkAnswer(13, 1, 0, this)">75√3 m</button>
+<button class="option-btn" onclick="checkAnswer(13, 2, 0, this)">75/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(13, 3, 0, this)">75(√3+1) m</button>
+
+                </div>
+                <div class="solution-box" id="solution-13">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let lighthouse = AB = 75 m. Ships at C (farther) and D (nearer).</div>
+<div class="step"><span class="step-number">2</span>For ship D (45° depression): tan 45° = 75/BD ⇒ BD = 75 m</div>
+<div class="step"><span class="step-number">3</span>For ship C (30° depression): tan 30° = 75/BC ⇒ BC = 75√3 m</div>
+<div class="step"><span class="step-number">4</span>Distance between ships = BC - BD = 75√3 - 75 = 75(√3-1) m</div>
+<div class="step"><span class="step-number">5</span>Therefore, the distance between the two ships is 75(√3-1) m (≈ 54.9 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 75(√3-1) m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">14</div>
+                    <div>
+                        <span class="badge badge-app">Application</span>
+                        <div class="question-text">A 1.2 m tall girl spots a balloon moving with the wind in a horizontal line at a height of 88.2 m from the ground. The angle of elevation of the balloon from the eyes of the girl at any instant is 60°. After some time, the angle of elevation reduces to 30°. Find the distance travelled by the balloon during the interval.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-14">
+                    <button class="option-btn" onclick="checkAnswer(14, 0, 0, this)">58√3 m</button>
+<button class="option-btn" onclick="checkAnswer(14, 1, 0, this)">87√3 m</button>
+<button class="option-btn" onclick="checkAnswer(14, 2, 0, this)">174/√3 m</button>
+<button class="option-btn" onclick="checkAnswer(14, 3, 0, this)">29√3 m</button>
+
+                </div>
+                <div class="solution-box" id="solution-14">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Height of balloon above girl's eyes = 88.2 - 1.2 = 87 m</div>
+<div class="step"><span class="step-number">2</span>Initial horizontal distance: tan 60° = 87/d₁ ⇒ d₁ = 87/√3 = 29√3 m</div>
+<div class="step"><span class="step-number">3</span>Later horizontal distance: tan 30° = 87/d₂ ⇒ d₂ = 87√3 m</div>
+<div class="step"><span class="step-number">4</span>Distance travelled = d₂ - d₁ = 87√3 - 87/√3</div>
+<div class="step"><span class="step-number">5</span>= 87(√3 - 1/√3) = 87(2/√3) = 174/√3 = 58√3 m</div>
+<div class="step"><span class="step-number">6</span>Therefore, the distance travelled by the balloon is 58√3 m (≈ 100.46 m).</div>
+
+                    <div class="final-answer">🎯 Final Answer: 58√3 m</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">15</div>
+                    <div>
+                        <span class="badge badge-app">Application</span>
+                        <div class="question-text">A straight highway leads to the foot of a tower. A man standing at the top of the tower observes a car at an angle of depression of 30°, which is approaching the foot of the tower with a uniform speed. Six seconds later, the angle of depression of the car is found to be 60°. Find the time taken by the car to reach the foot of the tower from this point.</div>
+                    </div>
+                </div>
+                <div class="options-grid" id="options-15">
+                    <button class="option-btn" onclick="checkAnswer(15, 0, 0, this)">3 seconds</button>
+<button class="option-btn" onclick="checkAnswer(15, 1, 0, this)">6 seconds</button>
+<button class="option-btn" onclick="checkAnswer(15, 2, 0, this)">9 seconds</button>
+<button class="option-btn" onclick="checkAnswer(15, 3, 0, this)">12 seconds</button>
+
+                </div>
+                <div class="solution-box" id="solution-15">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let tower height = h, initial distance of car = d₁, distance after 6s = d₂</div>
+<div class="step"><span class="step-number">2</span>tan 30° = h/d₁ ⇒ d₁ = h√3</div>
+<div class="step"><span class="step-number">3</span>tan 60° = h/d₂ ⇒ d₂ = h/√3</div>
+<div class="step"><span class="step-number">4</span>Distance covered in 6 seconds = d₁ - d₂ = h√3 - h/√3 = 2h/√3</div>
+<div class="step"><span class="step-number">5</span>Speed of car = (2h/√3)/6 = h/(3√3)</div>
+<div class="step"><span class="step-number">6</span>Time to reach foot from second point = d₂/speed = (h/√3) ÷ (h/(3√3)) = 3 seconds</div>
+<div class="step"><span class="step-number">7</span>Therefore, the time taken is 3 seconds.</div>
+
+                    <div class="final-answer">🎯 Final Answer: 3 seconds</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- VISUALIZER SECTION -->
+        <div id="visualizer" class="section">
+            <div class="viz-container">
+                <div class="card-title">📐 Interactive Right Triangle Visualizer</div>
+                <p style="color: var(--text-light); margin-bottom: 16px;">Adjust the angle and height to see how the triangle changes in real-time.</p>
+                <canvas id="vizCanvas" class="viz-canvas" width="800" height="350"></canvas>
+                <div class="viz-controls">
+                    <div class="viz-control">
+                        <label>Angle (θ)</label>
+                        <input type="range" id="vizAngle" min="5" max="85" value="30" oninput="drawVisualizer()">
+                    </div>
+                    <div class="viz-control">
+                        <label>Height (m)</label>
+                        <input type="number" id="vizHeight" value="100" min="10" max="300" oninput="drawVisualizer()">
+                    </div>
+                    <div class="viz-control">
+                        <label>Scenario</label>
+                        <select id="vizScenario" onchange="drawVisualizer()">
+                            <option value="elevation">Angle of Elevation</option>
+                            <option value="depression">Angle of Depression</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px;">
+                    <div class="calc-result" style="font-size: 1rem;">Base: <span id="vizBase">173.2</span> m</div>
+                    <div class="calc-result" style="font-size: 1rem;">Hypotenuse: <span id="vizHypo">200.0</span> m</div>
+                    <div class="calc-result" style="font-size: 1rem;">tan θ: <span id="vizTan">0.577</span></div>
+                </div>
+            </div>
+
+            <div class="viz-container">
+                <div class="card-title">🌳 Broken Tree Visualizer</div>
+                <p style="color: var(--text-light); margin-bottom: 16px;">Visualize how a broken tree forms a right triangle.</p>
+                <canvas id="treeCanvas" class="viz-canvas" width="800" height="350"></canvas>
+                <div class="viz-controls">
+                    <div class="viz-control">
+                        <label>Distance to top (m)</label>
+                        <input type="number" id="treeDist" value="80" min="10" max="200" oninput="drawTree()">
+                    </div>
+                    <div class="viz-control">
+                        <label>Angle with ground</label>
+                        <input type="range" id="treeAngle" min="10" max="80" value="30" oninput="drawTree()">
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px;">
+                    <div class="calc-result" style="font-size: 1rem;">Standing Part: <span id="treeStand">46.2</span> m</div>
+                    <div class="calc-result" style="font-size: 1rem;">Total Height: <span id="treeTotal">138.6</span> m</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULATOR SECTION -->
+        <div id="calculator" class="section">
+            <div class="calc-grid">
+                <div class="calc-card">
+                    <div class="card-title">📐 Right Triangle Solver</div>
+                    <div class="calc-input-group">
+                        <label>Known Value</label>
+                        <select id="calcKnown" onchange="updateCalc()">
+                            <option value="angle_height">Angle + Height → Find Base & Hypotenuse</option>
+                            <option value="angle_base">Angle + Base → Find Height & Hypotenuse</option>
+                            <option value="angle_hypo">Angle + Hypotenuse → Find Height & Base</option>
+                        </select>
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Angle (degrees)</label>
+                        <input type="number" id="calcAngle" value="30" min="1" max="89" oninput="updateCalc()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label id="calcInputLabel">Height (m)</label>
+                        <input type="number" id="calcInput" value="10" min="0.1" oninput="updateCalc()">
+                    </div>
+                    <div class="calc-result" id="calcResult1">Base: 17.32 m</div>
+                    <div class="calc-result" id="calcResult2" style="margin-top: 8px;">Hypotenuse: 20.00 m</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">📏 Distance & Height Calculator</div>
+                    <div class="calc-input-group">
+                        <label>Angle of Elevation (°)</label>
+                        <input type="number" id="distAngle" value="60" oninput="updateDistCalc()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Distance from Object (m)</label>
+                        <input type="number" id="distBase" value="10" oninput="updateDistCalc()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Observer Height (m) - optional</label>
+                        <input type="number" id="distObs" value="0" oninput="updateDistCalc()">
+                    </div>
+                    <div class="calc-result" id="distResult">Object Height: 17.32 m</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🔢 Trigonometric Values</div>
+                    <div class="calc-input-group">
+                        <label>Angle (degrees)</label>
+                        <input type="number" id="trigAngle" value="45" oninput="updateTrigCalc()">
+                    </div>
+                    <div class="calc-result" id="trigSin" style="margin-bottom: 8px;">sin: 0.7071</div>
+                    <div class="calc-result" id="trigCos" style="margin-bottom: 8px;">cos: 0.7071</div>
+                    <div class="calc-result" id="trigTan">tan: 1.0000</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🎯 Speed & Time (Q15 Type)</div>
+                    <div class="calc-input-group">
+                        <label>Initial Angle (°)</label>
+                        <input type="number" id="speedAngle1" value="30" oninput="updateSpeedCalc()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Final Angle (°)</label>
+                        <input type="number" id="speedAngle2" value="60" oninput="updateSpeedCalc()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Time Interval (seconds)</label>
+                        <input type="number" id="speedTime" value="6" oninput="updateSpeedCalc()">
+                    </div>
+                    <div class="calc-result" id="speedResult">Time to reach: 3.0 sec</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📚 NCERT Class 10 Mathematics | Chapter 9: Some Applications of Trigonometry</p>
+            <p style="margin-top: 8px;">Exercise 9.1 | 15 Questions Solved with Interactive MCQs</p>
+        </div>
+    </div>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+
+            if (sectionId === 'visualizer') {
+                setTimeout(() => { drawVisualizer(); drawTree(); }, 100);
+            }
+        }
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // MCQ Logic
+        function checkAnswer(qNum, selected, correct, btn) {
+            const options = document.querySelectorAll(`#options-${qNum} .option-btn`);
+            const solution = document.getElementById(`solution-${qNum}`);
+
+            options.forEach((opt, idx) => {
+                opt.disabled = true;
+                if (idx === correct) {
+                    opt.classList.add('correct');
+                } else if (idx === selected && selected !== correct) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            solution.classList.add('show');
+            solution.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Visualizer
+        function drawVisualizer() {
+            const canvas = document.getElementById('vizCanvas');
+            const ctx = canvas.getContext('2d');
+            const angle = parseFloat(document.getElementById('vizAngle').value);
+            const height = parseFloat(document.getElementById('vizHeight').value);
+            const scenario = document.getElementById('vizScenario').value;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const rad = angle * Math.PI / 180;
+            const base = height / Math.tan(rad);
+            const hypo = height / Math.sin(rad);
+
+            // Scale to fit canvas
+            const maxDim = Math.max(base, height) * 1.2;
+            const scale = Math.min(canvas.width, canvas.height - 60) / maxDim * 0.8;
+
+            const startX = 80;
+            const groundY = canvas.height - 50;
+            const towerH = height * scale;
+            const baseW = base * scale;
+
+            // Ground
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(startX - 20, groundY);
+            ctx.lineTo(startX + baseW + 60, groundY);
+            ctx.stroke();
+
+            // Ground hatching
+            for (let i = 0; i < baseW + 60; i += 15) {
+                ctx.beginPath();
+                ctx.moveTo(startX + i, groundY);
+                ctx.lineTo(startX + i - 8, groundY + 8);
+                ctx.stroke();
+            }
+
+            if (scenario === 'elevation') {
+                // Tower
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillRect(startX, groundY - towerH, 8, towerH);
+                // Top point
+                const topX = startX + 4;
+                const topY = groundY - towerH;
+                // Observer
+                ctx.fillStyle = '#f59e0b';
+                ctx.beginPath();
+                ctx.arc(startX + baseW, groundY - 15, 8, 0, Math.PI * 2);
+                ctx.fill();
+                // Body
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(startX + baseW, groundY - 7);
+                ctx.lineTo(startX + baseW, groundY);
+                ctx.stroke();
+                // Line of sight
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(startX + baseW, groundY - 15);
+                ctx.lineTo(topX, topY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                // Horizontal
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(startX + baseW, groundY - 15);
+                ctx.lineTo(topX, groundY - 15);
+                ctx.stroke();
+                // Angle arc
+                ctx.strokeStyle = '#8b5cf6';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(startX + baseW, groundY - 15, 30, -Math.PI/2, -Math.PI/2 - rad, true);
+                ctx.stroke();
+                // Labels
+                ctx.fillStyle = '#1e293b';
+                ctx.font = 'bold 13px sans-serif';
+                ctx.fillText('h = ' + height + 'm', startX - 70, groundY - towerH/2);
+                ctx.fillText('θ = ' + angle + '°', startX + baseW - 40, groundY - 50);
+                ctx.fillText('d = ' + base.toFixed(1) + 'm', startX + baseW/2 - 30, groundY + 25);
+                ctx.fillText('Observer', startX + baseW + 10, groundY - 10);
+            } else {
+                // Depression scenario
+                const obsY = groundY - towerH;
+                // Tower
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillRect(startX, groundY - towerH, 8, towerH);
+                // Observer at top
+                ctx.fillStyle = '#f59e0b';
+                ctx.beginPath();
+                ctx.arc(startX + 4, obsY, 8, 0, Math.PI * 2);
+                ctx.fill();
+                // Object on ground
+                ctx.fillStyle = '#10b981';
+                ctx.beginPath();
+                ctx.arc(startX + baseW, groundY, 6, 0, Math.PI * 2);
+                ctx.fill();
+                // Line of sight
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(startX + 4, obsY);
+                ctx.lineTo(startX + baseW, groundY);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                // Horizontal
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(startX + 4, obsY);
+                ctx.lineTo(startX + baseW, obsY);
+                ctx.stroke();
+                // Angle arc
+                ctx.strokeStyle = '#8b5cf6';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(startX + 4, obsY, 30, Math.PI/2, Math.PI/2 + rad);
+                ctx.stroke();
+                // Labels
+                ctx.fillStyle = '#1e293b';
+                ctx.font = 'bold 13px sans-serif';
+                ctx.fillText('h = ' + height + 'm', startX - 70, groundY - towerH/2);
+                ctx.fillText('θ = ' + angle + '°', startX + 30, obsY + 45);
+                ctx.fillText('d = ' + base.toFixed(1) + 'm', startX + baseW/2 - 30, groundY + 25);
+            }
+
+            document.getElementById('vizBase').textContent = base.toFixed(1);
+            document.getElementById('vizHypo').textContent = hypo.toFixed(1);
+            document.getElementById('vizTan').textContent = Math.tan(rad).toFixed(3);
+        }
+
+        function drawTree() {
+            const canvas = document.getElementById('treeCanvas');
+            const ctx = canvas.getContext('2d');
+            const dist = parseFloat(document.getElementById('treeDist').value);
+            const angle = parseFloat(document.getElementById('treeAngle').value);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const rad = angle * Math.PI / 180;
+            const stand = dist * Math.tan(rad);
+            const broken = dist / Math.cos(rad);
+            const total = stand + broken;
+
+            const scale = Math.min((canvas.width - 150) / dist, (canvas.height - 100) / total) * 0.7;
+
+            const startX = 100;
+            const groundY = canvas.height - 50;
+            const standH = stand * scale;
+            const baseW = dist * scale;
+
+            // Ground
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(startX - 20, groundY);
+            ctx.lineTo(startX + baseW + 60, groundY);
+            ctx.stroke();
+
+            // Ground hatching
+            for (let i = 0; i < baseW + 60; i += 15) {
+                ctx.beginPath();
+                ctx.moveTo(startX + i, groundY);
+                ctx.lineTo(startX + i - 8, groundY + 8);
+                ctx.stroke();
+            }
+
+            // Standing part
+            ctx.strokeStyle = '#059669';
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(startX, groundY);
+            ctx.lineTo(startX, groundY - standH);
+            ctx.stroke();
+
+            // Broken part
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 4;
+            ctx.setLineDash([8, 4]);
+            ctx.beginPath();
+            ctx.moveTo(startX, groundY - standH);
+            ctx.lineTo(startX + baseW, groundY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle arc
+            ctx.strokeStyle = '#8b5cf6';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(startX + baseW, groundY, 35, Math.PI, Math.PI - rad, true);
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 13px sans-serif';
+            ctx.fillText('Standing: ' + stand.toFixed(1) + 'm', startX - 90, groundY - standH/2);
+            ctx.fillText('Broken: ' + broken.toFixed(1) + 'm', startX + baseW/2 + 10, groundY - standH/2 - 10);
+            ctx.fillText('θ = ' + angle + '°', startX + baseW - 50, groundY - 15);
+            ctx.fillText('Distance: ' + dist + 'm', startX + baseW/2 - 30, groundY + 25);
+
+            // Tree top
+            ctx.fillStyle = '#059669';
+            ctx.beginPath();
+            ctx.arc(startX, groundY - standH, 5, 0, Math.PI * 2);
+            ctx.fill();
+
+            document.getElementById('treeStand').textContent = stand.toFixed(1);
+            document.getElementById('treeTotal').textContent = total.toFixed(1);
+        }
+
+        // Calculators
+        function updateCalc() {
+            const type = document.getElementById('calcKnown').value;
+            const angle = parseFloat(document.getElementById('calcAngle').value) || 0;
+            const input = parseFloat(document.getElementById('calcInput').value) || 0;
+            const rad = angle * Math.PI / 180;
+
+            const label = document.getElementById('calcInputLabel');
+            let r1, r2, t1, t2;
+
+            if (type === 'angle_height') {
+                label.textContent = 'Height (m)';
+                r1 = input / Math.tan(rad);
+                r2 = input / Math.sin(rad);
+                t1 = 'Base';
+                t2 = 'Hypotenuse';
+            } else if (type === 'angle_base') {
+                label.textContent = 'Base (m)';
+                r1 = input * Math.tan(rad);
+                r2 = input / Math.cos(rad);
+                t1 = 'Height';
+                t2 = 'Hypotenuse';
+            } else {
+                label.textContent = 'Hypotenuse (m)';
+                r1 = input * Math.sin(rad);
+                r2 = input * Math.cos(rad);
+                t1 = 'Height';
+                t2 = 'Base';
+            }
+
+            document.getElementById('calcResult1').textContent = t1 + ': ' + r1.toFixed(2) + ' m';
+            document.getElementById('calcResult2').textContent = t2 + ': ' + r2.toFixed(2) + ' m';
+        }
+
+        function updateDistCalc() {
+            const angle = parseFloat(document.getElementById('distAngle').value) || 0;
+            const base = parseFloat(document.getElementById('distBase').value) || 0;
+            const obs = parseFloat(document.getElementById('distObs').value) || 0;
+            const rad = angle * Math.PI / 180;
+            const height = base * Math.tan(rad) + obs;
+            document.getElementById('distResult').textContent = 'Object Height: ' + height.toFixed(2) + ' m';
+        }
+
+        function updateTrigCalc() {
+            const angle = parseFloat(document.getElementById('trigAngle').value) || 0;
+            const rad = angle * Math.PI / 180;
+            document.getElementById('trigSin').textContent = 'sin: ' + Math.sin(rad).toFixed(4);
+            document.getElementById('trigCos').textContent = 'cos: ' + Math.cos(rad).toFixed(4);
+            document.getElementById('trigTan').textContent = 'tan: ' + Math.tan(rad).toFixed(4);
+        }
+
+        function updateSpeedCalc() {
+            const a1 = parseFloat(document.getElementById('speedAngle1').value) || 30;
+            const a2 = parseFloat(document.getElementById('speedAngle2').value) || 60;
+            const t = parseFloat(document.getElementById('speedTime').value) || 6;
+            const r1 = a1 * Math.PI / 180;
+            const r2 = a2 * Math.PI / 180;
+
+            const d1 = 1 / Math.tan(r1);
+            const d2 = 1 / Math.tan(r2);
+            const speed = (d1 - d2) / t;
+            const time = d2 / speed;
+
+            document.getElementById('speedResult').textContent = 'Time to reach: ' + time.toFixed(1) + ' sec';
+        }
+
+        // Initialize
+        updateCalc();
+        updateDistCalc();
+        updateTrigCalc();
+        updateSpeedCalc();
+    </script>
+</body>
+</html>

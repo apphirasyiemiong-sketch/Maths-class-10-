@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 | Chapter 14: Probability Exercise 14.1</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: #f8fafc; 
+            color: #1e293b; 
+            line-height: 1.7; 
+        }
+        .container { display: flex; min-height: 100vh; }
+
+        /* SIDEBAR */
+        nav { 
+            width: 300px; 
+            background: #0f172a; 
+            color: #e2e8f0; 
+            padding: 24px 16px; 
+            flex-shrink: 0;
+            overflow-y: auto;
+            border-right: 1px solid #334155;
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+        }
+        nav h2 { 
+            font-size: 1.25rem; 
+            margin-bottom: 20px; 
+            padding-bottom: 14px; 
+            border-bottom: 2px solid #3b82f6;
+            color: #fff;
+            line-height: 1.4;
+        }
+        nav a { 
+            display: block; 
+            color: #94a3b8; 
+            text-decoration: none; 
+            padding: 10px 14px; 
+            margin: 4px 0; 
+            border-radius: 8px; 
+            transition: all 0.25s ease; 
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        nav a:hover { background: #1e293b; color: #60a5fa; }
+        nav a.active { background: #2563eb; color: #fff; }
+        nav .nav-group {
+            margin: 16px 0 8px;
+            padding-left: 8px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        /* MAIN CONTENT */
+        main { 
+            flex: 1; 
+            padding: 32px 40px; 
+            margin-left: 300px;
+            max-width: 1000px;
+        }
+        .section { display: none; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { 
+            color: #0f172a; 
+            font-size: 2rem; 
+            margin-bottom: 8px;
+            padding-bottom: 12px; 
+            border-bottom: 3px solid #3b82f6; 
+        }
+        h2 { 
+            color: #1e40af; 
+            margin-top: 36px; 
+            margin-bottom: 16px;
+            font-size: 1.5rem; 
+            padding-left: 12px;
+            border-left: 4px solid #3b82f6;
+        }
+        h3 { color: #334155; font-size: 1.15rem; margin-bottom: 12px; }
+
+        /* CARDS */
+        .note-card { 
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%); 
+            color: #fff; 
+            padding: 28px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
+            box-shadow: 0 10px 25px -5px rgba(30,64,175,0.35); 
+        }
+        .note-card h3 { color: #fff; margin-bottom: 14px; font-size: 1.25rem; }
+        .note-card ul { padding-left: 22px; }
+        .note-card li { margin: 10px 0; }
+        .note-card code { 
+            background: rgba(255,255,255,0.2); 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+
+        .theorem-box {
+            background: #fefce8;
+            border-left: 5px solid #eab308;
+            padding: 22px;
+            margin: 22px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .theorem-box h4 { color: #854d0e; margin-bottom: 10px; font-size: 1.1rem; }
+        .theorem-box p { color: #713f12; }
+
+        .formula-box { 
+            background: #f1f5f9; 
+            padding: 18px; 
+            border-radius: 10px; 
+            text-align: center; 
+            font-size: 1.15em; 
+            margin: 16px 0;
+            border: 1px solid #cbd5e1;
+            font-family: 'Times New Roman', serif;
+            color: #0f172a;
+        }
+
+        /* QUESTION BOX */
+        .question-box { 
+            background: #fff; 
+            padding: 28px; 
+            margin: 28px 0; 
+            border-radius: 14px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05); 
+            border: 1px solid #e2e8f0;
+        }
+        .q-header { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 18px; 
+            gap: 12px;
+        }
+        .q-num { 
+            background: #1d4ed8; 
+            color: #fff; 
+            min-width: 36px; height: 36px; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-weight: 700; font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .q-header h3 { margin: 0; color: #0f172a; font-size: 1.1rem; }
+
+        .options { margin: 20px 0; }
+        .option { 
+            padding: 14px 16px; 
+            margin: 10px 0; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            background: #f8fafc;
+            display: flex; align-items: center; gap: 12px;
+            font-size: 0.98rem;
+        }
+        .option:hover { 
+            border-color: #60a5fa; 
+            background: #eff6ff; 
+            transform: translateX(4px); 
+        }
+        .option.correct { 
+            border-color: #22c55e; 
+            background: #f0fdf4; 
+            color: #14532d;
+        }
+        .option.wrong { 
+            border-color: #ef4444; 
+            background: #fef2f2; 
+            color: #7f1d1d;
+        }
+        .option.disabled { pointer-events: none; opacity: 0.7; }
+        .opt-label { 
+            background: #cbd5e1; 
+            color: #475569; 
+            width: 30px; height: 30px; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-weight: 700; font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .option.correct .opt-label { background: #22c55e; color: #fff; }
+        .option.wrong .opt-label { background: #ef4444; color: #fff; }
+
+        .solution { 
+            display: none; 
+            margin-top: 24px; 
+            padding: 24px; 
+            background: #f0f9ff; 
+            border: 2px solid #bae6fd; 
+            border-radius: 12px; 
+        }
+        .solution-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #7dd3fc;
+        }
+        .solution-step {
+            margin: 12px 0;
+            padding: 12px 14px 12px 48px;
+            background: #f8fafc;
+            border-radius: 8px;
+            position: relative;
+            border-left: 3px solid #38bdf8;
+        }
+        .solution-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 12px; top: 12px;
+            background: #0284c7;
+            color: #fff;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; font-weight: 700;
+        }
+        .solution-step .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background: #e0f2fe;
+            padding: 1px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 2px 0;
+        }
+        .solution-step .because {
+            color: #64748b;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* CALCULATORS */
+        .calculator { 
+            background: #fff; 
+            padding: 28px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); 
+            margin: 28px 0; 
+            border-top: 4px solid #8b5cf6;
+        }
+        .calculator h3 { color: #5b21b6; margin-bottom: 8px; }
+        .calc-desc { color: #64748b; margin-bottom: 18px; font-size: 0.95rem; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+        .calc-input { display: flex; flex-direction: column; }
+        .calc-input label { font-weight: 600; color: #475569; margin-bottom: 6px; font-size: 0.88rem; }
+        .calc-input input { 
+            padding: 10px 12px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 8px; 
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .calc-input input:focus { border-color: #8b5cf6; outline: none; }
+        .calc-result { 
+            margin-top: 20px; 
+            padding: 20px; 
+            background: #faf5ff; 
+            border-radius: 10px; 
+            display: none; 
+            border-left: 4px solid #8b5cf6;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* VISUALIZERS */
+        .viz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 24px 0; }
+        .viz-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .viz-card h4 { color: #1e40af; margin-bottom: 16px; }
+        .coin {
+            width: 80px; height: 80px; border-radius: 50%; position: relative;
+            transform-style: preserve-3d; transition: transform 2s ease; margin: 16px auto;
+        }
+        .coin-face {
+            position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            backface-visibility: hidden; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .coin-front { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; }
+        .coin-back { background: linear-gradient(135deg, #9ca3af, #6b7280); color: white; transform: rotateY(180deg); }
+        .dice-face {
+            width: 60px; height: 60px; background: white; border-radius: 12px;
+            display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+            padding: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 16px auto;
+        }
+        .dot { width: 10px; height: 10px; background: #1f2937; border-radius: 50%; align-self: center; justify-self: center; }
+        .spinner-container { position: relative; width: 180px; height: 180px; margin: 16px auto; }
+        .spinner { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
+        .spinner-segment { position: absolute; width: 50%; height: 50%; transform-origin: 100% 100%; }
+        .spinner-arrow { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 20px solid #1f2937; z-index: 10; }
+        .spinner-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+        .spinner-center div { width: 48px; height: 48px; background: white; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
+
+        button { 
+            background: #2563eb; 
+            color: #fff; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 0.95rem; 
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        button:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+        button.secondary { background: #64748b; }
+        button.secondary:hover { background: #475569; }
+        button.success { background: #22c55e; }
+        button.success:hover { background: #16a34a; }
+
+        .progress-bar-container {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+        }
+        .progress-bar-container .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .progress-bar-container .top span { font-weight: 600; color: #334155; }
+        .progress-track { width: 100%; background: #e2e8f0; border-radius: 999px; height: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #7c3aed); border-radius: 999px; transition: width 0.5s ease; width: 0%; }
+
+        .math { font-family: 'Times New Roman', serif; font-style: italic; }
+        .math-inline { background: #e0f2fe; padding: 1px 6px; border-radius: 4px; font-family: 'Times New Roman', serif; font-style: italic; }
+
+        @media (max-width: 900px) {
+            nav { width: 100%; position: relative; height: auto; }
+            .container { flex-direction: column; }
+            main { margin-left: 0; padding: 20px; max-width: 100%; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .viz-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR NAVIGATION -->
+        <nav>
+            <h2>🎲 Chapter 14<br>Probability<br><span style="font-size:0.85rem; color:#94a3b8; font-weight:400;">Exercise 14.1</span></h2>
+
+            <div class="nav-group">Study Material</div>
+            <a href="#" class="nav-link active" data-target="notes">📝 Important Notes</a>
+            <a href="#" class="nav-link" data-target="calculators">🧮 Calculators</a>
+            <a href="#" class="nav-link" data-target="visualizers">🎲 Visualizers</a>
+
+            <div class="nav-group">Questions</div>
+            <a href="#" class="nav-link" data-target="q1-5">Q1 – Q5</a>
+            <a href="#" class="nav-link" data-target="q6-10">Q6 – Q10</a>
+            <a href="#" class="nav-link" data-target="q11-15">Q11 – Q15</a>
+            <a href="#" class="nav-link" data-target="q16-20">Q16 – Q20</a>
+            <a href="#" class="nav-link" data-target="q21-25">Q21 – Q25</a>
+        </nav>
+
+        <main>
+            <!-- PROGRESS -->
+            <div class="progress-bar-container">
+                <div class="top">
+                    <span>📊 Your Progress</span>
+                    <span id="progress-text" style="color:#64748b; font-size:0.9rem;">0 / 25 solved</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- NOTES SECTION -->
+            <div id="notes" class="section active">
+                <h1>Important Notes: Probability</h1>
+
+                <div class="note-card">
+                    <h3>🔑 Fundamental Concepts</h3>
+                    <ul>
+                        <li><strong>Probability Range:</strong> For any event E, <code>0 ≤ P(E) ≤ 1</code>. Probability can never be negative or greater than 1.</li>
+                        <li><strong>Complementary Events:</strong> <code>P(E) + P(not E) = 1</code>. The probability of an event and its complement always sum to unity.</li>
+                        <li><strong>Impossible Event:</strong> An event that cannot happen has probability <code>0</code>.</li>
+                        <li><strong>Certain Event:</strong> An event that is sure to happen has probability <code>1</code>.</li>
+                        <li><strong>Sum of Elementary Events:</strong> The sum of probabilities of all elementary events in an experiment equals <code>1</code>.</li>
+                    </ul>
+                </div>
+
+                <div class="theorem-box">
+                    <h4>📐 Classical Probability Formula</h4>
+                    <p>The probability of an event E is defined as:</p>
+                    <div class="formula-box">
+                        P(E) = Number of favourable outcomes / Total number of possible outcomes
+                    </div>
+                </div>
+
+                <div class="theorem-box" style="background: #dbeafe; border-color: #2563eb;">
+                    <h4 style="color: #1e40af;">🎲 Equally Likely Outcomes</h4>
+                    <p>Outcomes are equally likely when each has the same chance of occurring. Examples: fair coin toss (Head/Tail each 1/2), unbiased die (each face 1/6).</p>
+                </div>
+
+                <div class="note-card" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                    <h3>⚠️ Critical Insight: Elementary vs Compound Events</h3>
+                    <ul>
+                        <li>When throwing <strong>two dice</strong>, there are <strong>36 equally likely elementary outcomes</strong> (ordered pairs like (1,2), (2,1), etc.).</li>
+                        <li>The sums 2 through 12 are <strong>compound events</strong> with different probabilities. Do NOT assume each sum has probability 1/11.</li>
+                        <li>Always count elementary outcomes for correct probability calculation.</li>
+                    </ul>
+                </div>
+
+                <div class="theorem-box" style="background: #fce7f3; border-color: #db2777;">
+                    <h4 style="color: #9d174d;">📊 Two Dice Probability Table</h4>
+                    <div class="formula-box" style="font-size: 0.95rem; text-align: left; padding: 16px;">
+                        <div style="display:grid; grid-template-columns: repeat(11, 1fr); gap: 6px; text-align:center; margin-bottom:8px;">
+                            <div><strong>2</strong></div><div><strong>3</strong></div><div><strong>4</strong></div><div><strong>5</strong></div><div><strong>6</strong></div><div><strong>7</strong></div><div><strong>8</strong></div><div><strong>9</strong></div><div><strong>10</strong></div><div><strong>11</strong></div><div><strong>12</strong></div>
+                        </div>
+                        <div style="display:grid; grid-template-columns: repeat(11, 1fr); gap: 6px; text-align:center;">
+                            <div>1/36</div><div>2/36</div><div>3/36</div><div>4/36</div><div>5/36</div><div>6/36</div><div>5/36</div><div>4/36</div><div>3/36</div><div>2/36</div><div>1/36</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CALCULATORS SECTION -->
+            <div id="calculators" class="section">
+                <h1>🧮 Probability Calculators</h1>
+
+                <div class="calculator">
+                    <h3>Basic Probability Calculator</h3>
+                    <p class="calc-desc">Calculate P(E) = Favourable / Total outcomes.</p>
+                    <div class="calc-grid">
+                        <div class="calc-input"><label>Favourable Outcomes:</label><input type="number" id="calc-fav" min="0" placeholder="e.g. 3"></div>
+                        <div class="calc-input"><label>Total Outcomes:</label><input type="number" id="calc-total" min="1" placeholder="e.g. 8"></div>
+                    </div>
+                    <button onclick="calcBasic()">Calculate Probability</button>
+                    <div class="calc-result" id="calc-basic-res"></div>
+                </div>
+
+                <div class="calculator" style="border-top-color: #db2777;">
+                    <h3 style="color:#9d174d;">Complementary Probability</h3>
+                    <p class="calc-desc">Given P(E), find P(not E) = 1 − P(E).</p>
+                    <div class="calc-grid">
+                        <div class="calc-input"><label>P(E):</label><input type="number" id="calc-pe" min="0" max="1" step="0.01" placeholder="e.g. 0.05"></div>
+                    </div>
+                    <button onclick="calcComp()" style="background:#db2777;">Find P(not E)</button>
+                    <div class="calc-result" id="calc-comp-res" style="border-left-color:#db2777; background:#fdf2f8;"></div>
+                </div>
+
+                <div class="calculator" style="border-top-color: #059669;">
+                    <h3 style="color:#065f46;">Two Dice Sum Probability</h3>
+                    <p class="calc-desc">Find the probability of getting a specific sum when two dice are thrown.</p>
+                    <div class="calc-grid">
+                        <div class="calc-input"><label>Desired Sum (2-12):</label><input type="number" id="calc-dice-sum" min="2" max="12" placeholder="e.g. 7"></div>
+                    </div>
+                    <button onclick="calcDiceSum()" style="background:#059669;">Calculate</button>
+                    <div class="calc-result" id="calc-dice-res" style="border-left-color:#059669; background:#f0fdf4;"></div>
+                </div>
+            </div>
+
+            <!-- VISUALIZERS SECTION -->
+            <div id="visualizers" class="section">
+                <h1>🎲 Interactive Visualizers</h1>
+                <div class="viz-grid">
+                    <div class="viz-card">
+                        <h4>Coin Toss Simulator</h4>
+                        <div style="perspective:1000px;">
+                            <div class="coin" id="coin"><div class="coin-face coin-front">H</div><div class="coin-face coin-back">T</div></div>
+                        </div>
+                        <div style="margin:12px 0;">
+                            <button onclick="flipCoin()" style="background:#f59e0b;">Flip Coin</button>
+                            <button class="secondary" onclick="resetCoin()">Reset</button>
+                        </div>
+                        <div style="font-size:0.9rem; color:#64748b;">
+                            Heads: <strong id="heads-count" style="color:#f59e0b;">0</strong> &nbsp;|&nbsp; 
+                            Tails: <strong id="tails-count" style="color:#64748b;">0</strong> &nbsp;|&nbsp; 
+                            Total: <span id="total-flips">0</span>
+                        </div>
+                    </div>
+
+                    <div class="viz-card">
+                        <h4>Die Roll Simulator</h4>
+                        <div class="dice-face" id="dice"><div class="dot" style="grid-column:2;grid-row:2;"></div></div>
+                        <div style="margin:12px 0;">
+                            <button onclick="rollDice()" style="background:#ef4444;">Roll Die</button>
+                            <button class="secondary" onclick="resetDice()">Reset</button>
+                        </div>
+                        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:6px; font-size:0.8rem;" id="dice-stats">
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">1: <strong>0</strong></div>
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">2: <strong>0</strong></div>
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">3: <strong>0</strong></div>
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">4: <strong>0</strong></div>
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">5: <strong>0</strong></div>
+                            <div style="background:#f1f5f9; padding:4px; border-radius:6px;">6: <strong>0</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="viz-card">
+                        <h4>Number Spinner (1-8)</h4>
+                        <div class="spinner-container">
+                            <div class="spinner-arrow"></div>
+                            <div class="spinner" id="spinner">
+                                <div class="spinner-segment" style="background:#4f46e5; transform:rotate(0deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#7c3aed; transform:rotate(45deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#06b6d4; transform:rotate(90deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#10b981; transform:rotate(135deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#f59e0b; transform:rotate(180deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#ef4444; transform:rotate(225deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#ec4899; transform:rotate(270deg) skewY(45deg);"></div>
+                                <div class="spinner-segment" style="background:#8b5cf6; transform:rotate(315deg) skewY(45deg);"></div>
+                            </div>
+                            <div class="spinner-center"><div id="spinner-result">?</div></div>
+                        </div>
+                        <button onclick="spinSpinner()" style="background:#06b6d4;">Spin</button>
+                        <p style="font-size:0.8rem; color:#64748b; margin-top:8px;">Each number has probability 1/8</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q1-Q5 SECTION -->
+            <div id="q1-5" class="section">
+                <h1>Questions 1 – 5</h1>
+
+                <!-- Q1 -->
+                <div class="question-box" id="q1">
+                    <div class="q-header"><div class="q-num">1</div><h3>Complete the following statements:</h3></div>
+
+                    <p style="margin-top:18px; font-weight:600; color:#334155;"><strong>(i)</strong> Probability of an event E + Probability of the event 'not E' = ______</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q1i',0,1,'sol1i')"><span class="opt-label">A</span>0</div>
+                        <div class="option" onclick="checkAnswer('q1i',1,1,'sol1i')"><span class="opt-label">B</span>1</div>
+                        <div class="option" onclick="checkAnswer('q1i',2,1,'sol1i')"><span class="opt-label">C</span>2</div>
+                        <div class="option" onclick="checkAnswer('q1i',3,1,'sol1i')"><span class="opt-label">D</span>1/2</div>
+                    </div>
+                    <div class="solution" id="sol1i">
+                        <div class="solution-title">✅ Correct Answer: 1</div>
+                        <div class="solution-step" data-step="1"><strong>Complementary Events Rule:</strong> For any event E and its complement 'not E', the sum of their probabilities equals unity.</div>
+                        <div class="solution-step" data-step="2"><span class="math">P(E) + P(not E) = 1</span></div>
+                        <div class="solution-step" data-step="3">Example: If P(rain) = 0.3, then P(no rain) = 1 − 0.3 = 0.7. Together they cover all possibilities.</div>
+                    </div>
+
+                    <p style="margin-top:28px; font-weight:600; color:#334155;"><strong>(ii)</strong> The probability of an event that cannot happen is ______. Such an event is called ______.</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q1ii',0,0,'sol1ii')"><span class="opt-label">A</span>0; Impossible event</div>
+                        <div class="option" onclick="checkAnswer('q1ii',1,0,'sol1ii')"><span class="opt-label">B</span>1; Certain event</div>
+                        <div class="option" onclick="checkAnswer('q1ii',2,0,'sol1ii')"><span class="opt-label">C</span>1/2; Random event</div>
+                        <div class="option" onclick="checkAnswer('q1ii',3,0,'sol1ii')"><span class="opt-label">D</span>0; Null event</div>
+                    </div>
+                    <div class="solution" id="sol1ii">
+                        <div class="solution-title">✅ Correct Answer: 0; Impossible event</div>
+                        <div class="solution-step" data-step="1">An event that <strong>cannot happen</strong> under any circumstances has probability <span class="math">0</span>.</div>
+                        <div class="solution-step" data-step="2">Such an event is called an <strong>impossible event</strong>. Example: Rolling a 7 on a standard die is impossible.</div>
+                    </div>
+
+                    <p style="margin-top:28px; font-weight:600; color:#334155;"><strong>(iii)</strong> The probability of an event that is certain to happen is ______. Such an event is called ______.</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q1iii',0,0,'sol1iii')"><span class="opt-label">A</span>1; Sure event</div>
+                        <div class="option" onclick="checkAnswer('q1iii',1,0,'sol1iii')"><span class="opt-label">B</span>0; Impossible event</div>
+                        <div class="option" onclick="checkAnswer('q1iii',2,0,'sol1iii')"><span class="opt-label">C</span>1/2; Random event</div>
+                        <div class="option" onclick="checkAnswer('q1iii',3,0,'sol1iii')"><span class="opt-label">D</span>1; Certain event</div>
+                    </div>
+                    <div class="solution" id="sol1iii">
+                        <div class="solution-title">✅ Correct Answer: 1; Sure event (or Certain event)</div>
+                        <div class="solution-step" data-step="1">An event that is <strong>guaranteed to happen</strong> has probability <span class="math">1</span>.</div>
+                        <div class="solution-step" data-step="2">Such an event is called a <strong>sure event</strong> or <strong>certain event</strong>. Example: Getting a number less than 7 when rolling a die is certain.</div>
+                    </div>
+
+                    <p style="margin-top:28px; font-weight:600; color:#334155;"><strong>(iv)</strong> The sum of the probabilities of all the elementary events of an experiment is ______.</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q1iv',0,0,'sol1iv')"><span class="opt-label">A</span>0</div>
+                        <div class="option" onclick="checkAnswer('q1iv',1,0,'sol1iv')"><span class="opt-label">B</span>1</div>
+                        <div class="option" onclick="checkAnswer('q1iv',2,0,'sol1iv')"><span class="opt-label">C</span>100</div>
+                        <div class="option" onclick="checkAnswer('q1iv',3,0,'sol1iv')"><span class="opt-label">D</span>1/2</div>
+                    </div>
+                    <div class="solution" id="sol1iv">
+                        <div class="solution-title">✅ Correct Answer: 1</div>
+                        <div class="solution-step" data-step="1">Elementary events are the simplest outcomes of an experiment that cannot be broken down further.</div>
+                        <div class="solution-step" data-step="2">The total probability space must cover all possible outcomes. Therefore, the sum equals <span class="math">1</span>.</div>
+                        <div class="solution-step" data-step="3">Example: For a die, P(1)+P(2)+P(3)+P(4)+P(5)+P(6) = 1/6 × 6 = 1.</div>
+                    </div>
+
+                    <p style="margin-top:28px; font-weight:600; color:#334155;"><strong>(v)</strong> The probability of an event is greater than or equal to ______ and less than or equal to ______.</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q1v',0,0,'sol1v')"><span class="opt-label">A</span>0 and 1</div>
+                        <div class="option" onclick="checkAnswer('q1v',1,0,'sol1v')"><span class="opt-label">B</span>−1 and 1</div>
+                        <div class="option" onclick="checkAnswer('q1v',2,0,'sol1v')"><span class="opt-label">C</span>0 and 100</div>
+                        <div class="option" onclick="checkAnswer('q1v',3,0,'sol1v')"><span class="opt-label">D</span>1/2 and 1</div>
+                    </div>
+                    <div class="solution" id="sol1v">
+                        <div class="solution-title">✅ Correct Answer: 0 and 1</div>
+                        <div class="solution-step" data-step="1">Probability is always bounded: <span class="math">0 ≤ P(E) ≤ 1</span></div>
+                        <div class="solution-step" data-step="2">0 represents impossibility, 1 represents certainty. No probability can be negative or exceed 1.</div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-box" id="q2">
+                    <div class="q-header"><div class="q-num">2</div><h3>Which experiments have equally likely outcomes? Explain.</h3></div>
+                    <p style="margin-bottom:14px; color:#64748b; font-size:0.95rem;">(i) A driver attempts to start a car. (ii) A basketball shot. (iii) A true-false question. (iv) A baby is born (boy or girl).</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q2',0,0,'sol2')"><span class="opt-label">A</span>Only (iii) and (iv)</div>
+                        <div class="option" onclick="checkAnswer('q2',1,0,'sol2')"><span class="opt-label">B</span>Only (i) and (ii)</div>
+                        <div class="option" onclick="checkAnswer('q2',2,0,'sol2')"><span class="opt-label">C</span>All four</div>
+                        <div class="option" onclick="checkAnswer('q2',3,0,'sol2')"><span class="opt-label">D</span>Only (i), (iii) and (iv)</div>
+                    </div>
+                    <div class="solution" id="sol2">
+                        <div class="solution-title">✅ Correct Answer: Only (iii) and (iv)</div>
+                        <div class="solution-step" data-step="1"><strong>(i) Car starting:</strong> NOT equally likely. Depends on battery, fuel, mechanical condition. P(start) ≠ P(not start).</div>
+                        <div class="solution-step" data-step="2"><strong>(ii) Basketball shot:</strong> NOT equally likely. Depends on player skill, distance, defense. P(shoot) ≠ P(miss).</div>
+                        <div class="solution-step" data-step="3"><strong>(iii) True-False question:</strong> Equally likely. Only two options with no bias → P(right) = P(wrong) = <span class="math">1/2</span>.</div>
+                        <div class="solution-step" data-step="4"><strong>(iv) Baby gender:</strong> Equally likely. Biologically, P(boy) ≈ P(girl) ≈ <span class="math">1/2</span>.</div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-box" id="q3">
+                    <div class="q-header"><div class="q-num">3</div><h3>Why is tossing a coin considered fair for deciding which team gets the ball?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q3',0,1,'sol3')"><span class="opt-label">A</span>Because it is mentioned in the rules</div>
+                        <div class="option" onclick="checkAnswer('q3',1,1,'sol3')"><span class="opt-label">B</span>Because it has two equally likely outcomes, giving each team 50% chance</div>
+                        <div class="option" onclick="checkAnswer('q3',2,1,'sol3')"><span class="opt-label">C</span>Because the referee decides</div>
+                        <div class="option" onclick="checkAnswer('q3',3,1,'sol3')"><span class="opt-label">D</span>Because heads always wins</div>
+                    </div>
+                    <div class="solution" id="sol3">
+                        <div class="solution-title">✅ Correct Answer: Two equally likely outcomes, 50% each</div>
+                        <div class="solution-step" data-step="1">A fair coin has exactly two possible outcomes: <strong>Heads</strong> and <strong>Tails</strong>.</div>
+                        <div class="solution-step" data-step="2">Assuming the coin is unbiased: <span class="math">P(Heads) = P(Tails) = 1/2 = 0.5</span></div>
+                        <div class="solution-step" data-step="3">Each team gets an <strong>equal and unbiased 50% probability</strong> of winning the toss. No team has an advantage.</div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-box" id="q4">
+                    <div class="q-header"><div class="q-num">4</div><h3>Which of the following <strong>cannot</strong> be the probability of an event?</h3></div>
+                    <p style="margin-bottom:14px; font-size:1.1rem;"><span class="math">(A) 2/3 &nbsp; (B) −1.5 &nbsp; (C) 15% &nbsp; (D) 0.7</span></p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q4',0,1,'sol4')"><span class="opt-label">A</span>(A) 2/3</div>
+                        <div class="option" onclick="checkAnswer('q4',1,1,'sol4')"><span class="opt-label">B</span>(B) −1.5</div>
+                        <div class="option" onclick="checkAnswer('q4',2,1,'sol4')"><span class="opt-label">C</span>(C) 15%</div>
+                        <div class="option" onclick="checkAnswer('q4',3,1,'sol4')"><span class="opt-label">D</span>(D) 0.7</div>
+                    </div>
+                    <div class="solution" id="sol4">
+                        <div class="solution-title">✅ Correct Answer: (B) −1.5</div>
+                        <div class="solution-step" data-step="1">Probability must satisfy: <span class="math">0 ≤ P(E) ≤ 1</span></div>
+                        <div class="solution-step" data-step="2">(A) 2/3 ≈ 0.667 → Valid (between 0 and 1)</div>
+                        <div class="solution-step" data-step="3">(B) −1.5 → <strong style="color:#dc2626;">INVALID</strong> — negative probability is impossible</div>
+                        <div class="solution-step" data-step="4">(C) 15% = 0.15 → Valid</div>
+                        <div class="solution-step" data-step="5">(D) 0.7 → Valid</div>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-box" id="q5">
+                    <div class="q-header"><div class="q-num">5</div><h3>If P(E) = 0.05, what is the probability of 'not E'?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q5',0,1,'sol5')"><span class="opt-label">A</span>0.05</div>
+                        <div class="option" onclick="checkAnswer('q5',1,1,'sol5')"><span class="opt-label">B</span>0.95</div>
+                        <div class="option" onclick="checkAnswer('q5',2,1,'sol5')"><span class="opt-label">C</span>1.05</div>
+                        <div class="option" onclick="checkAnswer('q5',3,1,'sol5')"><span class="opt-label">D</span>0.5</div>
+                    </div>
+                    <div class="solution" id="sol5">
+                        <div class="solution-title">✅ Correct Answer: 0.95</div>
+                        <div class="solution-step" data-step="1">Using the complementary event formula: <span class="math">P(E) + P(not E) = 1</span></div>
+                        <div class="solution-step" data-step="2">Given P(E) = 0.05:</div>
+                        <div class="solution-step" data-step="3"><span class="math">P(not E) = 1 − 0.05 = 0.95</span></div>
+                        <div class="solution-step" data-step="4">There is a 95% chance that event E will not occur.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q6-Q10 SECTION -->
+            <div id="q6-10" class="section">
+                <h1>Questions 6 – 10</h1>
+
+                <!-- Q6 -->
+                <div class="question-box" id="q6">
+                    <div class="q-header"><div class="q-num">6</div><h3>A bag contains lemon flavoured candies only. Malini takes out one candy without looking. Find the probability of:</h3></div>
+                    <p style="margin-bottom:14px; color:#64748b; font-size:0.95rem;">(i) an orange flavoured candy? (ii) a lemon flavoured candy?</p>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q6',0,1,'sol6')"><span class="opt-label">A</span>(i) 0, (ii) 1</div>
+                        <div class="option" onclick="checkAnswer('q6',1,1,'sol6')"><span class="opt-label">B</span>(i) 1, (ii) 0</div>
+                        <div class="option" onclick="checkAnswer('q6',2,1,'sol6')"><span class="opt-label">C</span>(i) 1/2, (ii) 1/2</div>
+                        <div class="option" onclick="checkAnswer('q6',3,1,'sol6')"><span class="opt-label">D</span>(i) 0, (ii) 0</div>
+                    </div>
+                    <div class="solution" id="sol6">
+                        <div class="solution-title">✅ Correct Answer: (i) 0, (ii) 1</div>
+                        <div class="solution-step" data-step="1">Given: The bag contains <strong>only lemon flavoured candies</strong>.</div>
+                        <div class="solution-step" data-step="2"><strong>(i) Orange flavoured candy:</strong> <span class="math">P(orange) = 0/Total = 0</span> (Impossible event — no orange candies exist in the bag)</div>
+                        <div class="solution-step" data-step="3"><strong>(ii) Lemon flavoured candy:</strong> <span class="math">P(lemon) = Total/Total = 1</span> (Certain event — every candy is lemon)</div>
+                        <div class="solution-step" data-step="4">Since no other flavour exists, getting lemon is guaranteed.</div>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-box" id="q7">
+                    <div class="q-header"><div class="q-num">7</div><h3>In a group of 3 students, P(2 students not having same birthday) = 0.992. Find P(2 students have same birthday).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q7',0,1,'sol7')"><span class="opt-label">A</span>0.992</div>
+                        <div class="option" onclick="checkAnswer('q7',1,1,'sol7')"><span class="opt-label">B</span>0.008</div>
+                        <div class="option" onclick="checkAnswer('q7',2,1,'sol7')"><span class="opt-label">C</span>1.992</div>
+                        <div class="option" onclick="checkAnswer('q7',3,1,'sol7')"><span class="opt-label">D</span>0.5</div>
+                    </div>
+                    <div class="solution" id="sol7">
+                        <div class="solution-title">✅ Correct Answer: 0.008</div>
+                        <div class="solution-step" data-step="1">Let E = event that 2 students have the same birthday</div>
+                        <div class="solution-step" data-step="2">Let not E = event that 2 students do <strong>not</strong> have the same birthday</div>
+                        <div class="solution-step" data-step="3"><span class="math">P(E) + P(not E) = 1</span></div>
+                        <div class="solution-step" data-step="4">Given: P(not E) = 0.992</div>
+                        <div class="solution-step" data-step="5"><span class="math">P(E) = 1 − 0.992 = 0.008</span></div>
+                        <div class="solution-step" data-step="6">There is only a 0.8% chance that two students share the same birthday.</div>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-box" id="q8">
+                    <div class="q-header"><div class="q-num">8</div><h3>A bag contains 3 red balls and 5 black balls. A ball is drawn at random. Find P(red) and P(not red).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q8',0,0,'sol8')"><span class="opt-label">A</span>3/8 and 5/8</div>
+                        <div class="option" onclick="checkAnswer('q8',1,0,'sol8')"><span class="opt-label">B</span>5/8 and 3/8</div>
+                        <div class="option" onclick="checkAnswer('q8',2,0,'sol8')"><span class="opt-label">C</span>3/5 and 2/5</div>
+                        <div class="option" onclick="checkAnswer('q8',3,0,'sol8')"><span class="opt-label">D</span>1/2 and 1/2</div>
+                    </div>
+                    <div class="solution" id="sol8">
+                        <div class="solution-title">✅ Correct Answer: 3/8 and 5/8</div>
+                        <div class="solution-step" data-step="1">Total balls = 3 (red) + 5 (black) = <strong>8</strong></div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(red):</strong> <span class="math">P(red) = 3/8 = 0.375</span></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) P(not red):</strong> <span class="math">P(not red) = 1 − 3/8 = 5/8 = 0.625</span></div>
+                        <div class="solution-step" data-step="4">Alternatively: P(not red) = P(black) = 5/8</div>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-box" id="q9">
+                    <div class="q-header"><div class="q-num">9</div><h3>A box contains 5 red, 8 white and 4 green marbles. One marble is taken out at random. Find P(red), P(white), P(not green).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q9',0,0,'sol9')"><span class="opt-label">A</span>5/17, 8/17, 13/17</div>
+                        <div class="option" onclick="checkAnswer('q9',1,0,'sol9')"><span class="opt-label">B</span>5/17, 8/17, 4/17</div>
+                        <div class="option" onclick="checkAnswer('q9',2,0,'sol9')"><span class="opt-label">C</span>5/12, 8/12, 13/12</div>
+                        <div class="option" onclick="checkAnswer('q9',3,0,'sol9')"><span class="opt-label">D</span>1/3, 1/3, 1/3</div>
+                    </div>
+                    <div class="solution" id="sol9">
+                        <div class="solution-title">✅ Correct Answer: 5/17, 8/17, 13/17</div>
+                        <div class="solution-step" data-step="1">Total marbles = 5 + 8 + 4 = <strong>17</strong></div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(red)</strong> = 5/17</div>
+                        <div class="solution-step" data-step="3"><strong>(ii) P(white)</strong> = 8/17</div>
+                        <div class="solution-step" data-step="4"><strong>(iii) P(not green)</strong> = P(red) + P(white) = (5+8)/17 = <strong>13/17</strong></div>
+                        <div class="solution-step" data-step="5">Or: P(not green) = 1 − P(green) = 1 − 4/17 = 13/17</div>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-box" id="q10">
+                    <div class="q-header"><div class="q-num">10</div><h3>A piggy bank contains hundred 50p coins, fifty ₹1 coins, twenty ₹2 coins and ten ₹5 coins. Find P(50p coin) and P(not ₹5 coin).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q10',0,0,'sol10')"><span class="opt-label">A</span>5/9 and 17/18</div>
+                        <div class="option" onclick="checkAnswer('q10',1,0,'sol10')"><span class="opt-label">B</span>10/18 and 8/18</div>
+                        <div class="option" onclick="checkAnswer('q10',2,0,'sol10')"><span class="opt-label">C</span>100/180 and 10/180</div>
+                        <div class="option" onclick="checkAnswer('q10',3,0,'sol10')"><span class="opt-label">D</span>1/2 and 1/2</div>
+                    </div>
+                    <div class="solution" id="sol10">
+                        <div class="solution-title">✅ Correct Answer: 5/9 and 17/18</div>
+                        <div class="solution-step" data-step="1">Total coins = 100 + 50 + 20 + 10 = <strong>180</strong></div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(50p coin):</strong> <span class="math">= 100/180 = 10/18 = 5/9</span></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) P(not ₹5 coin):</strong> <span class="math">= (100 + 50 + 20)/180 = 170/180 = 17/18</span></div>
+                        <div class="solution-step" data-step="4">Or: 1 − P(₹5) = 1 − 10/180 = 170/180 = 17/18</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q11-Q15 SECTION -->
+            <div id="q11-15" class="section">
+                <h1>Questions 11 – 15</h1>
+
+                <!-- Q11 -->
+                <div class="question-box" id="q11">
+                    <div class="q-header"><div class="q-num">11</div><h3>A tank contains 5 male fish and 8 female fish. What is the probability that a randomly taken fish is male?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q11',0,0,'sol11')"><span class="opt-label">A</span>5/13</div>
+                        <div class="option" onclick="checkAnswer('q11',1,0,'sol11')"><span class="opt-label">B</span>8/13</div>
+                        <div class="option" onclick="checkAnswer('q11',2,0,'sol11')"><span class="opt-label">C</span>5/8</div>
+                        <div class="option" onclick="checkAnswer('q11',3,0,'sol11')"><span class="opt-label">D</span>1/2</div>
+                    </div>
+                    <div class="solution" id="sol11">
+                        <div class="solution-title">✅ Correct Answer: 5/13</div>
+                        <div class="solution-step" data-step="1">Total fish = 5 (male) + 8 (female) = <strong>13</strong></div>
+                        <div class="solution-step" data-step="2">Number of male fish = <strong>5</strong></div>
+                        <div class="solution-step" data-step="3"><span class="math">P(male) = 5/13 ≈ 0.385</span></div>
+                        <div class="solution-step" data-step="4">There is approximately a 38.5% chance of selecting a male fish.</div>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-box" id="q12">
+                    <div class="q-header"><div class="q-num">12</div><h3>A game spinner has numbers 1-8 (equally likely). Find P(8), P(odd), P(>2), P(<9).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q12',0,0,'sol12')"><span class="opt-label">A</span>1/8, 1/2, 3/4, 1</div>
+                        <div class="option" onclick="checkAnswer('q12',1,0,'sol12')"><span class="opt-label">B</span>1/8, 1/2, 1/2, 8/9</div>
+                        <div class="option" onclick="checkAnswer('q12',2,0,'sol12')"><span class="opt-label">C</span>2/8, 4/8, 5/8, 1</div>
+                        <div class="option" onclick="checkAnswer('q12',3,0,'sol12')"><span class="opt-label">D</span>1/8, 3/8, 6/8, 0</div>
+                    </div>
+                    <div class="solution" id="sol12">
+                        <div class="solution-title">✅ Correct Answer: 1/8, 1/2, 3/4, 1</div>
+                        <div class="solution-step" data-step="1">Total outcomes = 8 (numbers 1 through 8)</div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(8)</strong> = 1/8 (only one favourable outcome)</div>
+                        <div class="solution-step" data-step="3"><strong>(ii) P(odd)</strong> = {1,3,5,7} → 4/8 = <strong>1/2</strong></div>
+                        <div class="solution-step" data-step="4"><strong>(iii) P(>2)</strong> = {3,4,5,6,7,8} → 6/8 = <strong>3/4</strong></div>
+                        <div class="solution-step" data-step="5"><strong>(iv) P(<9)</strong> = {1,2,3,4,5,6,7,8} → 8/8 = <strong>1</strong> (Certain event)</div>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-box" id="q13">
+                    <div class="q-header"><div class="q-num">13</div><h3>A die is thrown once. Find P(prime), P(between 2 and 6), P(odd).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q13',0,0,'sol13')"><span class="opt-label">A</span>1/2, 1/2, 1/2</div>
+                        <div class="option" onclick="checkAnswer('q13',1,0,'sol13')"><span class="opt-label">B</span>1/3, 1/3, 1/3</div>
+                        <div class="option" onclick="checkAnswer('q13',2,0,'sol13')"><span class="opt-label">C</span>3/6, 2/6, 3/6</div>
+                        <div class="option" onclick="checkAnswer('q13',3,0,'sol13')"><span class="opt-label">D</span>1/2, 1/3, 1/2</div>
+                    </div>
+                    <div class="solution" id="sol13">
+                        <div class="solution-title">✅ Correct Answer: 1/2, 1/2, 1/2</div>
+                        <div class="solution-step" data-step="1">Sample space = {1, 2, 3, 4, 5, 6} → Total = 6</div>
+                        <div class="solution-step" data-step="2"><strong>(i) Prime numbers:</strong> {2, 3, 5} → 3 outcomes<br><span class="math">P(prime) = 3/6 = 1/2</span></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) Between 2 and 6:</strong> {3, 4, 5} → 3 outcomes<br><span class="math">P(between 2 and 6) = 3/6 = 1/2</span></div>
+                        <div class="solution-step" data-step="4"><strong>(iii) Odd numbers:</strong> {1, 3, 5} → 3 outcomes<br><span class="math">P(odd) = 3/6 = 1/2</span></div>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-box" id="q14">
+                    <div class="q-header"><div class="q-num">14</div><h3>One card is drawn from a well-shuffled deck of 52 cards. Which is correct for: (i) King of red, (ii) Face card, (iii) Red face card, (iv) Jack of hearts, (v) Spade, (vi) Queen of diamonds?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q14',0,0,'sol14')"><span class="opt-label">A</span>1/26, 3/13, 3/26, 1/52, 1/4, 1/52</div>
+                        <div class="option" onclick="checkAnswer('q14',1,0,'sol14')"><span class="opt-label">B</span>2/52, 12/52, 6/52, 1/52, 13/52, 2/52</div>
+                        <div class="option" onclick="checkAnswer('q14',2,0,'sol14')"><span class="opt-label">C</span>1/13, 1/4, 1/8, 1/26, 1/2, 1/26</div>
+                        <div class="option" onclick="checkAnswer('q14',3,0,'sol14')"><span class="opt-label">D</span>4/52, 12/52, 26/52, 4/52, 13/52, 1/52</div>
+                    </div>
+                    <div class="solution" id="sol14">
+                        <div class="solution-title">✅ Correct Answer: 1/26, 3/13, 3/26, 1/52, 1/4, 1/52</div>
+                        <div class="solution-step" data-step="1">Total cards = 52</div>
+                        <div class="solution-step" data-step="2"><strong>(i) King of red:</strong> King of Hearts + King of Diamonds = 2/52 = <strong>1/26</strong></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) Face card:</strong> 3 per suit × 4 suits = 12/52 = <strong>3/13</strong></div>
+                        <div class="solution-step" data-step="4"><strong>(iii) Red face card:</strong> J,Q,K of Hearts + J,Q,K of Diamonds = 6/52 = <strong>3/26</strong></div>
+                        <div class="solution-step" data-step="5"><strong>(iv) Jack of hearts:</strong> Only 1 card → <strong>1/52</strong></div>
+                        <div class="solution-step" data-step="6"><strong>(v) Spade:</strong> 13 spades → 13/52 = <strong>1/4</strong></div>
+                        <div class="solution-step" data-step="7"><strong>(vi) Queen of diamonds:</strong> Only 1 card → <strong>1/52</strong></div>
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-box" id="q15">
+                    <div class="q-header"><div class="q-num">15</div><h3>Five cards (10, J, Q, K, A of diamonds) are shuffled. (i) P(Queen)? (ii) If queen is drawn and put aside, P(second is ace)? P(second is queen)?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q15',0,0,'sol15')"><span class="opt-label">A</span>1/5, 1/4, 0</div>
+                        <div class="option" onclick="checkAnswer('q15',1,0,'sol15')"><span class="opt-label">B</span>1/5, 1/5, 1/5</div>
+                        <div class="option" onclick="checkAnswer('q15',2,0,'sol15')"><span class="opt-label">C</span>1/5, 1/4, 1/4</div>
+                        <div class="option" onclick="checkAnswer('q15',3,0,'sol15')"><span class="opt-label">D</span>5/5, 4/4, 0</div>
+                    </div>
+                    <div class="solution" id="sol15">
+                        <div class="solution-title">✅ Correct Answer: 1/5, 1/4, 0</div>
+                        <div class="solution-step" data-step="1">Total cards = 5 (10, J, Q, K, A of diamonds)</div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(Queen)</strong> = 1/5</div>
+                        <div class="solution-step" data-step="3"><strong>(ii) After removing Queen:</strong> 4 cards remain (10, J, K, A)</div>
+                        <div class="solution-step" data-step="4"><span class="math">P(second is ace) = 1/4</span></div>
+                        <div class="solution-step" data-step="5"><span class="math">P(second is queen) = 0/4 = 0</span> (queen already removed)</div>
+                        <div class="solution-step" data-step="6">This demonstrates <strong>conditional probability without replacement</strong>.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q16-Q20 SECTION -->
+            <div id="q16-20" class="section">
+                <h1>Questions 16 – 20</h1>
+
+                <!-- Q16 -->
+                <div class="question-box" id="q16">
+                    <div class="q-header"><div class="q-num">16</div><h3>12 defective pens are mixed with 132 good ones. What is P(good pen)?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q16',0,0,'sol16')"><span class="opt-label">A</span>11/12</div>
+                        <div class="option" onclick="checkAnswer('q16',1,0,'sol16')"><span class="opt-label">B</span>12/144</div>
+                        <div class="option" onclick="checkAnswer('q16',2,0,'sol16')"><span class="opt-label">C</span>132/12</div>
+                        <div class="option" onclick="checkAnswer('q16',3,0,'sol16')"><span class="opt-label">D</span>1/12</div>
+                    </div>
+                    <div class="solution" id="sol16">
+                        <div class="solution-title">✅ Correct Answer: 11/12</div>
+                        <div class="solution-step" data-step="1">Total pens = 12 (defective) + 132 (good) = <strong>144</strong></div>
+                        <div class="solution-step" data-step="2">Good pens = <strong>132</strong></div>
+                        <div class="solution-step" data-step="3"><span class="math">P(good) = 132/144 = 11/12 ≈ 0.917</span></div>
+                        <div class="solution-step" data-step="4">There is a 91.7% chance of picking a good pen.</div>
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-box" id="q17">
+                    <div class="q-header"><div class="q-num">17</div><h3>20 bulbs contain 4 defective. (i) P(defective)? (ii) If drawn bulb is not defective and not replaced, P(next is not defective)?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q17',0,0,'sol17')"><span class="opt-label">A</span>1/5 and 15/19</div>
+                        <div class="option" onclick="checkAnswer('q17',1,0,'sol17')"><span class="opt-label">B</span>4/20 and 16/20</div>
+                        <div class="option" onclick="checkAnswer('q17',2,0,'sol17')"><span class="opt-label">C</span>1/5 and 16/19</div>
+                        <div class="option" onclick="checkAnswer('q17',3,0,'sol17')"><span class="opt-label">D</span>1/4 and 15/20</div>
+                    </div>
+                    <div class="solution" id="sol17">
+                        <div class="solution-title">✅ Correct Answer: 1/5 and 15/19</div>
+                        <div class="solution-step" data-step="1">Total bulbs = 20, Defective = 4, Good = 16</div>
+                        <div class="solution-step" data-step="2"><strong>(i) P(defective)</strong> = 4/20 = <strong>1/5</strong></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) Without replacement:</strong> First drawn was NOT defective → 1 good bulb removed</div>
+                        <div class="solution-step" data-step="4">Remaining: 15 good + 4 defective = <strong>19 total</strong></div>
+                        <div class="solution-step" data-step="5"><span class="math">P(not defective) = 15/19 ≈ 0.789</span></div>
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-box" id="q18">
+                    <div class="q-header"><div class="q-num">18</div><h3>A box has 90 discs numbered 1-90. Find P(two-digit), P(perfect square), P(divisible by 5).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q18',0,0,'sol18')"><span class="opt-label">A</span>9/10, 1/10, 1/5</div>
+                        <div class="option" onclick="checkAnswer('q18',1,0,'sol18')"><span class="opt-label">B</span>81/90, 9/90, 18/90</div>
+                        <div class="option" onclick="checkAnswer('q18',2,0,'sol18')"><span class="opt-label">C</span>80/90, 10/90, 15/90</div>
+                        <div class="option" onclick="checkAnswer('q18',3,0,'sol18')"><span class="opt-label">D</span>9/10, 3/10, 2/5</div>
+                    </div>
+                    <div class="solution" id="sol18">
+                        <div class="solution-title">✅ Correct Answer: 9/10, 1/10, 1/5</div>
+                        <div class="solution-step" data-step="1">Total discs = 90</div>
+                        <div class="solution-step" data-step="2"><strong>(i) Two-digit numbers:</strong> 10 to 90 inclusive = 81 numbers<br><span class="math">P = 81/90 = 9/10</span></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) Perfect squares:</strong> 1, 4, 9, 16, 25, 36, 49, 64, 81 = 9 numbers<br><span class="math">P = 9/90 = 1/10</span></div>
+                        <div class="solution-step" data-step="4"><strong>(iii) Divisible by 5:</strong> 5, 10, 15, ..., 90 → 18 numbers<br><span class="math">P = 18/90 = 1/5</span></div>
+                    </div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-box" id="q19">
+                    <div class="q-header"><div class="q-num">19</div><h3>A die has faces: A, B, C, D, E, A. Find P(A) and P(D).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q19',0,0,'sol19')"><span class="opt-label">A</span>1/3 and 1/6</div>
+                        <div class="option" onclick="checkAnswer('q19',1,0,'sol19')"><span class="opt-label">B</span>1/6 and 1/6</div>
+                        <div class="option" onclick="checkAnswer('q19',2,0,'sol19')"><span class="opt-label">C</span>2/6 and 2/6</div>
+                        <div class="option" onclick="checkAnswer('q19',3,0,'sol19')"><span class="opt-label">D</span>1/2 and 1/6</div>
+                    </div>
+                    <div class="solution" id="sol19">
+                        <div class="solution-title">✅ Correct Answer: 1/3 and 1/6</div>
+                        <div class="solution-step" data-step="1">Total faces = 6</div>
+                        <div class="solution-step" data-step="2">Face frequency: A=2, B=1, C=1, D=1, E=1</div>
+                        <div class="solution-step" data-step="3"><strong>(i) P(A)</strong> = 2/6 = <strong>1/3</strong></div>
+                        <div class="solution-step" data-step="4"><strong>(ii) P(D)</strong> = 1/6</div>
+                        <div class="solution-step" data-step="5">Even though there are 5 distinct letters, A appears twice, making it twice as likely as other letters.</div>
+                    </div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-box" id="q20">
+                    <div class="q-header"><div class="q-num">20</div><h3>A die is dropped randomly on a 3m × 2m rectangle. Find P(landing inside a circle with diameter 1m).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q20',0,0,'sol20')"><span class="opt-label">A</span>π/12</div>
+                        <div class="option" onclick="checkAnswer('q20',1,0,'sol20')"><span class="opt-label">B</span>π/6</div>
+                        <div class="option" onclick="checkAnswer('q20',2,0,'sol20')"><span class="opt-label">C</span>π/24</div>
+                        <div class="option" onclick="checkAnswer('q20',3,0,'sol20')"><span class="opt-label">D</span>1/6</div>
+                    </div>
+                    <div class="solution" id="sol20">
+                        <div class="solution-title">✅ Correct Answer: π/12</div>
+                        <div class="solution-step" data-step="1"><strong>Area of rectangle</strong> = 3 × 2 = <strong>6 m²</strong></div>
+                        <div class="solution-step" data-step="2"><strong>Area of circle:</strong> radius r = 0.5 m<br><span class="math">A = πr² = π(0.5)² = π/4 m²</span></div>
+                        <div class="solution-step" data-step="3"><span class="math">P = (π/4) / 6 = π/12 ≈ 0.2618</span></div>
+                        <div class="solution-step" data-step="4">This is a <strong>geometric probability</strong> problem where probability = Area(favourable) / Area(total).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q21-Q25 SECTION -->
+            <div id="q21-25" class="section">
+                <h1>Questions 21 – 25</h1>
+
+                <!-- Q21 -->
+                <div class="question-box" id="q21">
+                    <div class="q-header"><div class="q-num">21</div><h3>144 ball pens: 20 defective, 124 good. Nuri buys if good. Find P(she buys) and P(she does not buy).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q21',0,0,'sol21')"><span class="opt-label">A</span>31/36 and 5/36</div>
+                        <div class="option" onclick="checkAnswer('q21',1,0,'sol21')"><span class="opt-label">B</span>124/144 and 20/144</div>
+                        <div class="option" onclick="checkAnswer('q21',2,0,'sol21')"><span class="opt-label">C</span>20/144 and 124/144</div>
+                        <div class="option" onclick="checkAnswer('q21',3,0,'sol21')"><span class="opt-label">D</span>1/2 and 1/2</div>
+                    </div>
+                    <div class="solution" id="sol21">
+                        <div class="solution-title">✅ Correct Answer: 31/36 and 5/36</div>
+                        <div class="solution-step" data-step="1">Total pens = 144</div>
+                        <div class="solution-step" data-step="2">Good pens = 124, Defective = 20</div>
+                        <div class="solution-step" data-step="3"><strong>(i) P(she buys)</strong> = P(good) = 124/144 = <strong>31/36</strong></div>
+                        <div class="solution-step" data-step="4"><strong>(ii) P(she does not buy)</strong> = P(defective) = 20/144 = <strong>5/36</strong></div>
+                        <div class="solution-step" data-step="5">Check: 31/36 + 5/36 = 36/36 = 1 ✓</div>
+                    </div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question-box" id="q22">
+                    <div class="q-header"><div class="q-num">22</div><h3>Complete the probability table for sum on 2 dice. Is the argument "11 outcomes, each with P=1/11" correct?</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q22',0,0,'sol22')"><span class="opt-label">A</span>Table values vary (1,2,3,4,5,6,5,4,3,2,1)/36; Argument is NOT correct</div>
+                        <div class="option" onclick="checkAnswer('q22',1,0,'sol22')"><span class="opt-label">B</span>Each sum has probability 1/36; Argument is correct</div>
+                        <div class="option" onclick="checkAnswer('q22',2,0,'sol22')"><span class="opt-label">C</span>Each sum has probability 1/11; Argument is correct</div>
+                        <div class="option" onclick="checkAnswer('q22',3,0,'sol22')"><span class="opt-label">D</span>Table: all 5/36; Argument is NOT correct</div>
+                    </div>
+                    <div class="solution" id="sol22">
+                        <div class="solution-title">✅ Correct Answer: Table varies; Argument NOT correct</div>
+                        <div class="solution-step" data-step="1"><strong>Complete Table:</strong></div>
+                        <div style="display:grid; grid-template-columns: repeat(11, 1fr); gap:4px; text-align:center; font-size:0.85rem; margin:10px 0;">
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">2</div><div>1/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">3</div><div>2/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">4</div><div>3/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">5</div><div>4/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">6</div><div>5/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">7</div><div>6/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">8</div><div>5/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">9</div><div>4/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">10</div><div>3/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">11</div><div>2/36</div></div>
+                            <div style="background:#dbeafe; padding:6px; border-radius:6px;"><div style="font-weight:bold;">12</div><div>1/36</div></div>
+                        </div>
+                        <div class="solution-step" data-step="2"><strong>Argument is NOT correct.</strong> There are 36 equally likely elementary outcomes (ordered pairs), not 11. The sums are compound events with different numbers of favourable pairs.</div>
+                    </div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question-box" id="q23">
+                    <div class="q-header"><div class="q-num">23</div><h3>A coin is tossed 3 times. Hanif wins if all tosses are same (HHH or TTT). Calculate P(Hanif loses).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q23',0,0,'sol23')"><span class="opt-label">A</span>3/4</div>
+                        <div class="option" onclick="checkAnswer('q23',1,0,'sol23')"><span class="opt-label">B</span>1/4</div>
+                        <div class="option" onclick="checkAnswer('q23',2,0,'sol23')"><span class="opt-label">C</span>1/2</div>
+                        <div class="option" onclick="checkAnswer('q23',3,0,'sol23')"><span class="opt-label">D</span>2/3</div>
+                    </div>
+                    <div class="solution" id="sol23">
+                        <div class="solution-title">✅ Correct Answer: 3/4</div>
+                        <div class="solution-step" data-step="1">Total possible outcomes when tossing a coin 3 times = 2³ = <strong>8</strong></div>
+                        <div class="solution-step" data-step="2">Sample space: {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}</div>
+                        <div class="solution-step" data-step="3"><strong>Hanif wins:</strong> {HHH, TTT} → 2 outcomes</div>
+                        <div class="solution-step" data-step="4"><strong>Hanif loses:</strong> All other outcomes → 6 outcomes</div>
+                        <div class="solution-step" data-step="5"><span class="math">P(loses) = 6/8 = 3/4 = 0.75</span></div>
+                        <div class="solution-step" data-step="6">Hanif has a 75% chance of losing the game.</div>
+                    </div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question-box" id="q24">
+                    <div class="q-header"><div class="q-num">24</div><h3>A die is thrown twice. Find P(5 does not come up either time) and P(5 comes up at least once).</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q24',0,0,'sol24')"><span class="opt-label">A</span>25/36 and 11/36</div>
+                        <div class="option" onclick="checkAnswer('q24',1,0,'sol24')"><span class="opt-label">B</span>30/36 and 6/36</div>
+                        <div class="option" onclick="checkAnswer('q24',2,0,'sol24')"><span class="opt-label">C</span>1/6 and 5/6</div>
+                        <div class="option" onclick="checkAnswer('q24',3,0,'sol24')"><span class="opt-label">D</span>5/6 and 1/6</div>
+                    </div>
+                    <div class="solution" id="sol24">
+                        <div class="solution-title">✅ Correct Answer: 25/36 and 11/36</div>
+                        <div class="solution-step" data-step="1">Total outcomes = 6 × 6 = <strong>36</strong></div>
+                        <div class="solution-step" data-step="2"><strong>(i) 5 does not come up either time:</strong><br>Each die has 5 favourable outcomes (1,2,3,4,6)<br><span class="math">P = (5/6) × (5/6) = 25/36</span></div>
+                        <div class="solution-step" data-step="3"><strong>(ii) 5 comes up at least once:</strong><br><span class="math">P = 1 − P(no 5) = 1 − 25/36 = 11/36</span></div>
+                        <div class="solution-step" data-step="4">Or count directly: (5,1-6) + (1-6,5) − (5,5) = 6+6−1 = 11 outcomes</div>
+                    </div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question-box" id="q25">
+                    <div class="q-header"><div class="q-num">25</div><h3>Which arguments are correct? (i) Two coins: 3 outcomes (HH, TT, one of each), each P=1/3. (ii) One die: 2 outcomes (odd/even), P(odd)=1/2.</h3></div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer('q25',0,0,'sol25')"><span class="opt-label">A</span>(i) Not correct, (ii) Correct</div>
+                        <div class="option" onclick="checkAnswer('q25',1,0,'sol25')"><span class="opt-label">B</span>(i) Correct, (ii) Correct</div>
+                        <div class="option" onclick="checkAnswer('q25',2,0,'sol25')"><span class="opt-label">C</span>(i) Correct, (ii) Not correct</div>
+                        <div class="option" onclick="checkAnswer('q25',3,0,'sol25')"><span class="opt-label">D</span>Both not correct</div>
+                    </div>
+                    <div class="solution" id="sol25">
+                        <div class="solution-title">✅ Correct Answer: (i) Not correct, (ii) Correct</div>
+                        <div class="solution-step" data-step="1"><strong>(i) Two coins argument:</strong> <span style="color:#dc2626; font-weight:bold;">NOT CORRECT</span><br>The actual equally likely outcomes are: HH, HT, TH, TT (4 outcomes).<br><span class="math">P(HH) = 1/4, P(TT) = 1/4, P(one of each) = 2/4 = 1/2</span><br>The three listed outcomes are <strong>not equally likely</strong>.</div>
+                        <div class="solution-step" data-step="2"><strong>(ii) Die argument:</strong> <span style="color:#16a34a; font-weight:bold;">CORRECT</span><br>Odd = {1,3,5}, Even = {2,4,6}. Each has exactly 3 outcomes.<br><span class="math">P(odd) = 3/6 = 1/2</span> ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="text-align:center; padding:40px 0; color:#94a3b8; font-size:0.9rem; border-top:1px solid #e2e8f0; margin-top:40px;">
+                <p>NCERT Class 10 Mathematics — Chapter 14 Probability</p>
+                <p style="margin-top:4px;">Exercise 14.1 — Complete Interactive Solutions</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ================= NAVIGATION =================
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                link.classList.add('active');
+                document.getElementById(link.dataset.target).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // ================= MCQ LOGIC =================
+        let solvedQuestions = new Set();
+        const totalQuestions = 25;
+
+        function checkAnswer(qid, selected, correct, explanationId) {
+            const container = document.getElementById(qid);
+            if (!container) return;
+            const options = container.querySelectorAll('.option');
+            const solution = document.getElementById(explanationId);
+
+            options.forEach((opt, i) => {
+                opt.classList.remove('correct', 'wrong');
+                opt.classList.add('disabled');
+                if (i === selected) {
+                    opt.classList.add(selected === correct ? 'correct' : 'wrong');
+                }
+                // Show correct answer if wrong was selected
+                if (i === correct && selected !== correct) {
+                    opt.classList.add('correct');
+                }
+            });
+
+            if (solution) {
+                solution.style.display = 'block';
+                setTimeout(() => solution.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 200);
+            }
+
+            if (selected === correct && !solvedQuestions.has(qid)) {
+                solvedQuestions.add(qid);
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            const percent = (solvedQuestions.size / totalQuestions) * 100;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-text').textContent = solvedQuestions.size + ' / ' + totalQuestions + ' solved';
+        }
+
+        // ================= CALCULATORS =================
+        function calcBasic() {
+            const fav = parseFloat(document.getElementById('calc-fav').value);
+            const total = parseFloat(document.getElementById('calc-total').value);
+            const res = document.getElementById('calc-basic-res');
+            if (isNaN(fav) || isNaN(total) || total === 0) {
+                res.innerHTML = '<strong style="color:#dc2626">Please enter valid numbers.</strong>';
+                res.style.display = 'block'; return;
+            }
+            const prob = fav / total;
+            // Simplify fraction
+            const g = gcd(fav, total);
+            const num = fav/g, den = total/g;
+            res.innerHTML = `
+                <strong>P(E)</strong> = ${fav}/${total} = <strong>${num}/${den}</strong><br>
+                Decimal: <strong>${prob.toFixed(4)}</strong><br>
+                Percentage: <strong>${(prob*100).toFixed(2)}%</strong>
+            `;
+            res.style.display = 'block';
+        }
+
+        function calcComp() {
+            const pe = parseFloat(document.getElementById('calc-pe').value);
+            const res = document.getElementById('calc-comp-res');
+            if (isNaN(pe) || pe < 0 || pe > 1) {
+                res.innerHTML = '<strong style="color:#dc2626">Enter a valid probability (0 to 1).</strong>';
+                res.style.display = 'block'; return;
+            }
+            const pnot = 1 - pe;
+            res.innerHTML = `
+                <strong>P(not E)</strong> = 1 − ${pe} = <strong>${pnot.toFixed(4)}</strong><br>
+                <span style="color:#64748b; font-size:0.9em;">Since P(E) + P(not E) = 1</span>
+            `;
+            res.style.display = 'block';
+        }
+
+        function calcDiceSum() {
+            const sum = parseInt(document.getElementById('calc-dice-sum').value);
+            const res = document.getElementById('calc-dice-res');
+            if (isNaN(sum) || sum < 2 || sum > 12) {
+                res.innerHTML = '<strong style="color:#dc2626">Enter a sum between 2 and 12.</strong>';
+                res.style.display = 'block'; return;
+            }
+            const counts = {2:1, 3:2, 4:3, 5:4, 6:5, 7:6, 8:5, 9:4, 10:3, 11:2, 12:1};
+            const count = counts[sum];
+            res.innerHTML = `
+                <strong>Favourable outcomes for sum ${sum}:</strong> ${count}<br>
+                <strong>Total outcomes:</strong> 36<br>
+                <strong>P(sum = ${sum})</strong> = ${count}/36 = <strong>${(count/36).toFixed(4)}</strong><br>
+                Percentage: <strong>${((count/36)*100).toFixed(2)}%</strong>
+            `;
+            res.style.display = 'block';
+        }
+
+        function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+        // ================= VISUALIZERS =================
+        let headsCount = 0, tailsCount = 0, totalFlips = 0;
+        let diceCounts = [0,0,0,0,0,0];
+        let spinnerRotation = 0;
+
+        function flipCoin() {
+            const coin = document.getElementById('coin');
+            const isHeads = Math.random() < 0.5;
+            const rotation = 1800 + (isHeads ? 0 : 180) + Math.floor(Math.random() * 360);
+            coin.style.transform = 'rotateY(' + rotation + 'deg)';
+            setTimeout(() => {
+                totalFlips++;
+                if (isHeads) headsCount++; else tailsCount++;
+                document.getElementById('heads-count').textContent = headsCount;
+                document.getElementById('tails-count').textContent = tailsCount;
+                document.getElementById('total-flips').textContent = totalFlips;
+            }, 1000);
+        }
+        function resetCoin() {
+            document.getElementById('coin').style.transform = 'rotateY(0deg)';
+            headsCount = 0; tailsCount = 0; totalFlips = 0;
+            document.getElementById('heads-count').textContent = '0';
+            document.getElementById('tails-count').textContent = '0';
+            document.getElementById('total-flips').textContent = '0';
+        }
+
+        function getDiceHTML(n) {
+            const dots = {
+                1: [[2,2]], 2: [[1,1],[3,3]], 3: [[1,1],[2,2],[3,3]],
+                4: [[1,1],[1,3],[3,1],[3,3]], 5: [[1,1],[1,3],[2,2],[3,1],[3,3]],
+                6: [[1,1],[1,3],[2,1],[2,3],[3,1],[3,3]]
+            };
+            return dots[n].map(([r,c]) => '<div class="dot" style="grid-column:'+c+';grid-row:'+r+';"></div>').join('');
+        }
+        function rollDice() {
+            const dice = document.getElementById('dice');
+            let rolls = 0;
+            const interval = setInterval(() => {
+                dice.innerHTML = getDiceHTML(Math.floor(Math.random() * 6) + 1);
+                rolls++;
+                if (rolls > 10) {
+                    clearInterval(interval);
+                    const result = Math.floor(Math.random() * 6) + 1;
+                    dice.innerHTML = getDiceHTML(result);
+                    diceCounts[result-1]++;
+                    updateDiceStats();
+                }
+            }, 50);
+        }
+        function updateDiceStats() {
+            const stats = document.getElementById('dice-stats');
+            stats.innerHTML = diceCounts.map((c, i) => 
+                '<div style="background:#f1f5f9; padding:4px; border-radius:6px;">'+(i+1)+': <strong>'+c+'</strong></div>'
+            ).join('');
+        }
+        function resetDice() {
+            diceCounts = [0,0,0,0,0,0];
+            document.getElementById('dice').innerHTML = '<div class="dot" style="grid-column:2;grid-row:2;"></div>';
+            updateDiceStats();
+        }
+
+        function spinSpinner() {
+            const spinner = document.getElementById('spinner');
+            const resultEl = document.getElementById('spinner-result');
+            const extraRotation = 1800 + Math.floor(Math.random() * 360);
+            spinnerRotation += extraRotation;
+            spinner.style.transform = 'rotate(' + spinnerRotation + 'deg)';
+            resultEl.textContent = '...';
+            setTimeout(() => {
+                const normalized = (360 - (spinnerRotation % 360)) % 360;
+                const segment = Math.floor(normalized / 45) + 1;
+                resultEl.textContent = segment;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

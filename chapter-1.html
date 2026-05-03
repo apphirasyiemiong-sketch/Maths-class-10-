@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 NCERT Maths - Real Numbers (Chapter 1)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; color: white; padding: 40px 20px; margin-bottom: 30px; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        header p { font-size: 1.2em; opacity: 0.9; }
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .nav-tab { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 12px 24px; border-radius: 30px; cursor: pointer; font-size: 1em; font-weight: 600; transition: all 0.3s ease; }
+        .nav-tab:hover, .nav-tab.active { background: white; color: #667eea; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .section { display: none; background: white; border-radius: 20px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section h2 { color: #667eea; font-size: 1.8em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #667eea; }
+        .notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .note-card { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 20px; border-radius: 15px; border-left: 5px solid #667eea; transition: transform 0.3s ease; }
+        .note-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .note-card h3 { color: #764ba2; margin-bottom: 10px; }
+        .note-card p, .note-card ul { color: #555; line-height: 1.6; }
+        .note-card ul { margin-left: 20px; }
+        .note-card li { margin-bottom: 5px; }
+        .question-card { background: #f8f9fa; border-radius: 15px; padding: 25px; margin-bottom: 25px; border: 2px solid #e9ecef; transition: all 0.3s ease; }
+        .question-card:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
+        .question-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .question-number { background: #667eea; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
+        .question-text { font-size: 1.1em; font-weight: 600; color: #333; }
+        .options { margin: 15px 0; }
+        .option { background: white; border: 2px solid #dee2e6; border-radius: 10px; padding: 12px 15px; margin-bottom: 10px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #e8eeff; }
+        .option.correct { border-color: #28a745; background: #d4edda; }
+        .option.wrong { border-color: #dc3545; background: #f8d7da; }
+        .option-letter { background: #667eea; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0; }
+        .solution { display: none; background: #e8f5e9; border-left: 4px solid #28a745; padding: 20px; margin-top: 15px; border-radius: 0 10px 10px 0; animation: slideDown 0.4s ease; }
+        .solution.show { display: block; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
+        .solution h4 { color: #28a745; margin-bottom: 10px; }
+        .solution-step { margin-bottom: 10px; padding: 8px; background: white; border-radius: 5px; }
+        .calculator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-top: 20px; }
+        .calc-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .calc-card h3 { margin-bottom: 15px; font-size: 1.3em; }
+        .calc-input { width: 100%; padding: 12px; border: none; border-radius: 10px; margin-bottom: 10px; font-size: 1em; }
+        .calc-btn { background: white; color: #667eea; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1em; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
+        .calc-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .calc-result { background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin-top: 15px; min-height: 50px; font-family: monospace; font-size: 1.1em; }
+        .python-section { background: #1e1e1e; color: #d4d4d4; border-radius: 15px; padding: 25px; margin-top: 20px; }
+        .python-section h3 { color: #4ec9b0; margin-bottom: 15px; }
+        .code-block { background: #252526; border-radius: 10px; padding: 20px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.95em; line-height: 1.6; border: 1px solid #3e3e42; }
+        .code-keyword { color: #569cd6; } .code-string { color: #ce9178; } .code-function { color: #dcdcaa; } .code-comment { color: #6a9955; } .code-number { color: #b5cea8; }
+        .run-btn { background: #4ec9b0; color: #1e1e1e; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .run-btn:hover { background: #6ad9c2; }
+        .output-block { background: #2d2d30; border-radius: 10px; padding: 15px; margin-top: 10px; border-left: 4px solid #4ec9b0; font-family: monospace; white-space: pre-wrap; display: none; }
+        .formula-box { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.1em; }
+        .highlight { background: #ffeb3b; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .sub-question { margin-left: 30px; margin-top: 15px; padding: 15px; background: #f0f4ff; border-radius: 10px; }
+        .sub-question-title { font-weight: bold; color: #667eea; margin-bottom: 10px; }
+        @media (max-width: 768px) { header h1 { font-size: 1.8em; } .nav-tab { padding: 10px 16px; font-size: 0.9em; } .calculator-grid { grid-template-columns: 1fr; } .notes-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Class 10 NCERT Mathematics</h1>
+            <p>Chapter 1: Real Numbers - Complete Study Guide</p>
+        </header>
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('notes')">📝 Important Notes</button>
+            <button class="nav-tab" onclick="showSection('exercise11')">📖 Exercise 1.1</button>
+            <button class="nav-tab" onclick="showSection('exercise12')">📖 Exercise 1.2</button>
+            <button class="nav-tab" onclick="showSection('calculators')">🧮 Calculators</button>
+            
+        </div>
+
+        <!-- IMPORTANT NOTES SECTION -->
+        <div id="notes" class="section active">
+            <h2>📝 Important Notes from Chapter 1</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <h3>🔢 Fundamental Theorem of Arithmetic</h3>
+                    <p>Every composite number can be expressed (factorised) as a product of primes, and this factorisation is unique, apart from the order in which the prime factors occur.</p>
+                    <div class="formula-box"><strong>Example:</strong> 140 = 2² × 5 × 7 (Unique factorization)</div>
+                </div>
+                <div class="note-card">
+                    <h3>📐 HCF (Highest Common Factor)</h3>
+                    <ul>
+                        <li>Also called GCD (Greatest Common Divisor)</li>
+                        <li>For two numbers: HCF × LCM = Product of two numbers</li>
+                        <li>For three numbers: Use prime factorization - take <span class="highlight">lowest power</span> of common primes</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h3>📊 LCM (Least Common Multiple)</h3>
+                    <ul>
+                        <li>Smallest number divisible by all given numbers</li>
+                        <li>For prime factorization: take <span class="highlight">highest power</span> of all primes present</li>
+                        <li>For two numbers: LCM = (a × b) / HCF(a, b)</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h3>⚠️ Important Remark</h3>
+                    <p>For THREE numbers:</p>
+                    <div class="formula-box">HCF(p,q,r) × LCM(p,q,r) ≠ p × q × r</div>
+                    <p>But these formulas work:</p>
+                    <p>LCM(p,q,r) = (p·q·r·HCF(p,q,r)) / (HCF(p,q)·HCF(q,r)·HCF(p,r))</p>
+                </div>
+                <div class="note-card">
+                    <h3>🔍 Prime Divisibility Property</h3>
+                    <p>If p is a prime and p divides a², then p divides a, where a is a positive integer.</p>
+                    <p><em>This is crucial for proving irrationality!</em></p>
+                </div>
+                <div class="note-card">
+                    <h3>🔢 Irrational Numbers</h3>
+                    <ul>
+                        <li>Cannot be written as p/q where p, q are integers and q ≠ 0</li>
+                        <li>√2, √3, √5, √p (where p is prime) are all irrational</li>
+                        <li>Sum/difference of rational and irrational is irrational</li>
+                        <li>Product of non-zero rational and irrational is irrational</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h3>🎯 Proving Irrationality - Method</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>Assume the number is rational: = a/b (coprime)</li>
+                        <li>Square both sides (for square roots)</li>
+                        <li>Show that a² is divisible by prime ⇒ a is divisible by prime</li>
+                        <li>Show a and b have common factor - CONTRADICTION!</li>
+                        <li>Hence, the number is irrational</li>
+                    </ol>
+                </div>
+                <div class="note-card">
+                    <h3>💡 Composite Numbers Trick</h3>
+                    <p>To prove expressions like 7×11×13 + 13 are composite:</p>
+                    <ul>
+                        <li>Factor out common terms</li>
+                        <li>7×11×13 + 13 = 13(7×11 + 1) = 13 × 78</li>
+                        <li>This shows it has factors other than 1 and itself</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 1.1 SECTION -->
+        <div id="exercise11" class="section">
+            <h2>📖 Exercise 1.1 - Real Numbers</h2>
+
+            <!-- Question 1 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Express each number as a product of its prime factors:</div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(i) 140</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q1i')"><span class="option-letter">A</span> 2 × 5 × 7</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q1i')"><span class="option-letter">B</span> 2² × 5 × 7</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1i')"><span class="option-letter">C</span> 2 × 5² × 7</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1i')"><span class="option-letter">D</span> 2³ × 5 × 7</div>
+                    </div>
+                    <div id="solution-q1i" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> Divide 140 by smallest prime 2: 140 ÷ 2 = 70</div>
+                        <div class="solution-step"><strong>Step 2:</strong> 70 ÷ 2 = 35</div>
+                        <div class="solution-step"><strong>Step 3:</strong> 35 ÷ 5 = 7</div>
+                        <div class="solution-step"><strong>Step 4:</strong> 7 ÷ 7 = 1</div>
+                        <div class="solution-step"><strong>Answer:</strong> 140 = 2² × 5 × 7</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(ii) 156</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q1ii')"><span class="option-letter">A</span> 2² × 3 × 13</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q1ii')"><span class="option-letter">B</span> 2² × 3 × 13</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1ii')"><span class="option-letter">C</span> 2 × 3² × 13</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1ii')"><span class="option-letter">D</span> 2³ × 3 × 13</div>
+                    </div>
+                    <div id="solution-q1ii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 156 ÷ 2 = 78</div>
+                        <div class="solution-step"><strong>Step 2:</strong> 78 ÷ 2 = 39</div>
+                        <div class="solution-step"><strong>Step 3:</strong> 39 ÷ 3 = 13</div>
+                        <div class="solution-step"><strong>Step 4:</strong> 13 ÷ 13 = 1</div>
+                        <div class="solution-step"><strong>Answer:</strong> 156 = 2² × 3 × 13</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(iii) 3825</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iii')"><span class="option-letter">A</span> 3² × 5² × 17</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q1iii')"><span class="option-letter">B</span> 3² × 5² × 17</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iii')"><span class="option-letter">C</span> 3 × 5³ × 17</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iii')"><span class="option-letter">D</span> 3³ × 5² × 17</div>
+                    </div>
+                    <div id="solution-q1iii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 3825 ÷ 3 = 1275</div>
+                        <div class="solution-step"><strong>Step 2:</strong> 1275 ÷ 3 = 425</div>
+                        <div class="solution-step"><strong>Step 3:</strong> 425 ÷ 5 = 85</div>
+                        <div class="solution-step"><strong>Step 4:</strong> 85 ÷ 5 = 17</div>
+                        <div class="solution-step"><strong>Step 5:</strong> 17 ÷ 17 = 1</div>
+                        <div class="solution-step"><strong>Answer:</strong> 3825 = 3² × 5² × 17</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(iv) 5005</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iv')"><span class="option-letter">A</span> 5 × 7 × 11 × 13</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q1iv')"><span class="option-letter">B</span> 5 × 7 × 11 × 13</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iv')"><span class="option-letter">C</span> 5 × 7 × 11 × 17</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1iv')"><span class="option-letter">D</span> 5 × 7 × 13 × 11</div>
+                    </div>
+                    <div id="solution-q1iv" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 5005 ÷ 5 = 1001</div>
+                        <div class="solution-step"><strong>Step 2:</strong> 1001 ÷ 7 = 143</div>
+                        <div class="solution-step"><strong>Step 3:</strong> 143 ÷ 11 = 13</div>
+                        <div class="solution-step"><strong>Step 4:</strong> 13 ÷ 13 = 1</div>
+                        <div class="solution-step"><strong>Answer:</strong> 5005 = 5 × 7 × 11 × 13</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(v) 7429</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q1v')"><span class="option-letter">A</span> 17 × 19 × 23</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q1v')"><span class="option-letter">B</span> 17 × 19 × 23</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1v')"><span class="option-letter">C</span> 17 × 23 × 19</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q1v')"><span class="option-letter">D</span> 19 × 23 × 17</div>
+                    </div>
+                    <div id="solution-q1v" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 7429 ÷ 17 = 437</div>
+                        <div class="solution-step"><strong>Step 2:</strong> 437 ÷ 19 = 23</div>
+                        <div class="solution-step"><strong>Step 3:</strong> 23 ÷ 23 = 1</div>
+                        <div class="solution-step"><strong>Answer:</strong> 7429 = 17 × 19 × 23</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Find the LCM and HCF of the following pairs and verify LCM × HCF = Product of two numbers:</div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(i) 26 and 91</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q2i')"><span class="option-letter">A</span> HCF=13, LCM=182, Product=2366</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q2i')"><span class="option-letter">B</span> HCF=13, LCM=182, Product=2366</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2i')"><span class="option-letter">C</span> HCF=26, LCM=91, Product=2366</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2i')"><span class="option-letter">D</span> HCF=1, LCM=2366, Product=2366</div>
+                    </div>
+                    <div id="solution-q2i" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> Prime factorization: 26 = 2 × 13, 91 = 7 × 13</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 13 (common factor)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 2 × 7 × 13 = 182</div>
+                        <div class="solution-step"><strong>Step 4:</strong> Verification: LCM × HCF = 182 × 13 = 2366</div>
+                        <div class="solution-step"><strong>Step 5:</strong> Product = 26 × 91 = 2366 ✓</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(ii) 510 and 92</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q2ii')"><span class="option-letter">A</span> HCF=2, LCM=23460, Product=46920</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q2ii')"><span class="option-letter">B</span> HCF=2, LCM=23460, Product=46920</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2ii')"><span class="option-letter">C</span> HCF=4, LCM=11730, Product=46920</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2ii')"><span class="option-letter">D</span> HCF=1, LCM=46920, Product=46920</div>
+                    </div>
+                    <div id="solution-q2ii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 510 = 2 × 3 × 5 × 17, 92 = 2² × 23</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 2 (lowest power of common prime)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 2² × 3 × 5 × 17 × 23 = 23460</div>
+                        <div class="solution-step"><strong>Step 4:</strong> Verification: 23460 × 2 = 46920</div>
+                        <div class="solution-step"><strong>Step 5:</strong> Product = 510 × 92 = 46920 ✓</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(iii) 336 and 54</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q2iii')"><span class="option-letter">A</span> HCF=6, LCM=3024, Product=18144</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q2iii')"><span class="option-letter">B</span> HCF=6, LCM=3024, Product=18144</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2iii')"><span class="option-letter">C</span> HCF=12, LCM=1512, Product=18144</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q2iii')"><span class="option-letter">D</span> HCF=3, LCM=6048, Product=18144</div>
+                    </div>
+                    <div id="solution-q2iii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 336 = 2⁴ × 3 × 7, 54 = 2 × 3³</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 2 × 3 = 6</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 2⁴ × 3³ × 7 = 3024</div>
+                        <div class="solution-step"><strong>Step 4:</strong> Verification: 3024 × 6 = 18144</div>
+                        <div class="solution-step"><strong>Step 5:</strong> Product = 336 × 54 = 18144 ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">3</div>
+                    <div class="question-text">Find LCM and HCF by prime factorization method:</div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(i) 12, 15 and 21</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q3i')"><span class="option-letter">A</span> HCF=1, LCM=420</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q3i')"><span class="option-letter">B</span> HCF=3, LCM=420</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3i')"><span class="option-letter">C</span> HCF=3, LCM=210</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3i')"><span class="option-letter">D</span> HCF=1, LCM=210</div>
+                    </div>
+                    <div id="solution-q3i" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 12 = 2² × 3, 15 = 3 × 5, 21 = 3 × 7</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 3 (only common prime with lowest power)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 2² × 3 × 5 × 7 = 420</div>
+                        <div class="solution-step"><strong>Note:</strong> For 3 numbers, HCF × LCM ≠ Product!</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(ii) 17, 23 and 29</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q3ii')"><span class="option-letter">A</span> HCF=1, LCM=11339</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q3ii')"><span class="option-letter">B</span> HCF=1, LCM=11339</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3ii')"><span class="option-letter">C</span> HCF=1, LCM=11349</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3ii')"><span class="option-letter">D</span> HCF=29, LCM=391</div>
+                    </div>
+                    <div id="solution-q3ii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 17 = 17, 23 = 23, 29 = 29 (all prime!)</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 1 (no common factors)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 17 × 23 × 29 = 11339</div>
+                        <div class="solution-step"><strong>Note:</strong> They are co-prime to each other!</div>
+                    </div>
+                </div>
+                <div class="sub-question">
+                    <div class="sub-question-title">(iii) 8, 9 and 25</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q3iii')"><span class="option-letter">A</span> HCF=1, LCM=1800</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q3iii')"><span class="option-letter">B</span> HCF=1, LCM=1800</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3iii')"><span class="option-letter">C</span> HCF=1, LCM=180</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q3iii')"><span class="option-letter">D</span> HCF=1, LCM=3600</div>
+                    </div>
+                    <div id="solution-q3iii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> 8 = 2³, 9 = 3², 25 = 5²</div>
+                        <div class="solution-step"><strong>Step 2:</strong> HCF = 1 (no common prime factors)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> LCM = 2³ × 3² × 5² = 8 × 9 × 25 = 1800</div>
+                        <div class="solution-step"><strong>Note:</strong> Since HCF=1, LCM = Product of all three!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Given HCF(306, 657) = 9, find LCM(306, 657).</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q4')"><span class="option-letter">A</span> 22338</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q4')"><span class="option-letter">B</span> 22338</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q4')"><span class="option-letter">C</span> 201042</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q4')"><span class="option-letter">D</span> 5913</div>
+                </div>
+                <div id="solution-q4" class="solution">
+                    <h4>✅ Solution:</h4>
+                    <div class="solution-step"><strong>Formula:</strong> LCM × HCF = Product of two numbers</div>
+                    <div class="solution-step"><strong>Step 1:</strong> Product = 306 × 657 = 201042</div>
+                    <div class="solution-step"><strong>Step 2:</strong> LCM = Product / HCF = 201042 / 9</div>
+                    <div class="solution-step"><strong>Step 3:</strong> LCM = 22338</div>
+                    <div class="solution-step"><strong>Verification:</strong> 22338 × 9 = 201042 ✓</div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">5</div>
+                    <div class="question-text">Check whether 6ⁿ can end with digit 0 for any natural number n.</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q5')"><span class="option-letter">A</span> Yes, for n = 5</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q5')"><span class="option-letter">B</span> No, never</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q5')"><span class="option-letter">C</span> Yes, for all even n</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q5')"><span class="option-letter">D</span> Yes, for n = 10</div>
+                </div>
+                <div id="solution-q5" class="solution">
+                    <h4>✅ Solution:</h4>
+                    <div class="solution-step"><strong>Key Concept:</strong> A number ends with 0 if divisible by both 2 and 5</div>
+                    <div class="solution-step"><strong>Step 1:</strong> 6ⁿ = (2 × 3)ⁿ = 2ⁿ × 3ⁿ</div>
+                    <div class="solution-step"><strong>Step 2:</strong> Prime factorization contains only 2 and 3</div>
+                    <div class="solution-step"><strong>Step 3:</strong> There is NO factor of 5 in 6ⁿ</div>
+                    <div class="solution-step"><strong>Conclusion:</strong> 6ⁿ can NEVER end with digit 0 for any natural number n</div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Explain why 7×11×13 + 13 and 7×6×5×4×3×2×1 + 5 are composite numbers.</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q6')"><span class="option-letter">A</span> They are even numbers</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q6')"><span class="option-letter">B</span> They can be factored into smaller integers > 1</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q6')"><span class="option-letter">C</span> They are divisible by 10</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q6')"><span class="option-letter">D</span> They are prime numbers</div>
+                </div>
+                <div id="solution-q6" class="solution">
+                    <h4>✅ Solution:</h4>
+                    <div class="solution-step"><strong>Part 1:</strong> 7×11×13 + 13 = 13(7×11 + 1) = 13 × 78</div>
+                    <div class="solution-step">This has factors 13 and 78 (both > 1), so it's composite.</div>
+                    <div class="solution-step"><strong>Part 2:</strong> 7×6×5×4×3×2×1 + 5 = 5(7×6×4×3×2×1 + 1) = 5 × 1009</div>
+                    <div class="solution-step">This has factors 5 and 1009 (both > 1), so it's composite.</div>
+                    <div class="solution-step"><strong>Key Idea:</strong> Factor out the common term to show it has factors other than 1 and itself.</div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">7</div>
+                    <div class="question-text">Sonia takes 18 min, Ravi takes 12 min for one round. After how many minutes will they meet again at the starting point?</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q7')"><span class="option-letter">A</span> 30 minutes</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q7')"><span class="option-letter">B</span> 24 minutes</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q7')"><span class="option-letter">C</span> 36 minutes</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q7')"><span class="option-letter">D</span> 6 minutes</div>
+                </div>
+                <div id="solution-q7" class="solution">
+                    <h4>✅ Solution:</h4>
+                    <div class="solution-step"><strong>Concept:</strong> They meet when both complete whole number of rounds</div>
+                    <div class="solution-step"><strong>Step 1:</strong> Find LCM of 18 and 12</div>
+                    <div class="solution-step"><strong>Step 2:</strong> 18 = 2 × 3², 12 = 2² × 3</div>
+                    <div class="solution-step"><strong>Step 3:</strong> LCM = 2² × 3² = 4 × 9 = 36</div>
+                    <div class="solution-step"><strong>Answer:</strong> They will meet after 36 minutes</div>
+                    <div class="solution-step"><strong>Check:</strong> Sonia completes 2 rounds, Ravi completes 3 rounds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 1.2 SECTION -->
+        <div id="exercise12" class="section">
+            <h2>📖 Exercise 1.2 - Irrational Numbers</h2>
+
+            <!-- Question 1 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Prove that √5 is irrational.</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_1')"><span class="option-letter">A</span> √5 = 2.236, which is terminating</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q12_1')"><span class="option-letter">B</span> Assume √5 = a/b, show contradiction that 5 divides both a and b</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_1')"><span class="option-letter">C</span> √5 cannot be measured on number line</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_1')"><span class="option-letter">D</span> 5 is not a perfect square</div>
+                </div>
+                <div id="solution-q12_1" class="solution">
+                    <h4>✅ Complete Proof:</h4>
+                    <div class="solution-step"><strong>Step 1:</strong> Assume √5 is rational, so √5 = a/b where a, b are coprime integers, b ≠ 0</div>
+                    <div class="solution-step"><strong>Step 2:</strong> Squaring both sides: 5 = a²/b² ⇒ a² = 5b²</div>
+                    <div class="solution-step"><strong>Step 3:</strong> So 5 divides a², which means 5 divides a (by prime divisibility)</div>
+                    <div class="solution-step"><strong>Step 4:</strong> Let a = 5c for some integer c</div>
+                    <div class="solution-step"><strong>Step 5:</strong> Substituting: (5c)² = 5b² ⇒ 25c² = 5b² ⇒ 5c² = b²</div>
+                    <div class="solution-step"><strong>Step 6:</strong> So 5 divides b², which means 5 divides b</div>
+                    <div class="solution-step"><strong>Step 7:</strong> Therefore 5 divides both a and b</div>
+                    <div class="solution-step"><strong>Step 8:</strong> This CONTRADICTS that a and b are coprime!</div>
+                    <div class="solution-step"><strong>Conclusion:</strong> √5 is irrational. ∎</div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Prove that 3 + 2√5 is irrational.</div>
+                </div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_2')"><span class="option-letter">A</span> It has √5 which is irrational</div>
+                    <div class="option" onclick="checkAnswer(this, true, 'q12_2')"><span class="option-letter">B</span> Assume it's rational, isolate √5, show contradiction</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_2')"><span class="option-letter">C</span> Sum of rational and irrational is always irrational</div>
+                    <div class="option" onclick="checkAnswer(this, false, 'q12_2')"><span class="option-letter">D</span> It cannot be written as p/q directly</div>
+                </div>
+                <div id="solution-q12_2" class="solution">
+                    <h4>✅ Complete Proof:</h4>
+                    <div class="solution-step"><strong>Step 1:</strong> Assume 3 + 2√5 is rational = a/b (coprime)</div>
+                    <div class="solution-step"><strong>Step 2:</strong> 2√5 = a/b - 3 = (a - 3b)/b</div>
+                    <div class="solution-step"><strong>Step 3:</strong> √5 = (a - 3b)/(2b)</div>
+                    <div class="solution-step"><strong>Step 4:</strong> Since a, b are integers, (a-3b)/(2b) is rational</div>
+                    <div class="solution-step"><strong>Step 5:</strong> This means √5 is rational</div>
+                    <div class="solution-step"><strong>Step 6:</strong> But we proved √5 is irrational!</div>
+                    <div class="solution-step"><strong>Conclusion:</strong> CONTRADICTION! Hence 3 + 2√5 is irrational. ∎</div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="question-number">3</div>
+                    <div class="question-text">Prove that the following are irrationals:</div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-question-title">(i) 1/√2</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3i')"><span class="option-letter">A</span> It's a fraction so it's rational</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q12_3i')"><span class="option-letter">B</span> Rationalize and show contradiction</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3i')"><span class="option-letter">C</span> It's less than 1 so irrational</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3i')"><span class="option-letter">D</span> √2 is in denominator</div>
+                    </div>
+                    <div id="solution-q12_3i" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> Assume 1/√2 is rational = a/b (coprime)</div>
+                        <div class="solution-step"><strong>Step 2:</strong> √2 = b/a</div>
+                        <div class="solution-step"><strong>Step 3:</strong> Since a, b are integers, b/a is rational</div>
+                        <div class="solution-step"><strong>Step 4:</strong> So √2 is rational - CONTRADICTION!</div>
+                        <div class="solution-step"><strong>Conclusion:</strong> 1/√2 is irrational. ∎</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-question-title">(ii) 7√5</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3ii')"><span class="option-letter">A</span> Product of integers is rational</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q12_3ii')"><span class="option-letter">B</span> Assume rational, isolate √5, contradiction</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3ii')"><span class="option-letter">C</span> 7 is rational, √5 is irrational, product is irrational</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3ii')"><span class="option-letter">D</span> It's greater than 7</div>
+                    </div>
+                    <div id="solution-q12_3ii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> Assume 7√5 is rational = a/b (coprime)</div>
+                        <div class="solution-step"><strong>Step 2:</strong> √5 = a/(7b)</div>
+                        <div class="solution-step"><strong>Step 3:</strong> Since a, b are integers, a/(7b) is rational</div>
+                        <div class="solution-step"><strong>Step 4:</strong> So √5 is rational - CONTRADICTION!</div>
+                        <div class="solution-step"><strong>Conclusion:</strong> 7√5 is irrational. ∎</div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="sub-question-title">(iii) 6 + √2</div>
+                    <div class="options">
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3iii')"><span class="option-letter">A</span> Sum of integers is rational</div>
+                        <div class="option" onclick="checkAnswer(this, true, 'q12_3iii')"><span class="option-letter">B</span> Assume rational, isolate √2, contradiction</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3iii')"><span class="option-letter">C</span> √2 ≈ 1.414, so 6 + 1.414 = 7.414</div>
+                        <div class="option" onclick="checkAnswer(this, false, 'q12_3iii')"><span class="option-letter">D</span> It has a radical sign</div>
+                    </div>
+                    <div id="solution-q12_3iii" class="solution">
+                        <h4>✅ Solution:</h4>
+                        <div class="solution-step"><strong>Step 1:</strong> Assume 6 + √2 is rational = a/b (coprime)</div>
+                        <div class="solution-step"><strong>Step 2:</strong> √2 = a/b - 6 = (a - 6b)/b</div>
+                        <div class="solution-step"><strong>Step 3:</strong> Since a, b are integers, (a-6b)/b is rational</div>
+                        <div class="solution-step"><strong>Step 4:</strong> So √2 is rational - CONTRADICTION!</div>
+                        <div class="solution-step"><strong>Conclusion:</strong> 6 + √2 is irrational. ∎</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULATORS SECTION -->
+        <div id="calculators" class="section">
+            <h2>🧮 Interactive Calculators</h2>
+            <div class="calculator-grid">
+                <div class="calc-card">
+                    <h3>🔢 Prime Factorization</h3>
+                    <input type="number" id="pf-input" class="calc-input" placeholder="Enter a number (e.g., 140)">
+                    <button class="calc-btn" onclick="primeFactorize()">Find Prime Factors</button>
+                    <div id="pf-result" class="calc-result">Result will appear here...</div>
+                </div>
+                <div class="calc-card">
+                    <h3>📐 HCF Calculator</h3>
+                    <input type="text" id="hcf-input" class="calc-input" placeholder="Enter numbers separated by commas (e.g., 12,15,21)">
+                    <button class="calc-btn" onclick="calculateHCF()">Calculate HCF</button>
+                    <div id="hcf-result" class="calc-result">Result will appear here...</div>
+                </div>
+                <div class="calc-card">
+                    <h3>📊 LCM Calculator</h3>
+                    <input type="text" id="lcm-input" class="calc-input" placeholder="Enter numbers separated by commas (e.g., 12,15,21)">
+                    <button class="calc-btn" onclick="calculateLCM()">Calculate LCM</button>
+                    <div id="lcm-result" class="calc-result">Result will appear here...</div>
+                </div>
+                <div class="calc-card">
+                    <h3>✅ HCF & LCM Verifier</h3>
+                    <input type="number" id="ver-a" class="calc-input" placeholder="First number">
+                    <input type="number" id="ver-b" class="calc-input" placeholder="Second number">
+                    <button class="calc-btn" onclick="verifyHCFLCM()">Verify HCF × LCM = Product</button>
+                    <div id="ver-result" class="calc-result">Result will appear here...</div>
+                </div>
+                <div class="calc-card">
+                    <h3>⏱️ LCM Word Problem Solver</h3>
+                    <input type="number" id="wp-a" class="calc-input" placeholder="Time for person A (minutes)">
+                    <input type="number" id="wp-b" class="calc-input" placeholder="Time for person B (minutes)">
+                    <button class="calc-btn" onclick="solveWordProblem()">Find Meeting Time</button>
+                    <div id="wp-result" class="calc-result">Result will appear here...</div>
+                </div>
+                <div class="calc-card">
+                    <h3>🔍 Composite Number Checker</h3>
+                    <input type="text" id="comp-input" class="calc-input" placeholder="Enter expression (e.g., 7*11*13+13)">
+                    <button class="calc-btn" onclick="checkComposite()">Check & Factor</button>
+                    <div id="comp-result" class="calc-result">Result will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        // Tab Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // MCQ Answer Checking
+        function checkAnswer(element, isCorrect, questionId) {
+            const card = element.closest('.question-card, .sub-question');
+            const options = card.querySelectorAll('.option');
+            const solution = document.getElementById('solution-' + questionId);
+
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                if (opt === element) {
+                    if (isCorrect) {
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('wrong');
+                    }
+                }
+            });
+
+            if (solution) {
+                solution.classList.add('show');
+            }
+        }
+
+        // Calculator Functions
+        function primeFactorize() {
+            const n = parseInt(document.getElementById('pf-input').value);
+            const resultDiv = document.getElementById('pf-result');
+
+            if (!n || n < 2) {
+                resultDiv.textContent = 'Please enter a valid number >= 2';
+                return;
+            }
+
+            let num = n;
+            let factors = {};
+            let d = 2;
+
+            while (d * d <= num) {
+                while (num % d === 0) {
+                    factors[d] = (factors[d] || 0) + 1;
+                    num /= d;
+                }
+                d++;
+            }
+            if (num > 1) factors[num] = (factors[num] || 0) + 1;
+
+            let result = n + ' = ';
+            let parts = [];
+            for (let [prime, power] of Object.entries(factors)) {
+                parts.push(power > 1 ? prime + '^' + power : prime);
+            }
+            result += parts.join(' × ');
+            resultDiv.textContent = result;
+        }
+
+        function calculateHCF() {
+            const input = document.getElementById('hcf-input').value;
+            const resultDiv = document.getElementById('hcf-result');
+            const numbers = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
+            if (numbers.length < 2) {
+                resultDiv.textContent = 'Please enter at least 2 numbers separated by commas';
+                return;
+            }
+
+            function hcf(a, b) {
+                while (b) { let t = b; b = a % b; a = t; }
+                return a;
+            }
+
+            let result = numbers[0];
+            for (let i = 1; i < numbers.length; i++) {
+                result = hcf(result, numbers[i]);
+            }
+
+            resultDiv.textContent = 'HCF(' + numbers.join(', ') + ') = ' + result;
+        }
+
+        function calculateLCM() {
+            const input = document.getElementById('lcm-input').value;
+            const resultDiv = document.getElementById('lcm-result');
+            const numbers = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+
+            if (numbers.length < 2) {
+                resultDiv.textContent = 'Please enter at least 2 numbers separated by commas';
+                return;
+            }
+
+            function hcf(a, b) {
+                while (b) { let t = b; b = a % b; a = t; }
+                return a;
+            }
+
+            function lcm(a, b) {
+                return (a * b) / hcf(a, b);
+            }
+
+            let result = numbers[0];
+            for (let i = 1; i < numbers.length; i++) {
+                result = lcm(result, numbers[i]);
+            }
+
+            resultDiv.textContent = 'LCM(' + numbers.join(', ') + ') = ' + result;
+        }
+
+        function verifyHCFLCM() {
+            const a = parseInt(document.getElementById('ver-a').value);
+            const b = parseInt(document.getElementById('ver-b').value);
+            const resultDiv = document.getElementById('ver-result');
+
+            if (!a || !b) {
+                resultDiv.textContent = 'Please enter both numbers';
+                return;
+            }
+
+            function hcf(x, y) {
+                while (y) { let t = y; y = x % y; x = t; }
+                return x;
+            }
+
+            function lcm(x, y) {
+                return (x * y) / hcf(x, y);
+            }
+
+            const h = hcf(a, b);
+            const l = lcm(a, b);
+            const product = a * b;
+            const hcfLcmProduct = h * l;
+
+            resultDiv.innerHTML = 'HCF = ' + h + '<br>LCM = ' + l + '<br>HCF × LCM = ' + hcfLcmProduct + '<br>Product = ' + product + '<br>Verified: ' + (hcfLcmProduct === product ? '✅ YES' : '❌ NO');
+        }
+
+        function solveWordProblem() {
+            const a = parseInt(document.getElementById('wp-a').value);
+            const b = parseInt(document.getElementById('wp-b').value);
+            const resultDiv = document.getElementById('wp-result');
+
+            if (!a || !b) {
+                resultDiv.textContent = 'Please enter both times';
+                return;
+            }
+
+            function hcf(x, y) {
+                while (y) { let t = y; y = x % y; x = t; }
+                return x;
+            }
+
+            function lcm(x, y) {
+                return (x * y) / hcf(x, y);
+            }
+
+            const meeting = lcm(a, b);
+            const roundsA = meeting / a;
+            const roundsB = meeting / b;
+
+            resultDiv.innerHTML = 'They will meet after ' + meeting + ' minutes<br>Person A completes ' + roundsA + ' rounds<br>Person B completes ' + roundsB + ' rounds';
+        }
+
+        function checkComposite() {
+            const input = document.getElementById('comp-input').value;
+            const resultDiv = document.getElementById('comp-result');
+
+            try {
+                const n = eval(input.replace(/×/g, '*').replace(/÷/g, '/'));
+
+                if (!n || n < 4) {
+                    resultDiv.textContent = 'Result: ' + n + ' (not composite)';
+                    return;
+                }
+
+                let factors = [];
+                for (let i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i === 0) {
+                        factors.push(i);
+                        if (i !== n/i) factors.push(n/i);
+                    }
+                }
+
+                if (factors.length > 0) {
+                    resultDiv.innerHTML = n + ' is COMPOSITE ✅<br>Factors: ' + factors.sort((a,b) => a-b).join(', ');
+                } else {
+                    resultDiv.textContent = n + ' is PRIME ❌ (not composite)';
+                }
+            } catch (e) {
+                resultDiv.textContent = 'Invalid expression. Use * for multiplication, + for addition';
+            }
+        }
+
+        // Python Code Execution Simulation
+        function runPython(part) {
+            const outputDiv = document.getElementById('output-' + part);
+            outputDiv.style.display = 'block';
+
+            const outputs = {
+                'part1': `140 = {2: 2, 5: 1, 7: 1}
+156 = {2: 2, 3: 1, 13: 1}
+3825 = {3: 2, 5: 2, 17: 1}
+5005 = {5: 1, 7: 1, 11: 1, 13: 1}
+7429 = {17: 1, 19: 1, 23: 1}`,
+
+                'part2': `HCF(12, 15, 21) = 3
+HCF(17, 23, 29) = 1
+HCF(8, 9, 25) = 1`,
+
+                'part3': `LCM(12, 15, 21) = 420
+LCM(17, 23, 29) = 11339
+LCM(8, 9, 25) = 1800`,
+
+                'part4': `Numbers: 26 and 91
+HCF = 13
+LCM = 182
+HCF × LCM = 2366
+Product = 2366
+Verified: True
+---
+Numbers: 510 and 92
+HCF = 2
+LCM = 23460
+HCF × LCM = 46920
+Product = 46920
+Verified: True`,
+
+                'part5': `Person A takes 18 minutes per round
+Person B takes 12 minutes per round
+They will meet after 36 minutes
+Person A completes 2 rounds
+Person B completes 3 rounds`,
+
+                'part6': `7×11×13 + 13 = 1001
+Is composite: True
+Factors: 13 × 77
+---
+7×6×5×4×3×2×1 + 5 = 5045
+Is composite: True
+Factors: 5 × 1009`
+            };
+
+            outputDiv.textContent = outputs[part] || 'Code executed successfully!';
+        }
+    </script>
+</body>
+</html>

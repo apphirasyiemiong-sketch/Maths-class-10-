@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equations - Class 10 NCERT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .section.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .card h3 {
+            color: #764ba2;
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+        }
+        .note-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 5px solid #f39c12;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .note-box h4 { color: #d35400; margin-bottom: 10px; }
+        .formula-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .formula-box h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+        }
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .options { display: grid; gap: 10px; }
+        .option-btn {
+            padding: 15px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f3ff;
+        }
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .option-btn.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .solution-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 10px;
+            border-left: 5px solid #2196f3;
+        }
+        .solution-box.show {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 1000px; }
+        }
+        .solution-box h4 { color: #1565c0; margin-bottom: 10px; }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        .calculator {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+        }
+        .calc-display {
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: right;
+            min-height: 60px;
+            word-wrap: break-word;
+        }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .calc-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .calc-btn.number { background: #e94560; color: white; }
+        .calc-btn.operator { background: #533483; color: white; }
+        .calc-btn.function { background: #0f3460; color: white; }
+        .calc-btn.equals {
+            background: #00d9ff;
+            color: #1a1a2e;
+            grid-column: span 2;
+        }
+        .calc-btn.clear { background: #ff6b6b; color: white; }
+        .calc-btn:hover { transform: scale(1.05); opacity: 0.9; }
+        .visualizer {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+        }
+        .graph-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+        }
+        .input-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            align-items: center;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #667eea;
+        }
+        .input-group input {
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 100px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn-primary {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .result-display {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f3ff;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        .roots-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .root-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .root-card h4 {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        .root-card .value { font-size: 1.5rem; font-weight: 700; }
+        .exercise-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .badge-easy { background: #d4edda; color: #155724; }
+        .badge-medium { background: #fff3cd; color: #856404; }
+        .badge-hard { background: #f8d7da; color: #721c24; }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .calc-buttons { grid-template-columns: repeat(4, 1fr); }
+            .calc-btn { padding: 15px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quadratic Equations</h1>
+            <p>Class 10 NCERT Mathematics - Chapter 4</p>
+        </header>
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="showSection('notes')">Notes</button>
+            <button class="nav-btn" onclick="showSection('ex41')">Exercise 4.1</button>
+            <button class="nav-btn" onclick="showSection('ex42')">Exercise 4.2</button>
+            <button class="nav-btn" onclick="showSection('ex43')">Exercise 4.3</button>
+            <button class="nav-btn" onclick="showSection('calculator')">Calculator</button>
+            <button class="nav-btn" onclick="showSection('visualizer')">Visualizer</button>
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div id="notes" class="section active">
+            <div class="card">
+                <h2>Important Notes from Exercises</h2>
+                <div class="note-box">
+                    <h4>What is a Quadratic Equation?</h4>
+                    <p>A quadratic equation in the variable x is an equation of the form <strong>ax² + bx + c = 0</strong>, where a, b, c are real numbers and a ≠ 0.</p>
+                </div>
+                <div class="formula-box">
+                    <h4>Standard Form</h4>
+                    <p>ax² + bx + c = 0, where a ≠ 0</p>
+                    <p>a = coefficient of x²</p>
+                    <p>b = coefficient of x</p>
+                    <p>c = constant term</p>
+                </div>
+                <h3>Key Concepts from Exercise 4.1</h3>
+                <div class="note-box">
+                    <h4>Checking if an equation is quadratic:</h4>
+                    <p>1. Expand and simplify the equation</p>
+                    <p>2. Arrange in standard form: ax² + bx + c = 0</p>
+                    <p>3. Check if highest power of x is 2 and a ≠ 0</p>
+                    <p>4. If highest power > 2 → NOT quadratic</p>
+                    <p>5. If a = 0 after simplification → NOT quadratic (becomes linear)</p>
+                </div>
+                <h3>Key Concepts from Exercise 4.2</h3>
+                <div class="formula-box">
+                    <h4>Factorization Method</h4>
+                    <p>Step 1: Write equation in standard form: ax² + bx + c = 0</p>
+                    <p>Step 2: Split middle term (b) into two numbers whose:</p>
+                    <p>   Product = a × c</p>
+                    <p>   Sum = b</p>
+                    <p>Step 3: Factor by grouping</p>
+                    <p>Step 4: Apply zero product property</p>
+                </div>
+                <div class="note-box">
+                    <h4>Tips for Factorization:</h4>
+                    <p>For equations with √2, √3 etc., treat them as coefficients</p>
+                    <p>For fractional coefficients, multiply by LCM to clear denominators first</p>
+                    <p>Perfect square trinomials: a² ± 2ab + b² = (a ± b)²</p>
+                    <p>Difference of squares: a² - b² = (a+b)(a-b)</p>
+                </div>
+                <h3>Key Concepts from Exercise 4.3</h3>
+                <div class="formula-box">
+                    <h4>Discriminant (D) = b² - 4ac</h4>
+                    <p>D > 0 → Two distinct real roots</p>
+                    <p>D = 0 → Two equal real roots (perfect square)</p>
+                    <p>D < 0 → No real roots (imaginary roots)</p>
+                </div>
+                <div class="formula-box">
+                    <h4>Quadratic Formula</h4>
+                    <p>x = [-b ± √(b² - 4ac)] / 2a</p>
+                </div>
+                <div class="note-box">
+                    <h4>Condition for Equal Roots:</h4>
+                    <p>For equal roots: D = 0, i.e., b² - 4ac = 0</p>
+                    <p>This gives: b² = 4ac</p>
+                    <p>Use this to find unknown coefficients like k</p>
+                </div>
+                <div class="note-box">
+                    <h4>Word Problem Strategy:</h4>
+                    <p>1. Identify the unknown → Let it be x</p>
+                    <p>2. Express other quantities in terms of x</p>
+                    <p>3. Form the equation using given condition</p>
+                    <p>4. Simplify to standard quadratic form</p>
+                    <p>5. Solve and verify the answer makes sense</p>
+                </div>
+                <div class="formula-box">
+                    <h4>Common Word Problem Patterns:</h4>
+                    <p>Area problems: Length × Breadth = Area</p>
+                    <p>Age problems: Product/Sum of ages = given value</p>
+                    <p>Speed problems: Speed = Distance/Time</p>
+                    <p>Number problems: Consecutive integers, sum/product</p>
+                    <p>Right triangle: Pythagoras theorem a² + b² = c²</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4.1 -->
+        <div id="ex41" class="section">
+            <div class="exercise-header">Exercise 4.1 - Introduction to Quadratic Equations</div>
+            <div class="card">
+                <h2>Question 1: Check whether the following are quadratic equations</h2>
+                <div class="question-card">
+                    <div class="question-text">(i) (x + 1)² = 2(x - 3) <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1i')">(A) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1i')">(B) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1i')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1i')">(D) Not an equation</button>
+                    </div>
+                    <div class="solution-box" id="q1i-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: (x + 1)² = 2(x - 3)</div>
+                        <div class="step">Step 1: Expand LHS → x² + 2x + 1 = 2x - 6</div>
+                        <div class="step">Step 2: Bring all terms to one side → x² + 2x + 1 - 2x + 6 = 0</div>
+                        <div class="step">Step 3: Simplify → x² + 7 = 0</div>
+                        <div class="step">This is of the form ax² + bx + c = 0 where a=1, b=0, c=7</div>
+                        <div class="step"><strong>It IS a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(ii) x² - 2x = (-2)(3 - x) <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1ii')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1ii')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1ii')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1ii')">(D) Identity</button>
+                    </div>
+                    <div class="solution-box" id="q1ii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: x² - 2x = (-2)(3 - x)</div>
+                        <div class="step">Step 1: Expand RHS → x² - 2x = -6 + 2x</div>
+                        <div class="step">Step 2: Bring all terms to LHS → x² - 2x + 6 - 2x = 0</div>
+                        <div class="step">Step 3: Simplify → x² - 4x + 6 = 0</div>
+                        <div class="step">This is of the form ax² + bx + c = 0 where a=1, b=-4, c=6</div>
+                        <div class="step"><strong>It IS a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iii) (x - 2)(x + 1) = (x - 1)(x + 3) <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iii')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1iii')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iii')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iii')">(D) Not an equation</button>
+                    </div>
+                    <div class="solution-box" id="q1iii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: (x - 2)(x + 1) = (x - 1)(x + 3)</div>
+                        <div class="step">Step 1: Expand LHS → x² + x - 2x - 2 = x² - x - 2</div>
+                        <div class="step">Step 2: Expand RHS → x² + 3x - x - 3 = x² + 2x - 3</div>
+                        <div class="step">Step 3: Equate → x² - x - 2 = x² + 2x - 3</div>
+                        <div class="step">Step 4: Cancel x² from both sides → -x - 2 = 2x - 3</div>
+                        <div class="step">Step 5: Simplify → -3x + 1 = 0 or 3x - 1 = 0</div>
+                        <div class="step">This is a linear equation (degree 1), NOT quadratic</div>
+                        <div class="step"><strong>It is NOT a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iv) (x - 3)(2x + 1) = x(x + 5) <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1iv')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iv')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iv')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1iv')">(D) Identity</button>
+                    </div>
+                    <div class="solution-box" id="q1iv-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: (x - 3)(2x + 1) = x(x + 5)</div>
+                        <div class="step">Step 1: Expand LHS → 2x² + x - 6x - 3 = 2x² - 5x - 3</div>
+                        <div class="step">Step 2: Expand RHS → x² + 5x</div>
+                        <div class="step">Step 3: Bring all terms to LHS → 2x² - 5x - 3 - x² - 5x = 0</div>
+                        <div class="step">Step 4: Simplify → x² - 10x - 3 = 0</div>
+                        <div class="step">This is of the form ax² + bx + c = 0 where a=1, b=-10, c=-3</div>
+                        <div class="step"><strong>It IS a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(v) (2x - 1)(x - 3) = (x + 5)(x - 1) <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1v')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1v')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1v')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1v')">(D) Not an equation</button>
+                    </div>
+                    <div class="solution-box" id="q1v-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: (2x - 1)(x - 3) = (x + 5)(x - 1)</div>
+                        <div class="step">Step 1: Expand LHS → 2x² - 6x - x + 3 = 2x² - 7x + 3</div>
+                        <div class="step">Step 2: Expand RHS → x² - x + 5x - 5 = x² + 4x - 5</div>
+                        <div class="step">Step 3: Bring all terms to LHS → 2x² - 7x + 3 - x² - 4x + 5 = 0</div>
+                        <div class="step">Step 4: Simplify → x² - 11x + 8 = 0</div>
+                        <div class="step">This is of the form ax² + bx + c = 0 where a=1, b=-11, c=8</div>
+                        <div class="step"><strong>It IS a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(vi) x² + 3x + 1 = (x - 2)² <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vi')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1vi')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vi')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vi')">(D) Identity</button>
+                    </div>
+                    <div class="solution-box" id="q1vi-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: x² + 3x + 1 = (x - 2)²</div>
+                        <div class="step">Step 1: Expand RHS → x² - 4x + 4</div>
+                        <div class="step">Step 2: Bring all terms to LHS → x² + 3x + 1 - x² + 4x - 4 = 0</div>
+                        <div class="step">Step 3: Simplify → 7x - 3 = 0</div>
+                        <div class="step">The x² terms cancel out! This is a linear equation (degree 1)</div>
+                        <div class="step"><strong>It is NOT a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(vii) (x + 2)³ = 2x(x² - 1) <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vii')">(A) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vii')">(B) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1vii')">(C) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1vii')">(D) Not an equation</button>
+                    </div>
+                    <div class="solution-box" id="q1vii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: (x + 2)³ = 2x(x² - 1)</div>
+                        <div class="step">Step 1: Expand LHS using (a+b)³ = a³ + 3a²b + 3ab² + b³</div>
+                        <div class="step">→ x³ + 6x² + 12x + 8</div>
+                        <div class="step">Step 2: Expand RHS → 2x³ - 2x</div>
+                        <div class="step">Step 3: Bring all terms to LHS → x³ + 6x² + 12x + 8 - 2x³ + 2x = 0</div>
+                        <div class="step">Step 4: Simplify → -x³ + 6x² + 14x + 8 = 0</div>
+                        <div class="step">Highest power of x is 3, so this is a CUBIC equation</div>
+                        <div class="step"><strong>It is NOT a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(viii) x³ - 4x² - x + 1 = (x - 2)³ <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1viii')">(A) Cubic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q1viii')">(B) Quadratic Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1viii')">(C) Linear Equation</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q1viii')">(D) Identity</button>
+                    </div>
+                    <div class="solution-box" id="q1viii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: x³ - 4x² - x + 1 = (x - 2)³</div>
+                        <div class="step">Step 1: Expand RHS using (a-b)³ = a³ - 3a²b + 3ab² - b³</div>
+                        <div class="step">→ x³ - 6x² + 12x - 8</div>
+                        <div class="step">Step 2: Bring all terms to LHS → x³ - 4x² - x + 1 - x³ + 6x² - 12x + 8 = 0</div>
+                        <div class="step">Step 3: Simplify → 2x² - 13x + 9 = 0</div>
+                        <div class="step">The x³ terms cancel out! Highest power is 2</div>
+                        <div class="step">This is of the form ax² + bx + c = 0 where a=2, b=-13, c=9</div>
+                        <div class="step"><strong>It IS a Quadratic Equation</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Question 2: Represent situations as quadratic equations</h2>
+                <div class="question-card">
+                    <div class="question-text">(i) Area of rectangular plot is 528 m². Length is one more than twice its breadth. Find length and breadth. <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2i')">(A) 2x² + x - 528 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q2i')">(B) 2x² + x - 528 = 0 (x = breadth)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2i')">(C) x² + 2x - 528 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2i')">(D) 2x² - x - 528 = 0</button>
+                    </div>
+                    <div class="solution-box" id="q2i-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let breadth = x metres</div>
+                        <div class="step">Then length = (2x + 1) metres (one more than twice breadth)</div>
+                        <div class="step">Area = Length × Breadth = 528</div>
+                        <div class="step">→ (2x + 1) × x = 528</div>
+                        <div class="step">→ 2x² + x = 528</div>
+                        <div class="step">→ <strong>2x² + x - 528 = 0</strong></div>
+                        <div class="step">Solving: x = 16 (breadth), Length = 33 m</div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(ii) Product of two consecutive positive integers is 306. Find the integers. <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2ii')">(A) x² + x - 306 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q2ii')">(B) x² + x - 306 = 0 (x = first integer)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2ii')">(C) x² - x - 306 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2ii')">(D) x² + 2x - 306 = 0</button>
+                    </div>
+                    <div class="solution-box" id="q2ii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let first integer = x</div>
+                        <div class="step">Then second integer = (x + 1) (consecutive)</div>
+                        <div class="step">Product = 306</div>
+                        <div class="step">→ x(x + 1) = 306</div>
+                        <div class="step">→ x² + x = 306</div>
+                        <div class="step">→ <strong>x² + x - 306 = 0</strong></div>
+                        <div class="step">Solving: x = 17, so integers are 17 and 18</div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iii) Rohan's mother is 26 years older. Product of their ages 3 years from now is 360. Find Rohan's present age. <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iii')">(A) x² + 29x - 273 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q2iii')">(B) x² + 32x - 273 = 0 (x = Rohan's age)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iii')">(C) x² + 26x - 360 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iii')">(D) x² + 35x - 273 = 0</button>
+                    </div>
+                    <div class="solution-box" id="q2iii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let Rohan's present age = x years</div>
+                        <div class="step">Mother's present age = (x + 26) years</div>
+                        <div class="step">3 years from now:</div>
+                        <div class="step">Rohan's age = (x + 3), Mother's age = (x + 29)</div>
+                        <div class="step">Product = 360</div>
+                        <div class="step">→ (x + 3)(x + 29) = 360</div>
+                        <div class="step">→ x² + 29x + 3x + 87 = 360</div>
+                        <div class="step">→ x² + 32x + 87 - 360 = 0</div>
+                        <div class="step">→ <strong>x² + 32x - 273 = 0</strong></div>
+                        <div class="step">Solving: x = 7 (Rohan's age = 7 years)</div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iv) Train travels 480 km. If speed were 8 km/h less, it would take 3 hours more. Find speed. <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iv')">(A) x² - 8x - 1280 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'q2iv')">(B) x² - 8x - 1280 = 0 (x = speed in km/h)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iv')">(C) x² + 8x - 1280 = 0</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'q2iv')">(D) 3x² - 8x - 480 = 0</button>
+                    </div>
+                    <div class="solution-box" id="q2iv-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let speed of train = x km/h</div>
+                        <div class="step">Time taken = 480/x hours</div>
+                        <div class="step">Reduced speed = (x - 8) km/h</div>
+                        <div class="step">New time = 480/(x-8) hours</div>
+                        <div class="step">Difference in time = 3 hours</div>
+                        <div class="step">→ 480/(x-8) - 480/x = 3</div>
+                        <div class="step">→ 480[x - (x-8)] / [x(x-8)] = 3</div>
+                        <div class="step">→ 480 × 8 / (x² - 8x) = 3</div>
+                        <div class="step">→ 3840 = 3(x² - 8x)</div>
+                        <div class="step">→ 1280 = x² - 8x</div>
+                        <div class="step">→ <strong>x² - 8x - 1280 = 0</strong></div>
+                        <div class="step">Solving: x = 40 km/h (speed of train)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4.2 -->
+        <div id="ex42" class="section">
+            <div class="exercise-header">Exercise 4.2 - Solving by Factorization</div>
+            <div class="card">
+                <h2>Question 1: Find roots by factorization</h2>
+                <div class="question-card">
+                    <div class="question-text">(i) x² - 3x - 10 = 0 <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1i')">(A) x = 2, x = 5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q1i')">(B) x = -2, x = 5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1i')">(C) x = 2, x = -5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1i')">(D) x = -2, x = -5</button>
+                    </div>
+                    <div class="solution-box" id="e2q1i-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: x² - 3x - 10 = 0</div>
+                        <div class="step">Step 1: Find two numbers whose product = -10 and sum = -3</div>
+                        <div class="step">Numbers: -5 and +2 (since -5 × 2 = -10 and -5 + 2 = -3)</div>
+                        <div class="step">Step 2: Split middle term → x² - 5x + 2x - 10 = 0</div>
+                        <div class="step">Step 3: Group → x(x - 5) + 2(x - 5) = 0</div>
+                        <div class="step">Step 4: Factor → (x - 5)(x + 2) = 0</div>
+                        <div class="step">Step 5: x - 5 = 0 or x + 2 = 0</div>
+                        <div class="step"><strong>Roots: x = 5 and x = -2</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(ii) 2x² + x - 6 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1ii')">(A) x = 2, x = -3/2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q1ii')">(B) x = -2, x = 3/2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1ii')">(C) x = 3/2, x = 2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1ii')">(D) x = -3/2, x = -2</button>
+                    </div>
+                    <div class="solution-box" id="e2q1ii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 2x² + x - 6 = 0</div>
+                        <div class="step">Step 1: Find two numbers whose product = 2×(-6) = -12 and sum = 1</div>
+                        <div class="step">Numbers: +4 and -3 (since 4 × (-3) = -12 and 4 + (-3) = 1)</div>
+                        <div class="step">Step 2: Split middle term → 2x² + 4x - 3x - 6 = 0</div>
+                        <div class="step">Step 3: Group → 2x(x + 2) - 3(x + 2) = 0</div>
+                        <div class="step">Step 4: Factor → (x + 2)(2x - 3) = 0</div>
+                        <div class="step">Step 5: x + 2 = 0 or 2x - 3 = 0</div>
+                        <div class="step"><strong>Roots: x = -2 and x = 3/2</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iii) √2 x² + 7x + 5√2 = 0 <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iii')">(A) x = √2, x = 5/√2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q1iii')">(B) x = -√2, x = -5/√2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iii')">(C) x = -1/√2, x = -5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iii')">(D) x = 1/√2, x = 5</button>
+                    </div>
+                    <div class="solution-box" id="e2q1iii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: √2 x² + 7x + 5√2 = 0</div>
+                        <div class="step">Step 1: Find two numbers whose product = √2 × 5√2 = 10 and sum = 7</div>
+                        <div class="step">Numbers: 5 and 2 (since 5 × 2 = 10 and 5 + 2 = 7)</div>
+                        <div class="step">Step 2: Split middle term → √2 x² + 5x + 2x + 5√2 = 0</div>
+                        <div class="step">Step 3: Group → x(√2x + 5) + √2(√2x + 5) ... Check: √2 × √2 = 2, not 5. Let me try differently</div>
+                        <div class="step">Correct approach: √2 x² + 2x + 5x + 5√2 = 0</div>
+                        <div class="step">→ √2x(x + √2) + 5(x + √2) ... Check: 5 × √2 = 5√2 ✓</div>
+                        <div class="step">→ (√2x + 5)(x + √2) = 0</div>
+                        <div class="step">→ x = -5/√2 or x = -√2</div>
+                        <div class="step"><strong>Roots: x = -√2 and x = -5/√2</strong></div>
+                        <div class="step">Rationalized: x = -√2 and x = -5√2/2</div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iv) 2x² - x + 1/8 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iv')">(A) x = 1/4 (double root)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q1iv')">(B) x = 1/4 (equal roots)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iv')">(C) x = 1/2, x = 1/4</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1iv')">(D) No real roots</button>
+                    </div>
+                    <div class="solution-box" id="e2q1iv-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 2x² - x + 1/8 = 0</div>
+                        <div class="step">Step 1: Multiply by 8 to clear fraction → 16x² - 8x + 1 = 0</div>
+                        <div class="step">Step 2: Find two numbers whose product = 16×1 = 16 and sum = -8</div>
+                        <div class="step">Numbers: -4 and -4 (since (-4)×(-4) = 16 and -4+(-4) = -8)</div>
+                        <div class="step">Step 3: Split middle term → 16x² - 4x - 4x + 1 = 0</div>
+                        <div class="step">Step 4: Group → 4x(4x - 1) - 1(4x - 1) = 0</div>
+                        <div class="step">Step 5: Factor → (4x - 1)(4x - 1) = 0</div>
+                        <div class="step">Step 6: (4x - 1)² = 0</div>
+                        <div class="step">→ 4x - 1 = 0 → x = 1/4</div>
+                        <div class="step"><strong>Roots: x = 1/4, 1/4 (Equal roots)</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(v) 100x² - 20x + 1 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1v')">(A) x = 1/10, x = -1/10</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q1v')">(B) x = 1/10 (equal roots)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1v')">(C) x = 1/5, x = 1/5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q1v')">(D) No real roots</button>
+                    </div>
+                    <div class="solution-box" id="e2q1v-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 100x² - 20x + 1 = 0</div>
+                        <div class="step">Step 1: Find two numbers whose product = 100×1 = 100 and sum = -20</div>
+                        <div class="step">Numbers: -10 and -10 (since (-10)×(-10) = 100 and -10+(-10) = -20)</div>
+                        <div class="step">Step 2: Split middle term → 100x² - 10x - 10x + 1 = 0</div>
+                        <div class="step">Step 3: Group → 10x(10x - 1) - 1(10x - 1) = 0</div>
+                        <div class="step">Step 4: Factor → (10x - 1)(10x - 1) = 0</div>
+                        <div class="step">Step 5: (10x - 1)² = 0</div>
+                        <div class="step">→ 10x - 1 = 0 → x = 1/10</div>
+                        <div class="step"><strong>Roots: x = 1/10, 1/10 (Equal roots)</strong></div>
+                        <div class="step">This is a perfect square: (10x - 1)² = 0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Question 3: Find two numbers whose sum is 27 and product is 182</h2>
+                <div class="question-card">
+                    <div class="question-text">Find two numbers with sum 27 and product 182 <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q3')">(A) 12 and 15</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q3')">(B) 13 and 14</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q3')">(C) 11 and 16</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q3')">(D) 10 and 17</button>
+                    </div>
+                    <div class="solution-box" id="e2q3-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let the numbers be x and (27 - x)</div>
+                        <div class="step">Product = x(27 - x) = 182</div>
+                        <div class="step">→ 27x - x² = 182</div>
+                        <div class="step">→ x² - 27x + 182 = 0</div>
+                        <div class="step">Find two numbers whose product = 182 and sum = 27</div>
+                        <div class="step">Numbers: 13 and 14 (since 13 × 14 = 182 and 13 + 14 = 27)</div>
+                        <div class="step">→ x² - 13x - 14x + 182 = 0</div>
+                        <div class="step">→ x(x - 13) - 14(x - 13) = 0</div>
+                        <div class="step">→ (x - 13)(x - 14) = 0</div>
+                        <div class="step"><strong>Numbers are 13 and 14</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 4: Find two consecutive positive integers, sum of squares is 365</h2>
+                <div class="question-card">
+                    <div class="question-text">Two consecutive positive integers, sum of squares = 365 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q4')">(A) 12 and 13</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q4')">(B) 13 and 14</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q4')">(C) 14 and 15</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q4')">(D) 11 and 12</button>
+                    </div>
+                    <div class="solution-box" id="e2q4-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let the integers be x and (x + 1)</div>
+                        <div class="step">Sum of squares = x² + (x+1)² = 365</div>
+                        <div class="step">→ x² + x² + 2x + 1 = 365</div>
+                        <div class="step">→ 2x² + 2x + 1 - 365 = 0</div>
+                        <div class="step">→ 2x² + 2x - 364 = 0</div>
+                        <div class="step">→ x² + x - 182 = 0 (dividing by 2)</div>
+                        <div class="step">Find two numbers whose product = -182 and sum = 1</div>
+                        <div class="step">Numbers: 14 and -13 (since 14 × (-13) = -182 and 14 + (-13) = 1)</div>
+                        <div class="step">→ x² + 14x - 13x - 182 = 0</div>
+                        <div class="step">→ x(x + 14) - 13(x + 14) = 0</div>
+                        <div class="step">→ (x + 14)(x - 13) = 0</div>
+                        <div class="step">x = -14 or x = 13 (taking positive)</div>
+                        <div class="step"><strong>Integers are 13 and 14</strong></div>
+                        <div class="step">Check: 13² + 14² = 169 + 196 = 365 ✓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 5: Right triangle - altitude 7 cm less than base, hypotenuse 13 cm</h2>
+                <div class="question-card">
+                    <div class="question-text">Find the other two sides of the right triangle <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q5')">(A) 5 cm and 12 cm</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q5')">(B) 5 cm and 12 cm</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q5')">(C) 6 cm and 8 cm</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q5')">(D) 8 cm and 15 cm</button>
+                    </div>
+                    <div class="solution-box" id="e2q5-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let base = x cm</div>
+                        <div class="step">Then altitude = (x - 7) cm</div>
+                        <div class="step">Hypotenuse = 13 cm</div>
+                        <div class="step">By Pythagoras: base² + altitude² = hypotenuse²</div>
+                        <div class="step">→ x² + (x - 7)² = 13²</div>
+                        <div class="step">→ x² + x² - 14x + 49 = 169</div>
+                        <div class="step">→ 2x² - 14x + 49 - 169 = 0</div>
+                        <div class="step">→ 2x² - 14x - 120 = 0</div>
+                        <div class="step">→ x² - 7x - 60 = 0 (dividing by 2)</div>
+                        <div class="step">Find two numbers whose product = -60 and sum = -7</div>
+                        <div class="step">Numbers: -12 and 5 (since -12 × 5 = -60 and -12 + 5 = -7)</div>
+                        <div class="step">→ x² - 12x + 5x - 60 = 0</div>
+                        <div class="step">→ x(x - 12) + 5(x - 12) = 0</div>
+                        <div class="step">→ (x - 12)(x + 5) = 0</div>
+                        <div class="step">x = 12 or x = -5 (taking positive)</div>
+                        <div class="step">Base = 12 cm, Altitude = 12 - 7 = 5 cm</div>
+                        <div class="step"><strong>Other two sides: 5 cm and 12 cm</strong></div>
+                        <div class="step">Check: 5² + 12² = 25 + 144 = 169 = 13² ✓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 6: Cottage industry - cost and production problem</h2>
+                <div class="question-card">
+                    <div class="question-text">Find number of articles and cost per article <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q6')">(A) 5 articles, Rs 13 each</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e2q6')">(B) 6 articles, Rs 15 each</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q6')">(C) 5 articles, Rs 15 each</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e2q6')">(D) 6 articles, Rs 13 each</button>
+                    </div>
+                    <div class="solution-box" id="e2q6-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let number of articles = x</div>
+                        <div class="step">Cost per article = (2x + 3) rupees (3 more than twice the number)</div>
+                        <div class="step">Total cost = Number × Cost per article = 90</div>
+                        <div class="step">→ x(2x + 3) = 90</div>
+                        <div class="step">→ 2x² + 3x = 90</div>
+                        <div class="step">→ 2x² + 3x - 90 = 0</div>
+                        <div class="step">Find two numbers whose product = 2×(-90) = -180 and sum = 3</div>
+                        <div class="step">Numbers: 15 and -12 (since 15 × (-12) = -180 and 15 + (-12) = 3)</div>
+                        <div class="step">→ 2x² + 15x - 12x - 90 = 0</div>
+                        <div class="step">→ x(2x + 15) - 6(2x + 15) = 0</div>
+                        <div class="step">→ (2x + 15)(x - 6) = 0</div>
+                        <div class="step">x = -15/2 or x = 6 (taking positive integer)</div>
+                        <div class="step">Number of articles = 6</div>
+                        <div class="step">Cost per article = 2(6) + 3 = Rs 15</div>
+                        <div class="step"><strong>6 articles at Rs 15 each</strong></div>
+                        <div class="step">Check: 6 × 15 = 90 ✓</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4.3 -->
+        <div id="ex43" class="section">
+            <div class="exercise-header">Exercise 4.3 - Nature of Roots & Quadratic Formula</div>
+            <div class="card">
+                <h2>Question 1: Find nature of roots. If real roots exist, find them.</h2>
+                <div class="question-card">
+                    <div class="question-text">(i) 2x² - 3x + 5 = 0 <span class="badge badge-easy">Easy</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1i')">(A) Two distinct real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q1i')">(B) No real roots (imaginary)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1i')">(C) Two equal real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1i')">(D) One real root</button>
+                    </div>
+                    <div class="solution-box" id="e3q1i-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 2x² - 3x + 5 = 0</div>
+                        <div class="step">Compare with ax² + bx + c = 0</div>
+                        <div class="step">a = 2, b = -3, c = 5</div>
+                        <div class="step">Discriminant D = b² - 4ac</div>
+                        <div class="step">D = (-3)² - 4(2)(5) = 9 - 40 = -31</div>
+                        <div class="step">Since D = -31 < 0</div>
+                        <div class="step"><strong>No real roots exist (roots are imaginary)</strong></div>
+                        <div class="step">Roots: x = [3 ± √(-31)] / 4 = [3 ± i√31] / 4</div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(ii) 3x² - 4√3 x + 4 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1ii')">(A) No real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q1ii')">(B) Two equal real roots: x = 2/√3</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1ii')">(C) Two distinct real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1ii')">(D) One real root: x = √3</button>
+                    </div>
+                    <div class="solution-box" id="e3q1ii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 3x² - 4√3 x + 4 = 0</div>
+                        <div class="step">a = 3, b = -4√3, c = 4</div>
+                        <div class="step">D = b² - 4ac = (-4√3)² - 4(3)(4)</div>
+                        <div class="step">D = 16 × 3 - 48 = 48 - 48 = 0</div>
+                        <div class="step">Since D = 0, roots are real and equal</div>
+                        <div class="step">x = [-b ± √D] / 2a = [4√3 ± 0] / 6 = 4√3 / 6 = 2√3 / 3 = 2/√3</div>
+                        <div class="step"><strong>Two equal roots: x = 2/√3 (or 2√3/3)</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(iii) 2x² - 6x + 3 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1iii')">(A) No real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1iii')">(B) Two equal real roots</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q1iii')">(C) Two distinct real roots: (3±√3)/2</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q1iii')">(D) One real root</button>
+                    </div>
+                    <div class="solution-box" id="e3q1iii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 2x² - 6x + 3 = 0</div>
+                        <div class="step">a = 2, b = -6, c = 3</div>
+                        <div class="step">D = b² - 4ac = (-6)² - 4(2)(3) = 36 - 24 = 12</div>
+                        <div class="step">Since D = 12 > 0, two distinct real roots exist</div>
+                        <div class="step">x = [6 ± √12] / 4 = [6 ± 2√3] / 4 = [3 ± √3] / 2</div>
+                        <div class="step"><strong>Roots: x = (3 + √3)/2 and x = (3 - √3)/2</strong></div>
+                        <div class="step">Approximate: x ≈ 2.366 and x ≈ 0.634</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 2: Find values of k for equal roots</h2>
+                <div class="question-card">
+                    <div class="question-text">(i) 2x² + kx + 3 = 0 <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2i')">(A) k = ±4</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q2i')">(B) k = ±2√6</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2i')">(C) k = ±6</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2i')">(D) k = ±√12</button>
+                    </div>
+                    <div class="solution-box" id="e3q2i-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: 2x² + kx + 3 = 0</div>
+                        <div class="step">For equal roots: D = b² - 4ac = 0</div>
+                        <div class="step">a = 2, b = k, c = 3</div>
+                        <div class="step">D = k² - 4(2)(3) = 0</div>
+                        <div class="step">→ k² - 24 = 0</div>
+                        <div class="step">→ k² = 24</div>
+                        <div class="step">→ k = ±√24 = ±2√6</div>
+                        <div class="step"><strong>k = ±2√6 (or ±√24)</strong></div>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-text">(ii) kx(x - 2) + 6 = 0 <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2ii')">(A) k = 3</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q2ii')">(B) k = 6</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2ii')">(C) k = 4</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q2ii')">(D) k = 2</button>
+                    </div>
+                    <div class="solution-box" id="e3q2ii-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Given: kx(x - 2) + 6 = 0</div>
+                        <div class="step">→ kx² - 2kx + 6 = 0</div>
+                        <div class="step">a = k, b = -2k, c = 6</div>
+                        <div class="step">For equal roots: D = b² - 4ac = 0</div>
+                        <div class="step">D = (-2k)² - 4(k)(6) = 0</div>
+                        <div class="step">→ 4k² - 24k = 0</div>
+                        <div class="step">→ 4k(k - 6) = 0</div>
+                        <div class="step">→ k = 0 or k = 6</div>
+                        <div class="step">But k = 0 makes it linear (not quadratic), so k ≠ 0</div>
+                        <div class="step"><strong>k = 6</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 3: Rectangular mango grove - length twice breadth, area 800 m²</h2>
+                <div class="question-card">
+                    <div class="question-text">Is it possible? If so, find length and breadth. <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q3')">(A) Not possible (D < 0)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q3')">(B) Yes, 40 m and 20 m</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q3')">(C) Yes, 20 m and 10 m</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q3')">(D) Yes, 80 m and 40 m</button>
+                    </div>
+                    <div class="solution-box" id="e3q3-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let breadth = x m, then length = 2x m</div>
+                        <div class="step">Area = Length × Breadth = 800</div>
+                        <div class="step">→ 2x × x = 800</div>
+                        <div class="step">→ 2x² = 800</div>
+                        <div class="step">→ x² = 400</div>
+                        <div class="step">→ x = ±20 (taking positive)</div>
+                        <div class="step">Breadth = 20 m, Length = 40 m</div>
+                        <div class="step"><strong>Yes, it is possible! Length = 40 m, Breadth = 20 m</strong></div>
+                        <div class="step">Check: 40 × 20 = 800 ✓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 4: Sum of ages of two friends is 20. Four years ago, product was 48.</h2>
+                <div class="question-card">
+                    <div class="question-text">Is this possible? If so, find their present ages. <span class="badge badge-hard">Hard</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q4')">(A) Yes, 12 and 8 years</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q4')">(B) Not possible (D < 0)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q4')">(C) Yes, 16 and 4 years</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q4')">(D) Yes, 10 and 10 years</button>
+                    </div>
+                    <div class="solution-box" id="e3q4-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let present age of one friend = x years</div>
+                        <div class="step">Then present age of other = (20 - x) years</div>
+                        <div class="step">Four years ago:</div>
+                        <div class="step">Their ages were (x - 4) and (16 - x)</div>
+                        <div class="step">Product = 48</div>
+                        <div class="step">→ (x - 4)(16 - x) = 48</div>
+                        <div class="step">→ 16x - x² - 64 + 4x = 48</div>
+                        <div class="step">→ -x² + 20x - 64 = 48</div>
+                        <div class="step">→ -x² + 20x - 112 = 0</div>
+                        <div class="step">→ x² - 20x + 112 = 0</div>
+                        <div class="step">D = (-20)² - 4(1)(112) = 400 - 448 = -48</div>
+                        <div class="step">Since D = -48 < 0, no real solution exists</div>
+                        <div class="step"><strong>This situation is NOT possible</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Question 5: Rectangular park of perimeter 80 m and area 400 m²</h2>
+                <div class="question-card">
+                    <div class="question-text">Is it possible? If so, find length and breadth. <span class="badge badge-medium">Medium</span></div>
+                    <div class="options">
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q5')">(A) Not possible</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true, 'e3q5')">(B) Yes, 20 m and 20 m (square)</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q5')">(C) Yes, 25 m and 15 m</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false, 'e3q5')">(D) Yes, 30 m and 10 m</button>
+                    </div>
+                    <div class="solution-box" id="e3q5-solution">
+                        <h4>Solution:</h4>
+                        <div class="step">Let length = x m, breadth = y m</div>
+                        <div class="step">Perimeter = 2(x + y) = 80 → x + y = 40 → y = 40 - x</div>
+                        <div class="step">Area = x × y = 400</div>
+                        <div class="step">→ x(40 - x) = 400</div>
+                        <div class="step">→ 40x - x² = 400</div>
+                        <div class="step">→ x² - 40x + 400 = 0</div>
+                        <div class="step">D = (-40)² - 4(1)(400) = 1600 - 1600 = 0</div>
+                        <div class="step">Since D = 0, equal roots exist</div>
+                        <div class="step">x = [40 ± 0] / 2 = 20</div>
+                        <div class="step">Length = 20 m, Breadth = 20 m</div>
+                        <div class="step"><strong>Yes, it is possible! It's a square with sides 20 m</strong></div>
+                        <div class="step">Check: Perimeter = 2(20+20) = 80 ✓, Area = 20×20 = 400 ✓</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULATOR SECTION -->
+        <div id="calculator" class="section">
+            <div class="card">
+                <h2>Scientific Calculator</h2>
+                <div class="calculator">
+                    <div class="calc-display" id="calcDisplay">0</div>
+                    <div class="calc-buttons">
+                        <button class="calc-btn clear" onclick="clearCalc()">AC</button>
+                        <button class="calc-btn function" onclick="appendCalc('(')">(</button>
+                        <button class="calc-btn function" onclick="appendCalc(')')">)</button>
+                        <button class="calc-btn operator" onclick="appendCalc('/')">÷</button>
+                        <button class="calc-btn number" onclick="appendCalc('7')">7</button>
+                        <button class="calc-btn number" onclick="appendCalc('8')">8</button>
+                        <button class="calc-btn number" onclick="appendCalc('9')">9</button>
+                        <button class="calc-btn operator" onclick="appendCalc('*')">×</button>
+                        <button class="calc-btn number" onclick="appendCalc('4')">4</button>
+                        <button class="calc-btn number" onclick="appendCalc('5')">5</button>
+                        <button class="calc-btn number" onclick="appendCalc('6')">6</button>
+                        <button class="calc-btn operator" onclick="appendCalc('-')">−</button>
+                        <button class="calc-btn number" onclick="appendCalc('1')">1</button>
+                        <button class="calc-btn number" onclick="appendCalc('2')">2</button>
+                        <button class="calc-btn number" onclick="appendCalc('3')">3</button>
+                        <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+                        <button class="calc-btn number" onclick="appendCalc('0')">0</button>
+                        <button class="calc-btn function" onclick="appendCalc('.')">.</button>
+                        <button class="calc-btn function" onclick="appendCalc('Math.sqrt(')">√</button>
+                        <button class="calc-btn operator" onclick="appendCalc('**')">x²</button>
+                        <button class="calc-btn function" onclick="appendCalc('Math.PI')">π</button>
+                        <button class="calc-btn function" onclick="backspace()">⌫</button>
+                        <button class="calc-btn equals" onclick="calculate()">=</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Quadratic Equation Solver</h2>
+                <p style="margin-bottom: 15px;">Enter coefficients for ax² + bx + c = 0</p>
+                <div class="input-group">
+                    <label>a =</label>
+                    <input type="number" id="coeffA" placeholder="a" value="1">
+                    <label>b =</label>
+                    <input type="number" id="coeffB" placeholder="b" value="-3">
+                    <label>c =</label>
+                    <input type="number" id="coeffC" placeholder="c" value="-10">
+                    <button class="btn-primary" onclick="solveQuadratic()">Solve</button>
+                </div>
+                <div class="result-display" id="quadResult" style="display:none;">
+                    <div id="discriminantInfo"></div>
+                    <div class="roots-info" id="rootsInfo"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUALIZER SECTION -->
+        <div id="visualizer" class="section">
+            <div class="card">
+                <h2>Quadratic Equation Visualizer</h2>
+                <p style="margin-bottom: 15px;">Visualize the parabola y = ax² + bx + c</p>
+                <div class="input-group">
+                    <label>a =</label>
+                    <input type="number" id="visA" placeholder="a" value="1" step="0.1">
+                    <label>b =</label>
+                    <input type="number" id="visB" placeholder="b" value="-3" step="0.1">
+                    <label>c =</label>
+                    <input type="number" id="visC" placeholder="c" value="-10" step="0.1">
+                    <button class="btn-primary" onclick="drawGraph()">Draw Graph</button>
+                </div>
+                <div class="graph-container">
+                    <canvas id="quadraticChart"></canvas>
+                </div>
+                <div class="result-display" id="graphInfo"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>NCERT Class 10 Mathematics - Chapter 4: Quadratic Equations</p>
+            <p>Interactive Learning Platform</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // MCQ Answer Checking
+        function checkAnswer(btn, isCorrect, questionId) {
+            const card = btn.closest('.question-card');
+            const buttons = card.querySelectorAll('.option-btn');
+            const solution = document.getElementById(questionId + '-solution');
+
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.style.cursor = 'default';
+            });
+
+            if (isCorrect) {
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('wrong');
+                buttons.forEach(b => {
+                    if (b.onclick.toString().includes('true')) {
+                        b.classList.add('correct');
+                    }
+                });
+            }
+
+            solution.classList.add('show');
+        }
+
+        // Calculator Functions
+        let calcExpression = '';
+
+        function appendCalc(val) {
+            if (calcExpression === '0' && val !== '.') {
+                calcExpression = '';
+            }
+            calcExpression += val;
+            document.getElementById('calcDisplay').textContent = calcExpression;
+        }
+
+        function clearCalc() {
+            calcExpression = '';
+            document.getElementById('calcDisplay').textContent = '0';
+        }
+
+        function backspace() {
+            calcExpression = calcExpression.slice(0, -1);
+            document.getElementById('calcDisplay').textContent = calcExpression || '0';
+        }
+
+        function calculate() {
+            try {
+                let result = eval(calcExpression);
+                calcExpression = result.toString();
+                document.getElementById('calcDisplay').textContent = result;
+            } catch (e) {
+                document.getElementById('calcDisplay').textContent = 'Error';
+                calcExpression = '';
+            }
+        }
+
+        // Quadratic Solver
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('coeffA').value);
+            const b = parseFloat(document.getElementById('coeffB').value);
+            const c = parseFloat(document.getElementById('coeffC').value);
+
+            if (a === 0) {
+                alert('a cannot be 0 for a quadratic equation!');
+                return;
+            }
+
+            const D = b*b - 4*a*c;
+            const resultDiv = document.getElementById('quadResult');
+            const discDiv = document.getElementById('discriminantInfo');
+            const rootsDiv = document.getElementById('rootsInfo');
+
+            resultDiv.style.display = 'block';
+
+            let nature = '';
+            if (D > 0) nature = 'Two distinct real roots';
+            else if (D === 0) nature = 'Two equal real roots';
+            else nature = 'No real roots (imaginary)';
+
+            discDiv.innerHTML = `
+                <strong>Discriminant D = b² - 4ac = ${b}² - 4(${a})(${c}) = ${D}</strong><br>
+                <strong>Nature: ${nature}</strong>
+            `;
+
+            rootsDiv.innerHTML = '';
+
+            if (D >= 0) {
+                const root1 = (-b + Math.sqrt(D)) / (2*a);
+                const root2 = (-b - Math.sqrt(D)) / (2*a);
+
+                rootsDiv.innerHTML = `
+                    <div class="root-card">
+                        <h4>Root 1 (x₁)</h4>
+                        <div class="value">${root1.toFixed(4)}</div>
+                    </div>
+                    <div class="root-card">
+                        <h4>Root 2 (x₂)</h4>
+                        <div class="value">${root2.toFixed(4)}</div>
+                    </div>
+                `;
+            } else {
+                const realPart = (-b / (2*a)).toFixed(4);
+                const imagPart = (Math.sqrt(-D) / (2*a)).toFixed(4);
+                rootsDiv.innerHTML = `
+                    <div class="root-card">
+                        <h4>Root 1 (x₁)</h4>
+                        <div class="value">${realPart} + ${imagPart}i</div>
+                    </div>
+                    <div class="root-card">
+                        <h4>Root 2 (x₂)</h4>
+                        <div class="value">${realPart} - ${imagPart}i</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Graph Visualizer
+        let chart = null;
+
+        function drawGraph() {
+            const a = parseFloat(document.getElementById('visA').value);
+            const b = parseFloat(document.getElementById('visB').value);
+            const c = parseFloat(document.getElementById('visC').value);
+
+            const ctx = document.getElementById('quadraticChart').getContext('2d');
+
+            // Generate points
+            const points = [];
+            const labels = [];
+            const vertexX = -b / (2*a);
+
+            for (let x = vertexX - 10; x <= vertexX + 10; x += 0.5) {
+                const y = a*x*x + b*x + c;
+                points.push(y);
+                labels.push(x.toFixed(1));
+            }
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `y = ${a}x² + ${b}x + ${c}`,
+                        data: points,
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'x'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'y'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Calculate and display info
+            const D = b*b - 4*a*c;
+            const vertexY = a*vertexX*vertexX + b*vertexX + c;
+
+            let rootInfo = '';
+            if (D >= 0) {
+                const r1 = (-b + Math.sqrt(D)) / (2*a);
+                const r2 = (-b - Math.sqrt(D)) / (2*a);
+                rootInfo = `Roots: x₁ = ${r1.toFixed(3)}, x₂ = ${r2.toFixed(3)}`;
+            } else {
+                rootInfo = 'No real roots (parabola does not cross x-axis)';
+            }
+
+            document.getElementById('graphInfo').innerHTML = `
+                <strong>Vertex:</strong> (${vertexX.toFixed(3)}, ${vertexY.toFixed(3)})<br>
+                <strong>Discriminant D:</strong> ${D.toFixed(3)}<br>
+                <strong>${rootInfo}</strong><br>
+                <strong>Axis of symmetry:</strong> x = ${vertexX.toFixed(3)}
+            `;
+        }
+
+        // Initialize graph on load
+        window.onload = function() {
+            drawGraph();
+        };
+    </script>
+</body>
+</html>

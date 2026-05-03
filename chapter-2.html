@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 - Polynomials | Interactive Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--card);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background: var(--bg);
+            color: var(--text);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Section */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Notes */
+        .note-box {
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .note-box.important {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left-color: var(--accent);
+        }
+
+        .note-box.formula {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-left-color: var(--success);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* MCQ */
+        .mcq-container {
+            margin: 1.5rem 0;
+        }
+
+        .mcq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mcq-option {
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mcq-option:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+            transform: translateX(5px);
+        }
+
+        .mcq-option.correct {
+            border-color: var(--success);
+            background: #d1fae5;
+        }
+
+        .mcq-option.wrong {
+            border-color: var(--danger);
+            background: #fee2e2;
+        }
+
+        .mcq-option .opt-label {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .mcq-option.correct .opt-label {
+            background: var(--success);
+            color: white;
+        }
+
+        .mcq-option.wrong .opt-label {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Solution */
+        .solution-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: #f0fdf4;
+            border-radius: 12px;
+            border: 1px solid #86efac;
+            animation: slideDown 0.4s;
+        }
+
+        .solution-box.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 2000px; }
+        }
+
+        .solution-title {
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .solution-step {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .solution-step::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        /* Calculator */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .calc-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.8rem; }
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .calc-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            min-height: 60px;
+            white-space: pre-wrap;
+        }
+
+        /* Graph */
+        .graph-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            overflow: hidden;
+        }
+
+        .graph-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .graph-controls {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .graph-controls label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .graph-controls input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-quadratic {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+
+        .badge-cubic {
+            background: #ede9fe;
+            color: var(--secondary);
+        }
+
+        .badge-linear {
+            background: #d1fae5;
+            color: var(--success);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg);
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        tr:hover {
+            background: var(--bg);
+        }
+
+        /* Hint */
+        .hint {
+            background: #fef3c7;
+            border: 1px dashed var(--accent);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        .hint::before {
+            content: '💡 ';
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <header class="header">
+        <h1>📚 Polynomials - Class 10</h1>
+        <p>Chapter 2 | NCERT Mathematics | Interactive Learning Module</p>
+    </header>
+
+    <nav class="nav">
+        <button class="nav-btn active" onclick="showSection('notes')">📝 Notes</button>
+        <button class="nav-btn" onclick="showSection('ex21')">📊 Exercise 2.1</button>
+        <button class="nav-btn" onclick="showSection('ex22')">🔢 Exercise 2.2</button>
+        <button class="nav-btn" onclick="showSection('calculator')">🧮 Calculator</button>
+        <button class="nav-btn" onclick="showSection('graph')">📈 Graph</button>
+    </nav>
+
+    <div class="container">
+        <!-- NOTES SECTION -->
+        <section id="notes" class="section active">
+            <div class="card">
+                <h2 class="card-title">Important Notes & Formulas</h2>
+
+                <div class="note-box">
+                    <strong>Definition:</strong> A polynomial <span class="math">p(x)</span> in one variable <span class="math">x</span> is an algebraic expression of the form:<br>
+                    <span class="math">p(x) = a<sub>n</sub>x<sup>n</sup> + a<sub>n-1</sub>x<sup>n-1</sup> + ... + a<sub>1</sub>x + a<sub>0</sub></span><br>
+                    where <span class="math">a<sub>n</sub> ≠ 0</span> and powers of <span class="math">x</span> are non-negative integers.
+                </div>
+
+                <div class="note-box important">
+                    <strong>Key Fact:</strong> The zeroes of a polynomial <span class="math">p(x)</span> are precisely the <strong>x-coordinates</strong> of the points where the graph of <span class="math">y = p(x)</span> intersects the <strong>x-axis</strong>.
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary);">Degree & Zeroes Relationship</h3>
+                <table>
+                    <tr>
+                        <th>Degree</th>
+                        <th>Name</th>
+                        <th>General Form</th>
+                        <th>Max Zeroes</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><span class="badge badge-linear">Linear</span></td>
+                        <td><span class="math">ax + b</span></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><span class="badge badge-quadratic">Quadratic</span></td>
+                        <td><span class="math">ax² + bx + c</span></td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><span class="badge badge-cubic">Cubic</span></td>
+                        <td><span class="math">ax³ + bx² + cx + d</span></td>
+                        <td>3</td>
+                    </tr>
+                </table>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary);">Relationship between Zeroes and Coefficients</h3>
+
+                <div class="note-box formula">
+                    <strong>For Quadratic:</strong> <span class="math">ax² + bx + c</span> with zeroes <span class="math">α, β</span><br><br>
+                    Sum of zeroes: <span class="math">α + β = -b/a</span><br>
+                    Product of zeroes: <span class="math">αβ = c/a</span>
+                </div>
+
+                <div class="note-box formula">
+                    <strong>For Cubic:</strong> <span class="math">ax³ + bx² + cx + d</span> with zeroes <span class="math">α, β, γ</span><br><br>
+                    Sum: <span class="math">α + β + γ = -b/a</span><br>
+                    Sum of products (two at a time): <span class="math">αβ + βγ + γα = c/a</span><br>
+                    Product: <span class="math">αβγ = -d/a</span>
+                </div>
+
+                <div class="note-box important">
+                    <strong>To form a quadratic polynomial:</strong> If sum = <span class="math">S</span> and product = <span class="math">P</span>, then:<br>
+                    <span class="math">x² - Sx + P</span> or <span class="math">k(x² - Sx + P)</span> where <span class="math">k ≠ 0</span>
+                </div>
+
+                <div class="hint">
+                    Remember: A polynomial of degree <span class="math">n</span> can have at most <span class="math">n</span> real zeroes.
+                </div>
+            </div>
+        </section>
+
+        <!-- EXERCISE 2.1 -->
+        <section id="ex21" class="section">
+            <div class="card">
+                <h2 class="card-title">Exercise 2.1 - Zeroes from Graphs</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                    The graphs of <span class="math">y = p(x)</span> are given for some polynomials. Find the number of zeroes of <span class="math">p(x)</span> in each case.
+                </p>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1. Graph (i) - A horizontal line not touching the x-axis</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_1')">
+                            <span class="opt-label">A</span>
+                            <span>1 zero</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_1')">
+                            <span class="opt-label">B</span>
+                            <span>0 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_1')">
+                            <span class="opt-label">C</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_1')">
+                            <span class="opt-label">D</span>
+                            <span>Infinite zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_1" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 0 zeroes</div>
+                        <div class="solution-step">The graph is a horizontal line parallel to the x-axis and does NOT intersect it.</div>
+                        <div class="solution-step">Since there is no point where <span class="math">y = 0</span>, the polynomial has <strong>no real zeroes</strong>.</div>
+                        <div class="solution-step">This represents a constant polynomial like <span class="math">p(x) = k</span> where <span class="math">k ≠ 0</span>.</div>
+                    </div>
+                </div>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2. Graph (ii) - A cubic curve crossing the x-axis at one point only</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_2')">
+                            <span class="opt-label">A</span>
+                            <span>0 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_2')">
+                            <span class="opt-label">B</span>
+                            <span>1 zero</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_2')">
+                            <span class="opt-label">C</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_2')">
+                            <span class="opt-label">D</span>
+                            <span>3 zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_2" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 1 zero</div>
+                        <div class="solution-step">The graph intersects the x-axis at exactly <strong>one point</strong>.</div>
+                        <div class="solution-step">The x-coordinate of this intersection point is the only zero of the polynomial.</div>
+                        <div class="solution-step">Even though it may be a cubic polynomial, it has only <strong>1 real zero</strong> (the other two zeroes are complex/not real).</div>
+                    </div>
+                </div>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q3. Graph (iii) - A curve crossing the x-axis at three distinct points</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_3')">
+                            <span class="opt-label">A</span>
+                            <span>1 zero</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_3')">
+                            <span class="opt-label">B</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_3')">
+                            <span class="opt-label">C</span>
+                            <span>3 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_3')">
+                            <span class="opt-label">D</span>
+                            <span>4 zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_3" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 3 zeroes</div>
+                        <div class="solution-step">The graph intersects the x-axis at <strong>three distinct points</strong>.</div>
+                        <div class="solution-step">Each intersection point gives one zero of the polynomial.</div>
+                        <div class="solution-step">This is characteristic of a cubic polynomial with <strong>3 real zeroes</strong>.</div>
+                    </div>
+                </div>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q4. Graph (iv) - A straight line passing through the origin</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_4')">
+                            <span class="opt-label">A</span>
+                            <span>1 zero</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_4')">
+                            <span class="opt-label">B</span>
+                            <span>0 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_4')">
+                            <span class="opt-label">C</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_4')">
+                            <span class="opt-label">D</span>
+                            <span>Infinite zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_4" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 1 zero</div>
+                        <div class="solution-step">A straight line (linear polynomial) intersects the x-axis at exactly <strong>one point</strong>.</div>
+                        <div class="solution-step">In this case, the line passes through the origin <span class="math">(0, 0)</span>, so the zero is <span class="math">x = 0</span>.</div>
+                        <div class="solution-step">For a linear polynomial <span class="math">ax + b</span>, the zero is always <span class="math">-b/a</span>.</div>
+                    </div>
+                </div>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q5. Graph (v) - A parabola touching the x-axis at exactly one point (vertex on x-axis)</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_5')">
+                            <span class="opt-label">A</span>
+                            <span>1 zero</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_5')">
+                            <span class="opt-label">B</span>
+                            <span>0 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_5')">
+                            <span class="opt-label">C</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_5')">
+                            <span class="opt-label">D</span>
+                            <span>3 zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_5" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 1 zero</div>
+                        <div class="solution-step">The parabola <strong>touches</strong> the x-axis at exactly one point (its vertex lies on the x-axis).</div>
+                        <div class="solution-step">This means the quadratic has <strong>equal real roots</strong> (discriminant = 0).</div>
+                        <div class="solution-step">Example: <span class="math">y = x²</span> touches x-axis only at <span class="math">x = 0</span>.</div>
+                        <div class="solution-step">We count this as <strong>1 zero</strong> (even though the multiplicity is 2).</div>
+                    </div>
+                </div>
+
+                <div class="mcq-container">
+                    <div class="mcq-question">Q6. Graph (vi) - A curve crossing the x-axis at four distinct points</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_6')">
+                            <span class="opt-label">A</span>
+                            <span>2 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_6')">
+                            <span class="opt-label">B</span>
+                            <span>3 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol21_6')">
+                            <span class="opt-label">C</span>
+                            <span>4 zeroes</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol21_6')">
+                            <span class="opt-label">D</span>
+                            <span>5 zeroes</span>
+                        </div>
+                    </div>
+                    <div id="sol21_6" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: 4 zeroes</div>
+                        <div class="solution-step">The graph intersects the x-axis at <strong>four distinct points</strong>.</div>
+                        <div class="solution-step">This indicates a polynomial of degree <strong>at least 4</strong> with 4 real zeroes.</div>
+                        <div class="solution-step">Each crossing point represents one real root of the polynomial equation <span class="math">p(x) = 0</span>.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXERCISE 2.2 -->
+        <section id="ex22" class="section">
+            <div class="card">
+                <h2 class="card-title">Exercise 2.2 - Find Zeroes & Verify Relationships</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                    Find the zeroes of the following quadratic polynomials and verify the relationship between the zeroes and the coefficients.
+                </p>
+
+                <!-- Q1(i) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(i). Find zeroes of <span class="math">x² - 2x - 8</span></div>
+                    <div class="hint">Factorize by splitting the middle term: Find two numbers whose sum = -2 and product = -8</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1i')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 1 and -8</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1i')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are -2 and 4</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1i')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are 4 and -2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1i')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are -4 and -2</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1i" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are 4 and -2</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Split middle term: <span class="math">x² - 2x - 8 = x² - 4x + 2x - 8</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Factor by grouping: <span class="math">= x(x - 4) + 2(x - 4) = (x - 4)(x + 2)</span></div>
+                        <div class="solution-step"><strong>Step 3:</strong> Zeroes: <span class="math">x - 4 = 0 → x = 4</span> and <span class="math">x + 2 = 0 → x = -2</span></div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Sum = 4 + (-2) = 2 = -(-2)/1 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 5 - Verify:</strong> Product = 4 × (-2) = -8 = -8/1 = <span class="math">c/a</span> ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q1(ii) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(ii). Find zeroes of <span class="math">4s² - 4s + 1</span></div>
+                    <div class="hint">This is a perfect square trinomial. Look for (a - b)² pattern.</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1ii')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 1 and 1/4</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1ii')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are 1/2 and 1/2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1ii')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are -1/2 and -1/2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1ii')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are 2 and -2</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1ii" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are 1/2 and 1/2 (Equal roots)</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Recognize perfect square: <span class="math">4s² - 4s + 1 = (2s)² - 2(2s)(1) + 1²</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Apply <span class="math">(a - b)² = a² - 2ab + b²</span>: <span class="math">= (2s - 1)²</span></div>
+                        <div class="solution-step"><strong>Step 3:</strong> Zero: <span class="math">2s - 1 = 0 → s = 1/2</span> (repeated root)</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Sum = 1/2 + 1/2 = 1 = -(-4)/4 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 5 - Verify:</strong> Product = 1/2 × 1/2 = 1/4 = 1/4 = <span class="math">c/a</span> ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q1(iii) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(iii). Find zeroes of <span class="math">6x² - 3 - 7x</span> (or <span class="math">6x² - 7x - 3</span>)</div>
+                    <div class="hint">First write in standard form: 6x² - 7x - 3. Split -7x such that product = 6×(-3) = -18</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iii')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 1/2 and -3</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1iii')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are 3/2 and -1/3</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iii')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are 2/3 and -3/2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iii')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are 1/3 and -3/2</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1iii" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are 3/2 and -1/3</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Standard form: <span class="math">6x² - 7x - 3</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Split -7x: Need numbers with sum = -7, product = -18. Numbers: -9 and +2</div>
+                        <div class="solution-step"><strong>Step 3:</strong> <span class="math">6x² - 9x + 2x - 3 = 3x(2x - 3) + 1(2x - 3) = (3x + 1)(2x - 3)</span></div>
+                        <div class="solution-step"><strong>Step 4:</strong> Zeroes: <span class="math">3x + 1 = 0 → x = -1/3</span> and <span class="math">2x - 3 = 0 → x = 3/2</span></div>
+                        <div class="solution-step"><strong>Step 5 - Verify:</strong> Sum = 3/2 + (-1/3) = 7/6 = -(-7)/6 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 6 - Verify:</strong> Product = (3/2)(-1/3) = -1/2 = -3/6 = <span class="math">c/a</span> ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q1(iv) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(iv). Find zeroes of <span class="math">4u² + 8u</span></div>
+                    <div class="hint">Factor out the common term first!</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1iv')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 0 and -2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iv')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are 0 and 2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iv')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are -2 and -2</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1iv')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are 2 and -4</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1iv" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are 0 and -2</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Factor out <span class="math">4u</span>: <span class="math">4u² + 8u = 4u(u + 2)</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Zeroes: <span class="math">4u = 0 → u = 0</span> and <span class="math">u + 2 = 0 → u = -2</span></div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Sum = 0 + (-2) = -2 = -8/4 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Product = 0 × (-2) = 0 = 0/4 = <span class="math">c/a</span> ✅</div>
+                        <div class="solution-step">Note: Here <span class="math">c = 0</span>, so one zero is always 0.</div>
+                    </div>
+                </div>
+
+                <!-- Q1(v) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(v). Find zeroes of <span class="math">t² - 15</span></div>
+                    <div class="hint">This is a difference of squares: a² - b² = (a+b)(a-b)</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1v')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 5 and -3</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1v')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are √15 and -√15</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1v')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are 15 and -15</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1v')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are 3 and -5</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1v" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are √15 and -√15</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Difference of squares: <span class="math">t² - 15 = t² - (√15)²</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> <span class="math">= (t - √15)(t + √15)</span></div>
+                        <div class="solution-step"><strong>Step 3:</strong> Zeroes: <span class="math">t = √15</span> and <span class="math">t = -√15</span></div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Sum = √15 + (-√15) = 0 = -0/1 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 5 - Verify:</strong> Product = (√15)(-√15) = -15 = -15/1 = <span class="math">c/a</span> ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q1(vi) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q1(vi). Find zeroes of <span class="math">3x² - x - 4</span></div>
+                    <div class="hint">Split -x such that product = 3×(-4) = -12. Numbers with sum = -1 and product = -12 are -4 and +3.</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1vi')">
+                            <span class="opt-label">A</span>
+                            <span>Zeroes are 1 and -4/3</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_1vi')">
+                            <span class="opt-label">B</span>
+                            <span>Zeroes are 4/3 and -1</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1vi')">
+                            <span class="opt-label">C</span>
+                            <span>Zeroes are -4/3 and -1</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_1vi')">
+                            <span class="opt-label">D</span>
+                            <span>Zeroes are 1 and 4/3</span>
+                        </div>
+                    </div>
+                    <div id="sol22_1vi" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: Zeroes are 4/3 and -1</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Split -x using -4 and +3: <span class="math">3x² - 4x + 3x - 4</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Group: <span class="math">x(3x - 4) + 1(3x - 4) = (x + 1)(3x - 4)</span></div>
+                        <div class="solution-step"><strong>Step 3:</strong> Zeroes: <span class="math">x + 1 = 0 → x = -1</span> and <span class="math">3x - 4 = 0 → x = 4/3</span></div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Sum = 4/3 + (-1) = 1/3 = -(-1)/3 = <span class="math">-b/a</span> ✅</div>
+                        <div class="solution-step"><strong>Step 5 - Verify:</strong> Product = (4/3)(-1) = -4/3 = -4/3 = <span class="math">c/a</span> ✅</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="card">
+                <h2 class="card-title">Exercise 2.2 - Q2: Form Quadratic Polynomials</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+                    Find a quadratic polynomial each with the given numbers as the sum and product of its zeroes respectively.
+                </p>
+
+                <div class="note-box formula">
+                    Formula: If sum = S and product = P, then polynomial = <span class="math">x² - Sx + P</span>
+                </div>
+
+                <!-- Q2(i) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(i). Sum = 1/4, Product = -1</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2i')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">4x² - x - 4</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2i')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">4x² - x - 4</span> (or <span class="math">x² - (1/4)x - 1</span>)</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2i')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">x² + (1/4)x - 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2i')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">4x² + x - 4</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2i" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">4x² - x - 4</span> (or equivalent)</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - (1/4)x + (-1) = x² - (1/4)x - 1</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> To eliminate fractions, multiply by 4: <span class="math">4x² - x - 4</span></div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Sum = -(-1)/4 = 1/4 ✅</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Product = -4/4 = -1 ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q2(ii) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(ii). Sum = √2, Product = 1/3</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2ii')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">x² + √2x + 1/3</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2ii')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">3x² - 3√2x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2ii')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">x² - √2x - 1/3</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2ii')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">3x² + 3√2x + 1</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2ii" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">3x² - 3√2x + 1</span> (or equivalent)</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - √2x + 1/3</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Multiply by 3 to clear fraction: <span class="math">3x² - 3√2x + 1</span></div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Sum = -(-3√2)/3 = √2 ✅</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Product = 1/3 ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q2(iii) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(iii). Sum = 0, Product = √5</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2iii')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">x² + √5</span> (or <span class="math">x² - 0x + √5</span>)</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iii')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">x² - √5</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iii')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">x² + √5x</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iii')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">x² - √5x</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2iii" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">x² + √5</span></div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - (0)x + √5 = x² + √5</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Since sum = 0, there is no x term!</div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Sum = -(0)/1 = 0 ✅</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Product = √5/1 = √5 ✅</div>
+                        <div class="solution-step">This polynomial has no real zeroes (since x² = -√5 has no real solution).</div>
+                    </div>
+                </div>
+
+                <!-- Q2(iv) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(iv). Sum = 1, Product = 1</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iv')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">x² + x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2iv')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">x² - x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iv')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">x² - x - 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2iv')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">x² + x - 1</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2iv" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">x² - x + 1</span></div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - (1)x + (1) = x² - x + 1</span></div>
+                        <div class="solution-step"><strong>Step 2 - Verify:</strong> Sum = -(-1)/1 = 1 ✅</div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Product = 1/1 = 1 ✅</div>
+                        <div class="solution-step">Note: Discriminant = (-1)² - 4(1)(1) = 1 - 4 = -3 < 0, so no real zeroes.</div>
+                    </div>
+                </div>
+
+                <!-- Q2(v) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(v). Sum = -1/4, Product = 1/4</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2v')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">4x² - x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2v')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">4x² + x + 1</span> (or <span class="math">x² + (1/4)x + 1/4</span>)</span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2v')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">4x² - x - 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2v')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">x² - (1/4)x + 1/4</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2v" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">4x² + x + 1</span> (or equivalent)</div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - (-1/4)x + 1/4 = x² + (1/4)x + 1/4</span></div>
+                        <div class="solution-step"><strong>Step 2:</strong> Multiply by 4: <span class="math">4x² + x + 1</span></div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Sum = -(1)/4 = -1/4 ✅</div>
+                        <div class="solution-step"><strong>Step 4 - Verify:</strong> Product = 1/4 ✅</div>
+                    </div>
+                </div>
+
+                <!-- Q2(vi) -->
+                <div class="mcq-container">
+                    <div class="mcq-question">Q2(vi). Sum = 4, Product = 1</div>
+                    <div class="mcq-options">
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2vi')">
+                            <span class="opt-label">A</span>
+                            <span><span class="math">x² + 4x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, true, 'sol22_2vi')">
+                            <span class="opt-label">B</span>
+                            <span><span class="math">x² - 4x + 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2vi')">
+                            <span class="opt-label">C</span>
+                            <span><span class="math">x² - 4x - 1</span></span>
+                        </div>
+                        <div class="mcq-option" onclick="checkAnswer(this, false, 'sol22_2vi')">
+                            <span class="opt-label">D</span>
+                            <span><span class="math">x² + 4x - 1</span></span>
+                        </div>
+                    </div>
+                    <div id="sol22_2vi" class="solution-box">
+                        <div class="solution-title">✅ Correct Answer: <span class="math">x² - 4x + 1</span></div>
+                        <div class="solution-step"><strong>Step 1:</strong> Using formula: <span class="math">x² - (4)x + (1) = x² - 4x + 1</span></div>
+                        <div class="solution-step"><strong>Step 2 - Verify:</strong> Sum = -(-4)/1 = 4 ✅</div>
+                        <div class="solution-step"><strong>Step 3 - Verify:</strong> Product = 1/1 = 1 ✅</div>
+                        <div class="solution-step">Zeroes would be: <span class="math">x = [4 ± √(16-4)]/2 = [4 ± √12]/2 = 2 ± √3</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULATOR SECTION -->
+        <section id="calculator" class="section">
+            <div class="card">
+                <h2 class="card-title">🧮 Polynomial Calculator</h2>
+
+                <div class="calc-grid">
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Quadratic Calculator</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                            Enter coefficients for <span class="math">ax² + bx + c = 0</span>
+                        </p>
+                        <input type="number" id="qa" class="calc-input" placeholder="a (coefficient of x²)" value="1">
+                        <input type="number" id="qb" class="calc-input" placeholder="b (coefficient of x)" value="-2">
+                        <input type="number" id="qc" class="calc-input" placeholder="c (constant)" value="-8">
+                        <button class="btn btn-primary" onclick="solveQuadratic()">Solve Quadratic</button>
+                        <div id="qresult" class="calc-result">Result will appear here...</div>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--secondary);">Form Polynomial from Zeroes</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">
+                            Enter sum and product of zeroes
+                        </p>
+                        <input type="text" id="sumZ" class="calc-input" placeholder="Sum of zeroes (e.g., 1/4, sqrt(2))" value="4">
+                        <input type="text" id="prodZ" class="calc-input" placeholder="Product of zeroes (e.g., -1, 1/3)" value="1">
+                        <button class="btn btn-secondary" onclick="formPolynomial()">Form Polynomial</button>
+                        <div id="presult" class="calc-result">Result will appear here...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">🔢 Discriminant Calculator</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">
+                    The discriminant <span class="math">D = b² - 4ac</span> tells us about the nature of roots:
+                </p>
+                <div class="calc-grid">
+                    <div>
+                        <input type="number" id="da" class="calc-input" placeholder="a" value="1">
+                        <input type="number" id="db" class="calc-input" placeholder="b" value="-5">
+                        <input type="number" id="dc" class="calc-input" placeholder="c" value="6">
+                        <button class="btn btn-primary" onclick="calcDiscriminant()">Calculate Discriminant</button>
+                    </div>
+                    <div>
+                        <div id="dresult" class="calc-result" style="min-height: 120px;">Result will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRAPH SECTION -->
+        <section id="graph" class="section">
+            <div class="card">
+                <h2 class="card-title">📈 Polynomial Graph Visualizer</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">
+                    Visualize quadratic and cubic polynomials. Enter coefficients to see the graph, zeroes, and vertex.
+                </p>
+
+                <div class="graph-controls">
+                    <div>
+                        <label>Degree</label><br>
+                        <select id="gdegree" class="calc-input" style="width: 120px;" onchange="updateGraphInputs()">
+                            <option value="2">Quadratic (2)</option>
+                            <option value="3">Cubic (3)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>a</label><br>
+                        <input type="number" id="ga" value="1" step="0.1">
+                    </div>
+                    <div>
+                        <label>b</label><br>
+                        <input type="number" id="gb" value="-2" step="0.1">
+                    </div>
+                    <div>
+                        <label>c</label><br>
+                        <input type="number" id="gc" value="-8" step="0.1">
+                    </div>
+                    <div id="gd_container">
+                        <label>d</label><br>
+                        <input type="number" id="gd" value="0" step="0.1">
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" onclick="drawGraph()">Draw Graph</button>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphCanvas" class="graph-canvas"></canvas>
+                </div>
+
+                <div id="graphInfo" style="margin-top: 1rem; padding: 1rem; background: var(--bg); border-radius: 8px;">
+                    Graph information will appear here...
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>📚 NCERT Class 10 Mathematics - Chapter 2: Polynomials</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Interactive Learning Module | Built for students</p>
+    </footer>
+
+    <script>
+        // Navigation
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // MCQ Logic
+        function checkAnswer(element, isCorrect, solId) {
+            const container = element.parentElement;
+            const options = container.querySelectorAll('.mcq-option');
+
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+                opt.classList.remove('correct', 'wrong');
+            });
+
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('wrong');
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+
+            document.getElementById(solId).classList.add('show');
+        }
+
+        // Calculator Functions
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('qa').value);
+            const b = parseFloat(document.getElementById('qb').value);
+            const c = parseFloat(document.getElementById('qc').value);
+            const resultDiv = document.getElementById('qresult');
+
+            if (a === 0) {
+                resultDiv.textContent = "Error: 'a' cannot be zero for a quadratic equation!";
+                return;
+            }
+
+            const D = b*b - 4*a*c;
+            let output = `Equation: ${a}x² + ${b}x + ${c} = 0\n`;
+            output += `Discriminant D = ${b}² - 4(${a})(${c}) = ${D}\n\n`;
+
+            if (D > 0) {
+                const r1 = (-b + Math.sqrt(D)) / (2*a);
+                const r2 = (-b - Math.sqrt(D)) / (2*a);
+                output += `Two distinct real zeroes:\n`;
+                output += `x₁ = ${r1.toFixed(4)}\n`;
+                output += `x₂ = ${r2.toFixed(4)}\n\n`;
+                output += `Verification:\n`;
+                output += `Sum = ${(r1+r2).toFixed(4)} (Expected: ${(-b/a).toFixed(4)}) ✓\n`;
+                output += `Product = ${(r1*r2).toFixed(4)} (Expected: ${(c/a).toFixed(4)}) ✓`;
+            } else if (D === 0) {
+                const r = -b / (2*a);
+                output += `One real zero (repeated root):\n`;
+                output += `x = ${r.toFixed(4)}\n\n`;
+                output += `Verification:\n`;
+                output += `Sum = ${(2*r).toFixed(4)} (Expected: ${(-b/a).toFixed(4)}) ✓\n`;
+                output += `Product = ${(r*r).toFixed(4)} (Expected: ${(c/a).toFixed(4)}) ✓`;
+            } else {
+                output += `No real zeroes exist!\n`;
+                output += `The roots are complex numbers.`;
+            }
+
+            resultDiv.textContent = output;
+        }
+
+        function formPolynomial() {
+            const sumStr = document.getElementById('sumZ').value;
+            const prodStr = document.getElementById('prodZ').value;
+            const resultDiv = document.getElementById('presult');
+
+            try {
+                const sum = eval(sumStr);
+                const prod = eval(prodStr);
+
+                let output = `Given:\n`;
+                output += `Sum of zeroes (S) = ${sum}\n`;
+                output += `Product of zeroes (P) = ${prod}\n\n`;
+                output += `Using formula: x² - Sx + P\n`;
+                output += `= x² - (${sum})x + (${prod})\n\n`;
+
+                if (Number.isInteger(sum) && Number.isInteger(prod)) {
+                    output += `Polynomial: x² ${sum >= 0 ? '-' : '+'} ${Math.abs(sum)}x ${prod >= 0 ? '+' : '-'} ${Math.abs(prod)}`;
+                } else {
+                    output += `Standard form: x² - (${sum})x + (${prod})\n`;
+                    output += `(You may multiply by LCM of denominators to clear fractions)`;
+                }
+
+                resultDiv.textContent = output;
+            } catch (e) {
+                resultDiv.textContent = "Error: Please enter valid numbers. Use 'sqrt(2)' for √2, '1/4' for fractions, etc.";
+            }
+        }
+
+        function gcd(a, b) {
+            return b === 0 ? a : gcd(b, a % b);
+        }
+
+        function calcDiscriminant() {
+            const a = parseFloat(document.getElementById('da').value);
+            const b = parseFloat(document.getElementById('db').value);
+            const c = parseFloat(document.getElementById('dc').value);
+            const resultDiv = document.getElementById('dresult');
+
+            const D = b*b - 4*a*c;
+            let output = `D = b² - 4ac\n`;
+            output += `D = (${b})² - 4(${a})(${c})\n`;
+            output += `D = ${b*b} - ${4*a*c}\n`;
+            output += `D = ${D}\n\n`;
+
+            if (D > 0) {
+                output += `✅ D > 0: Two distinct real zeroes\n`;
+                output += `Nature: Real and unequal roots`;
+            } else if (D === 0) {
+                output += `✅ D = 0: One real zero (repeated root)\n`;
+                output += `Nature: Real and equal roots`;
+            } else {
+                output += `❌ D < 0: No real zeroes\n`;
+                output += `Nature: Complex/imaginary roots`;
+            }
+
+            resultDiv.textContent = output;
+        }
+
+        // Graph Functions
+        function updateGraphInputs() {
+            const degree = document.getElementById('gdegree').value;
+            const dContainer = document.getElementById('gd_container');
+            if (degree === '2') {
+                dContainer.style.display = 'none';
+            } else {
+                dContainer.style.display = 'block';
+            }
+        }
+
+        function drawGraph() {
+            const canvas = document.getElementById('graphCanvas');
+            const ctx = canvas.getContext('2d');
+            const degree = parseInt(document.getElementById('gdegree').value);
+            const a = parseFloat(document.getElementById('ga').value) || 0;
+            const b = parseFloat(document.getElementById('gb').value) || 0;
+            const c = parseFloat(document.getElementById('gc').value) || 0;
+            const d = parseFloat(document.getElementById('gd').value) || 0;
+
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            const w = canvas.width;
+            const h = canvas.height;
+            const cx = w / 2;
+            const cy = h / 2;
+            const scale = 40;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Draw grid
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 1;
+            for (let i = cx % scale; i < w; i += scale) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+            }
+            for (let i = cy % scale; i < h; i += scale) {
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+            }
+
+            // Draw axes
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Draw axis labels
+            ctx.fillStyle = '#64748b';
+            ctx.font = '12px sans-serif';
+            ctx.fillText('O', cx + 5, cy + 15);
+            ctx.fillText('x', w - 20, cy + 15);
+            ctx.fillText('y', cx + 5, 15);
+
+            // Draw polynomial
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+
+            let first = true;
+            const zeroes = [];
+
+            for (let px = 0; px < w; px += 1) {
+                const x = (px - cx) / scale;
+                let y;
+                if (degree === 2) {
+                    y = a*x*x + b*x + c;
+                } else {
+                    y = a*x*x*x + b*x*x + c*x + d;
+                }
+                const py = cy - y * scale;
+
+                if (py >= -100 && py <= h + 100) {
+                    if (first) {
+                        ctx.moveTo(px, py);
+                        first = false;
+                    } else {
+                        ctx.lineTo(px, py);
+                    }
+                }
+
+                if (px > 0) {
+                    const prevX = (px - 1 - cx) / scale;
+                    let prevY;
+                    if (degree === 2) {
+                        prevY = a*prevX*prevX + b*prevX + c;
+                    } else {
+                        prevY = a*prevX*prevX*prevX + b*prevX*prevX + c*prevX + d;
+                    }
+                    if ((prevY > 0 && y <= 0) || (prevY < 0 && y >= 0)) {
+                        if (Math.abs(y) < 0.5) {
+                            zeroes.push(x.toFixed(2));
+                        }
+                    }
+                }
+            }
+            ctx.stroke();
+
+            // Mark zeroes
+            ctx.fillStyle = '#ef4444';
+            zeroes.forEach(z => {
+                const zx = cx + parseFloat(z) * scale;
+                ctx.beginPath();
+                ctx.arc(zx, cy, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#1e293b';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.fillText(`(${z}, 0)`, zx - 15, cy + 20);
+                ctx.fillStyle = '#ef4444';
+            });
+
+            // Update info
+            const infoDiv = document.getElementById('graphInfo');
+            let info = `<strong>Polynomial:</strong> `;
+            if (degree === 2) {
+                info += `${a}x² + ${b}x + ${c}<br>`;
+                const D = b*b - 4*a*c;
+                info += `<strong>Discriminant:</strong> ${D.toFixed(2)}<br>`;
+                info += `<strong>Detected Zeroes on Graph:</strong> ${zeroes.length > 0 ? zeroes.join(', ') : 'None visible in range'}<br>`;
+                if (a !== 0) {
+                    const vx = -b / (2*a);
+                    const vy = a*vx*vx + b*vx + c;
+                    info += `<strong>Vertex:</strong> (${vx.toFixed(2)}, ${vy.toFixed(2)})`;
+                }
+            } else {
+                info += `${a}x³ + ${b}x² + ${c}x + ${d}<br>`;
+                info += `<strong>Detected Zeroes on Graph:</strong> ${zeroes.length > 0 ? zeroes.join(', ') : 'None visible in range'}`;
+            }
+            infoDiv.innerHTML = info;
+        }
+
+        // Initialize graph on load
+        window.onload = function() {
+            drawGraph();
+        };
+
+        // Redraw graph on window resize
+        window.onresize = function() {
+            if (document.getElementById('graph').classList.contains('active')) {
+                drawGraph();
+            }
+        };
+    </script>
+</body>
+</html>

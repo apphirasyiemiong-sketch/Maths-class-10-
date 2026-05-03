@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 - Surface Areas and Volumes (Chapter 12) | Interactive Solutions</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warning: #ca8a04;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; position: relative; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; position: relative; }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-tab {
+            padding: 12px 20px;
+            border: none;
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            font-size: 0.9rem;
+        }
+        .nav-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .nav-tab.active { background: var(--primary); color: white; }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .note-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .note-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .note-card h3 { color: var(--primary-dark); margin-bottom: 8px; font-size: 1.1rem; }
+        .note-card ul { padding-left: 18px; }
+        .note-card li { margin-bottom: 6px; color: var(--text-light); }
+        .formula-box {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-size: 0.95rem;
+        }
+        .formula-box .highlight { color: #60a5fa; font-weight: bold; }
+
+        .figure-container {
+            background: #f8fafc;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .figure-container svg { max-width: 100%; height: auto; }
+        .figure-caption {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .question-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .q-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .question-text { font-size: 1.05rem; font-weight: 500; line-height: 1.5; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        @media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+        .option-btn {
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            background: var(--card);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.25s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        .option-btn:hover { border-color: var(--primary); background: #eff6ff; }
+        .option-btn.correct { border-color: var(--success); background: #f0fdf4; color: var(--success); font-weight: 600; }
+        .option-btn.wrong { border-color: var(--danger); background: #fef2f2; color: var(--danger); }
+        .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+        .solution-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--success);
+            animation: slideDown 0.4s ease;
+        }
+        .solution-box.show { display: block; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 2000px; } }
+
+        .solution-title { font-weight: 700; color: var(--success); margin-bottom: 12px; font-size: 1.1rem; }
+        .step {
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #bbf7d0;
+            font-size: 0.95rem;
+        }
+        .step-number {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-weight: 700;
+        }
+        .final-answer {
+            margin-top: 14px;
+            padding: 14px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .calc-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+        .calc-input-group { margin-bottom: 14px; }
+        .calc-input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .calc-result {
+            margin-top: 16px;
+            padding: 16px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            z-index: 1000;
+            transition: width 0.3s;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .badge-sa { background: #dbeafe; color: #1d4ed8; }
+        .badge-vol { background: #dcfce7; color: #16a34a; }
+        .badge-combo { background: #fef3c7; color: #b45309; }
+        .badge-check { background: #f3e8ff; color: #7c3aed; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+    <div class="hero">
+        <h1>📦 Surface Areas and Volumes</h1>
+        <p>NCERT Class 10 Mathematics | Chapter 12 | Exercises 12.1 & 12.2 | Interactive Solutions</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('notes')">📝 Important Notes</button>
+            <button class="nav-tab" onclick="showSection('ex12_1')">📘 Exercise 12.1 (SA)</button>
+            <button class="nav-tab" onclick="showSection('ex12_2')">📗 Exercise 12.2 (Vol)</button>
+            <button class="nav-tab" onclick="showSection('calculator')">🧮 Calculators</button>
+        </div>
+
+        <!-- NOTES SECTION -->
+        <div id="notes" class="section active">
+            <div class="card">
+                <div class="card-title">🎯 Key Concepts from Chapter 12</div>
+                <p style="color: var(--text-light); margin-bottom: 16px;">Master these formulas before attempting the exercises. π = 22/7 unless stated otherwise.</p>
+                <div class="note-grid">
+                    <div class="note-card">
+                        <h3>📦 Cuboid</h3>
+                        <ul>
+                            <li>Surface Area = 2(lb + bh + hl)</li>
+                            <li>Volume = l × b × h</li>
+                            <li>Diagonal = √(l² + b² + h²)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>🧊 Cube</h3>
+                        <ul>
+                            <li>Surface Area = 6a²</li>
+                            <li>Volume = a³</li>
+                            <li>Side from volume: a = ∛V</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>⭕ Cylinder</h3>
+                        <ul>
+                            <li>CSA = 2πrh</li>
+                            <li>TSA = 2πr(r + h)</li>
+                            <li>Volume = πr²h</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>🔺 Cone</h3>
+                        <ul>
+                            <li>CSA = πrl (l = slant height)</li>
+                            <li>l = √(r² + h²)</li>
+                            <li>Volume = (1/3)πr²h</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>🌍 Sphere & Hemisphere</h3>
+                        <ul>
+                            <li>Sphere: Surface = 4πr², Volume = (4/3)πr³</li>
+                            <li>Hemisphere: CSA = 2πr², Volume = (2/3)πr³</li>
+                            <li>Hemisphere TSA = 3πr² (including base)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3>⚡ Combination Solids Strategy</h3>
+                        <ul>
+                            <li><strong>Surface Area:</strong> Add visible curved surfaces only. Don't double-count joined surfaces.</li>
+                            <li><strong>Volume:</strong> Simply add volumes of individual solids.</li>
+                            <li>For depressions/hollows: Subtract volume, but ADD curved surface area.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📚 Essential Formulas</div>
+                <div class="formula-box">
+                    <span class="highlight">Surface Area of Combined Solids:</span><br>
+                    TSA = Sum of all visible curved surface areas (exclude joined/base surfaces)<br>
+                    Example: Cone on hemisphere = πrl + 2πr² (not 3πr² + πr²)
+                </div>
+                <div class="formula-box">
+                    <span class="highlight">Volume of Combined Solids:</span><br>
+                    Volume = Sum of volumes of individual components<br>
+                    Example: Cylinder + 2 hemispheres = πr²h + (4/3)πr³
+                </div>
+                <div class="formula-box">
+                    <span class="highlight">Key Identities:</span><br>
+                    π = 22/7 ≈ 3.1429 | When diameter given: r = d/2<br>
+                    Slant height: l = √(r² + h²) | For cone on hemisphere: total height = h_cone + r
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💡 Problem-Solving Strategy</div>
+                <div style="display: grid; gap: 12px;">
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">1</span> <strong>Visualize the solid</strong> — Draw or identify the shape. Is it a combination?</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">2</span> <strong>Find dimensions</strong> — Extract r, h, l from given data. Watch for diameter vs radius!</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">3</span> <strong>Identify formula</strong> — Surface area or volume? Combined or single solid?</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">4</span> <strong>Calculate step-by-step</strong> — Use π = 22/7. Keep fractions when possible.</div>
+                    <div class="step" style="border-color: #c7d2fe;"><span class="step-number" style="background: #4f46e5;">5</span> <strong>Check units</strong> — cm² for area, cm³ for volume. Convert if needed.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 12.1 -->
+        <div id="ex12_1" class="section">
+            <div class="card" style="text-align: center;">
+                <h2 style="color: var(--primary); font-size: 1.5rem;">📘 Exercise 12.1 — Surface Areas</h2>
+                <p style="color: var(--text-light);">9 Questions | Combined Solids Surface Area</p>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">1</div>
+                    <div>
+                        <span class="badge badge-sa">Surface Area</span>
+                        <div class="question-text">2 cubes each of volume 64 cm³ are joined end to end. Find the surface area of the resulting cuboid.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="80" y="100" width="80" height="80" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="160" y="100" width="80" height="80" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="80" y1="100" x2="100" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="160" y1="100" x2="180" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="240" y1="100" x2="260" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="100" y1="80" x2="180" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="180" y1="80" x2="260" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="80" y1="180" x2="100" y2="160" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="160" y1="180" x2="180" y2="160" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="240" y1="180" x2="260" y2="160" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="100" y1="160" x2="180" y2="160" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="180" y1="160" x2="260" y2="160" stroke="#3b82f6" stroke-width="2"/>
+            <text x="120" y="145" font-size="13" fill="#1e293b" font-weight="bold">4 cm</text>
+            <text x="200" y="145" font-size="13" fill="#1e293b" font-weight="bold">4 cm</text>
+            <text x="160" y="210" font-size="13" fill="#059669" font-weight="bold">8 cm</text>
+            <text x="50" y="145" font-size="12" fill="#dc2626">4 cm</text>
+            <text x="120" y="75" font-size="12" fill="#7c3aed">4 cm</text>
+            <text x="100" y="250" font-size="12" fill="#64748b">Two cubes joined → Cuboid 8×4×4</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.1 — Two 4 cm cubes joined form an 8×4×4 cuboid</div>
+                </div>
+                <div class="options-grid" id="options-1-1">
+                    <button class="option-btn" onclick="checkAnswer('1-1', 0, 1, this)">128 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-1', 1, 1, this)">160 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-1', 2, 1, this)">192 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-1', 3, 1, this)">256 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-1">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Volume of one cube = 64 cm³</div>
+                    <div class="step"><span class="step-number">2</span>Side of cube = ∛64 = 4 cm</div>
+                    <div class="step"><span class="step-number">3</span>Two cubes joined end to end form a cuboid: length = 4+4 = 8 cm, breadth = 4 cm, height = 4 cm</div>
+                    <div class="step"><span class="step-number">4</span>Surface area = 2(lb + bh + hl) = 2(8×4 + 4×4 + 4×8)</div>
+                    <div class="step"><span class="step-number">5</span>= 2(32 + 16 + 32) = 2×80 = 160 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: 160 cm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">2</div>
+                    <div>
+                        <span class="badge badge-combo">Combined Solid</span>
+                        <div class="question-text">A vessel is in the form of a hollow hemisphere mounted by a hollow cylinder. The diameter of the hemisphere is 14 cm and the total height of the vessel is 13 cm. Find the inner surface area of the vessel.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <path d="M 150 180 A 50 20 0 0 0 250 180" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 150 180 A 50 20 0 0 1 250 180" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="150" y1="180" x2="150" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="250" y1="180" x2="250" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="150" y1="100" x2="250" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 150 100 A 50 20 0 0 0 250 100" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <text x="200" y="95" font-size="12" fill="#1e293b" font-weight="bold">Cylinder</text>
+            <text x="200" y="200" font-size="12" fill="#1e293b" font-weight="bold">Hemisphere</text>
+            <text x="260" y="140" font-size="12" fill="#dc2626">h=6 cm</text>
+            <text x="260" y="200" font-size="12" fill="#dc2626">r=7 cm</text>
+            <text x="200" y="250" font-size="12" fill="#64748b">Total height = 13 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.2 — Hollow hemisphere (r=7) + hollow cylinder (h=6)</div>
+                </div>
+                <div class="options-grid" id="options-1-2">
+                    <button class="option-btn" onclick="checkAnswer('1-2', 0, 1, this)">440 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-2', 1, 1, this)">572 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-2', 2, 1, this)">616 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-2', 3, 1, this)">704 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-2">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius of hemisphere = 14/2 = 7 cm</div>
+                    <div class="step"><span class="step-number">2</span>Height of cylindrical part = Total height - Hemisphere radius = 13 - 7 = 6 cm</div>
+                    <div class="step"><span class="step-number">3</span>Inner surface area = CSA of hemisphere + CSA of cylinder</div>
+                    <div class="step"><span class="step-number">4</span>CSA of hemisphere = 2πr² = 2×(22/7)×7² = 2×22×7 = 308 cm²</div>
+                    <div class="step"><span class="step-number">5</span>CSA of cylinder = 2πrh = 2×(22/7)×7×6 = 264 cm²</div>
+                    <div class="step"><span class="step-number">6</span>Total inner surface area = 308 + 264 = 572 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: 572 cm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">3</div>
+                    <div>
+                        <span class="badge badge-combo">Combined Solid</span>
+                        <div class="question-text">A toy is in the form of a cone of radius 3.5 cm mounted on a hemisphere of same radius. The total height of the toy is 15.5 cm. Find the total surface area of the toy.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <path d="M 150 200 A 50 25 0 0 0 250 200" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 150 200 A 50 25 0 0 1 250 200" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="150" y1="200" x2="200" y2="80" stroke="#dc2626" stroke-width="2"/>
+            <line x1="250" y1="200" x2="200" y2="80" stroke="#dc2626" stroke-width="2"/>
+            <line x1="200" y1="200" x2="200" y2="80" stroke="#059669" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="205" y="150" font-size="12" fill="#059669">h=12</text>
+            <text x="220" y="130" font-size="12" fill="#dc2626">l=12.5</text>
+            <text x="180" y="220" font-size="12" fill="#7c3aed">r=3.5</text>
+            <text x="160" y="250" font-size="12" fill="#64748b">Total height = 15.5 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.3 — Cone (r=3.5, h=12) on hemisphere (r=3.5), l=12.5</div>
+                </div>
+                <div class="options-grid" id="options-1-3">
+                    <button class="option-btn" onclick="checkAnswer('1-3', 0, 1, this)">198 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-3', 1, 1, this)">214.5 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-3', 2, 1, this)">247.5 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-3', 3, 1, this)">275 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-3">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 3.5 cm (same for cone and hemisphere)</div>
+                    <div class="step"><span class="step-number">2</span>Height of cone = Total height - Radius of hemisphere = 15.5 - 3.5 = 12 cm</div>
+                    <div class="step"><span class="step-number">3</span>Slant height of cone: l = √(r² + h²) = √(3.5² + 12²) = √(12.25 + 144) = √156.25 = 12.5 cm</div>
+                    <div class="step"><span class="step-number">4</span>Total surface area = CSA of cone + CSA of hemisphere</div>
+                    <div class="step"><span class="step-number">5</span>= πrl + 2πr² = πr(l + 2r)</div>
+                    <div class="step"><span class="step-number">6</span>= (22/7)×3.5×(12.5 + 7) = 11×19.5 = 214.5 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: 214.5 cm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">4</div>
+                    <div>
+                        <span class="badge badge-combo">Combined Solid</span>
+                        <div class="question-text">A cubical block of side 7 cm is surmounted by a hemisphere. What is the greatest diameter the hemisphere can have? Find the surface area of the solid.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="120" y="120" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="120" x2="140" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="220" y1="120" x2="240" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="140" y1="100" x2="240" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="220" x2="140" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="220" y1="220" x2="240" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="140" y1="200" x2="240" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 120 120 A 50 25 0 0 1 220 120" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 120 120 A 50 25 0 0 0 220 120" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+            <text x="160" y="115" font-size="12" fill="#dc2626" font-weight="bold">Hemisphere</text>
+            <text x="140" y="180" font-size="12" fill="#3b82f6" font-weight="bold">Cube</text>
+            <text x="160" y="250" font-size="12" fill="#64748b">Side = 7 cm, d = 7 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.4 — Hemisphere on cube, greatest diameter = side of cube = 7 cm</div>
+                </div>
+                <div class="options-grid" id="options-1-4">
+                    <button class="option-btn" onclick="checkAnswer('1-4', 0, 1, this)">d=7 cm, SA=294 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-4', 1, 1, this)">d=7 cm, SA=332.5 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-4', 2, 1, this)">d=14 cm, SA=385 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-4', 3, 1, this)">d=3.5 cm, SA=308 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-4">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Greatest diameter = side of cube = 7 cm (so radius = 3.5 cm)</div>
+                    <div class="step"><span class="step-number">2</span>Surface area = TSA of cube - base area of hemisphere + CSA of hemisphere</div>
+                    <div class="step"><span class="step-number">3</span>= 6a² - πr² + 2πr² = 6a² + πr²</div>
+                    <div class="step"><span class="step-number">4</span>= 6×7² + (22/7)×3.5²</div>
+                    <div class="step"><span class="step-number">5</span>= 6×49 + (22/7)×12.25 = 294 + 38.5 = 332.5 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: d = 7 cm, SA = 332.5 cm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">5</div>
+                    <div>
+                        <span class="badge badge-combo">Depression</span>
+                        <div class="question-text">A hemispherical depression is cut out from one face of a cubical wooden block such that the diameter l of the hemisphere is equal to the edge of the cube. Determine the surface area of the remaining solid.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="120" y="100" width="120" height="120" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="100" x2="140" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="240" y1="100" x2="260" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="140" y1="80" x2="260" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="220" x2="140" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="240" y1="220" x2="260" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="140" y1="200" x2="260" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 150 100 A 30 15 0 0 1 210 100" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 150 100 A 30 15 0 0 0 210 100" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+            <text x="160" y="95" font-size="11" fill="#dc2626">Depression</text>
+            <text x="170" y="250" font-size="12" fill="#64748b">Hemispherical depression in cube</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.5 — Hemispherical depression in cube face</div>
+                </div>
+                <div class="options-grid" id="options-1-5">
+                    <button class="option-btn" onclick="checkAnswer('1-5', 0, 1, this)">6l²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-5', 1, 1, this)">6l² + πl²/4</button>
+                    <button class="option-btn" onclick="checkAnswer('1-5', 2, 1, this)">5l² + πl²/2</button>
+                    <button class="option-btn" onclick="checkAnswer('1-5', 3, 1, this)">6l² - πl²/4</button>
+                </div>
+                <div class="solution-box" id="solution-1-5">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Let edge of cube = l, so radius of hemisphere = l/2</div>
+                    <div class="step"><span class="step-number">2</span>Surface area of remaining solid = TSA of cube - area of circular base of hemisphere + CSA of hemisphere</div>
+                    <div class="step"><span class="step-number">3</span>= 6l² - π(l/2)² + 2π(l/2)²</div>
+                    <div class="step"><span class="step-number">4</span>= 6l² - πl²/4 + πl²/2 = 6l² + πl²/4</div>
+                    <div class="step"><span class="step-number">5</span>Using π = 22/7: = 6l² + (22/7)×l²/4 = 6l² + 11l²/14 = (84l² + 11l²)/14 = 95l²/14</div>
+                    <div class="final-answer">🎯 Final Answer: 6l² + πl²/4 (or 95l²/14 using π=22/7)</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">6</div>
+                    <div>
+                        <span class="badge badge-combo">Capsule</span>
+                        <div class="question-text">A medicine capsule is in the shape of a cylinder with two hemispheres stuck to each of its ends. The length of the entire capsule is 14 mm and the diameter of the capsule is 5 mm. Find its surface area.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="120" y="120" width="100" height="40" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 120 120 A 20 20 0 0 0 120 160" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 120 120 A 20 20 0 0 1 120 160" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3"/>
+            <path d="M 220 120 A 20 20 0 0 1 220 160" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 220 120 A 20 20 0 0 0 220 160" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="170" y="115" font-size="11" fill="#1e293b" font-weight="bold">Cylinder</text>
+            <text x="80" y="145" font-size="11" fill="#dc2626">Hemisphere</text>
+            <text x="230" y="145" font-size="11" fill="#dc2626">Hemisphere</text>
+            <text x="150" y="185" font-size="12" fill="#059669">Total length = 14 mm</text>
+            <text x="150" y="200" font-size="12" fill="#059669">Diameter = 5 mm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.10 — Capsule = Cylinder + 2 hemispheres</div>
+                </div>
+                <div class="options-grid" id="options-1-6">
+                    <button class="option-btn" onclick="checkAnswer('1-6', 0, 1, this)">190 mm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-6', 1, 1, this)">220 mm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-6', 2, 1, this)">247.5 mm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-6', 3, 1, this)">275 mm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-6">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 5/2 = 2.5 mm</div>
+                    <div class="step"><span class="step-number">2</span>Length of cylindrical part = Total length - 2×radius = 14 - 5 = 9 mm</div>
+                    <div class="step"><span class="step-number">3</span>Surface area = CSA of cylinder + 2 × CSA of hemisphere</div>
+                    <div class="step"><span class="step-number">4</span>= 2πrh + 2×2πr² = 2πr(h + 2r)</div>
+                    <div class="step"><span class="step-number">5</span>= 2×(22/7)×2.5×(9 + 5) = (110/7)×14 = 110×2 = 220 mm²</div>
+                    <div class="final-answer">🎯 Final Answer: 220 mm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">7</div>
+                    <div>
+                        <span class="badge badge-combo">Tent</span>
+                        <div class="question-text">A tent is in the shape of a cylinder surmounted by a conical top. If the height and diameter of the cylindrical part are 2.1 m and 4 m respectively, and the slant height of the top is 2.8 m, find the area of the canvas used for making the tent. Also, find the cost of the canvas of the tent at the rate of ₹500 per m².</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <line x1="150" y1="200" x2="250" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="150" y1="200" x2="150" y2="120" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="250" y1="200" x2="250" y2="120" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="150" y1="120" x2="250" y2="120" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="150" y1="120" x2="200" y2="50" stroke="#dc2626" stroke-width="2"/>
+            <line x1="250" y1="120" x2="200" y2="50" stroke="#dc2626" stroke-width="2"/>
+            <text x="200" y="110" font-size="11" fill="#3b82f6" font-weight="bold">Cylinder</text>
+            <text x="205" y="80" font-size="11" fill="#dc2626" font-weight="bold">Cone</text>
+            <text x="260" y="160" font-size="11" fill="#059669">h=2.1m</text>
+            <text x="210" y="35" font-size="11" fill="#059669">l=2.8m</text>
+            <text x="170" y="250" font-size="12" fill="#64748b">Tent: Cylinder + Conical top</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.6 — Tent = Cylinder (h=2.1m, d=4m) + Cone (l=2.8m)</div>
+                </div>
+                <div class="options-grid" id="options-1-7">
+                    <button class="option-btn" onclick="checkAnswer('1-7', 0, 1, this)">Area=40 m², Cost=₹20,000</button>
+                    <button class="option-btn" onclick="checkAnswer('1-7', 1, 1, this)">Area=44 m², Cost=₹22,000</button>
+                    <button class="option-btn" onclick="checkAnswer('1-7', 2, 1, this)">Area=48 m², Cost=₹24,000</button>
+                    <button class="option-btn" onclick="checkAnswer('1-7', 3, 1, this)">Area=52 m², Cost=₹26,000</button>
+                </div>
+                <div class="solution-box" id="solution-1-7">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 4/2 = 2 m</div>
+                    <div class="step"><span class="step-number">2</span>Canvas area = CSA of cylinder + CSA of cone (base not covered)</div>
+                    <div class="step"><span class="step-number">3</span>= 2πrh + πrl</div>
+                    <div class="step"><span class="step-number">4</span>= 2×(22/7)×2×2.1 + (22/7)×2×2.8</div>
+                    <div class="step"><span class="step-number">5</span>= (88/7)×2.1 + (44/7)×2.8 = 26.4 + 17.6 = 44 m²</div>
+                    <div class="step"><span class="step-number">6</span>Cost = 44 × 500 = ₹22,000</div>
+                    <div class="final-answer">🎯 Final Answer: Area = 44 m², Cost = ₹22,000</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">8</div>
+                    <div>
+                        <span class="badge badge-combo">Cavity</span>
+                        <div class="question-text">From a solid cylinder whose height is 2.4 cm and diameter 1.4 cm, a conical cavity of the same height and same diameter is hollowed out. Find the total surface area of the remaining solid to the nearest cm².</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <ellipse cx="200" cy="80" rx="40" ry="15" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="160" y1="80" x2="160" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="240" y1="80" x2="240" y2="200" stroke="#3b82f6" stroke-width="2"/>
+            <ellipse cx="200" cy="200" rx="40" ry="15" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="200" y1="200" x2="200" y2="80" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+            <line x1="160" y1="200" x2="200" y2="80" stroke="#dc2626" stroke-width="2"/>
+            <line x1="240" y1="200" x2="200" y2="80" stroke="#dc2626" stroke-width="2"/>
+            <text x="205" y="145" font-size="11" fill="#dc2626">h=2.4</text>
+            <text x="170" y="220" font-size="11" fill="#059669">r=0.7</text>
+            <text x="150" y="250" font-size="12" fill="#64748b">Conical cavity hollowed from cylinder</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.7 — Conical cavity hollowed from cylinder</div>
+                </div>
+                <div class="options-grid" id="options-1-8">
+                    <button class="option-btn" onclick="checkAnswer('1-8', 0, 2, this)">16 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-8', 1, 2, this)">17 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-8', 2, 2, this)">18 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-8', 3, 2, this)">19 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-8">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 1.4/2 = 0.7 cm, Height h = 2.4 cm</div>
+                    <div class="step"><span class="step-number">2</span>Slant height of cone: l = √(r² + h²) = √(0.49 + 5.76) = √6.25 = 2.5 cm</div>
+                    <div class="step"><span class="step-number">3</span>TSA of remaining solid = CSA of cylinder + Area of base + CSA of cone</div>
+                    <div class="step"><span class="step-number">4</span>= 2πrh + πr² + πrl</div>
+                    <div class="step"><span class="step-number">5</span>= 2×(22/7)×0.7×2.4 + (22/7)×0.49 + (22/7)×0.7×2.5</div>
+                    <div class="step"><span class="step-number">6</span>= 10.56 + 1.54 + 5.5 = 17.6 cm²</div>
+                    <div class="step"><span class="step-number">7</span>Rounded to nearest cm² = 18 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: 18 cm²</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">9</div>
+                    <div>
+                        <span class="badge badge-combo">Scooped</span>
+                        <div class="question-text">A wooden article was made by scooping out a hemisphere from each end of a solid cylinder, as shown in Fig. 12.11. If the height of the cylinder is 10 cm, and its base is of radius 3.5 cm, find the total surface area of the article.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="140" y="120" width="80" height="60" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 140 120 A 30 20 0 0 0 140 180" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 140 120 A 30 20 0 0 1 140 180" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+            <path d="M 220 120 A 30 20 0 0 1 220 180" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 220 120 A 30 20 0 0 0 220 180" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="170" y="115" font-size="11" fill="#3b82f6" font-weight="bold">Cylinder</text>
+            <text x="90" y="155" font-size="11" fill="#dc2626">Hemisphere</text>
+            <text x="230" y="155" font-size="11" fill="#dc2626">Hemisphere</text>
+            <text x="160" y="210" font-size="12" fill="#059669">h=10 cm, r=3.5 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.11 — Cylinder with hemispheres scooped from each end</div>
+                </div>
+                <div class="options-grid" id="options-1-9">
+                    <button class="option-btn" onclick="checkAnswer('1-9', 0, 1, this)">330 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-9', 1, 1, this)">374 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-9', 2, 1, this)">407 cm²</button>
+                    <button class="option-btn" onclick="checkAnswer('1-9', 3, 1, this)">440 cm²</button>
+                </div>
+                <div class="solution-box" id="solution-1-9">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 3.5 cm, Height of cylinder h = 10 cm</div>
+                    <div class="step"><span class="step-number">2</span>Total surface area = CSA of cylinder + 2 × CSA of hemisphere</div>
+                    <div class="step"><span class="step-number">3</span>= 2πrh + 2×2πr² = 2πr(h + 2r)</div>
+                    <div class="step"><span class="step-number">4</span>= 2×(22/7)×3.5×(10 + 7)</div>
+                    <div class="step"><span class="step-number">5</span>= 22×17 = 374 cm²</div>
+                    <div class="final-answer">🎯 Final Answer: 374 cm²</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 12.2 -->
+        <div id="ex12_2" class="section">
+            <div class="card" style="text-align: center;">
+                <h2 style="color: var(--primary); font-size: 1.5rem;">📗 Exercise 12.2 — Volumes</h2>
+                <p style="color: var(--text-light);">8 Questions | Combined Solids Volume</p>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">1</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A solid is in the shape of a cone standing on a hemisphere with both their radii being equal to 1 cm and the height of the cone is equal to its radius. Find the volume of the solid in terms of π.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <path d="M 150 200 A 50 25 0 0 0 250 200" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 150 200 A 50 25 0 0 1 250 200" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="150" y1="200" x2="200" y2="100" stroke="#dc2626" stroke-width="2"/>
+            <line x1="250" y1="200" x2="200" y2="100" stroke="#dc2626" stroke-width="2"/>
+            <line x1="200" y1="200" x2="200" y2="100" stroke="#059669" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="205" y="160" font-size="12" fill="#059669">h=1</text>
+            <text x="180" y="220" font-size="12" fill="#7c3aed">r=1</text>
+            <text x="160" y="250" font-size="12" fill="#64748b">Vol = (1/3)πr²h + (2/3)πr³ = π cm³</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.8 — Cone (r=1, h=1) on hemisphere (r=1)</div>
+                </div>
+                <div class="options-grid" id="options-2-1">
+                    <button class="option-btn" onclick="checkAnswer('2-1', 0, 0, this)">π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-1', 1, 0, this)">2π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-1', 2, 0, this)">3π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-1', 3, 0, this)">4π/3 cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-1">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 1 cm (same for cone and hemisphere)</div>
+                    <div class="step"><span class="step-number">2</span>Height of cone h = 1 cm (equal to radius)</div>
+                    <div class="step"><span class="step-number">3</span>Volume = Volume of cone + Volume of hemisphere</div>
+                    <div class="step"><span class="step-number">4</span>= (1/3)πr²h + (2/3)πr³</div>
+                    <div class="step"><span class="step-number">5</span>= (1/3)π×1²×1 + (2/3)π×1³</div>
+                    <div class="step"><span class="step-number">6</span>= π/3 + 2π/3 = 3π/3 = π cm³</div>
+                    <div class="final-answer">🎯 Final Answer: π cm³</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">2</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">Rachel, an engineering student, was asked to make a model shaped like a cylinder with two cones attached at its two ends by using a thin aluminium sheet. The diameter of the model is 3 cm and its length is 12 cm. If each cone has a height of 2 cm, find the volume of air contained in the model that Rachel made.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <line x1="120" y1="140" x2="280" y2="140" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="120" y1="180" x2="280" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="140" x2="120" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="280" y1="140" x2="280" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="140" x2="80" y2="100" stroke="#dc2626" stroke-width="2"/>
+            <line x1="120" y1="180" x2="80" y2="220" stroke="#dc2626" stroke-width="2"/>
+            <line x1="280" y1="140" x2="320" y2="100" stroke="#dc2626" stroke-width="2"/>
+            <line x1="280" y1="180" x2="320" y2="220" stroke="#dc2626" stroke-width="2"/>
+            <text x="190" y="135" font-size="11" fill="#3b82f6" font-weight="bold">Cylinder</text>
+            <text x="60" y="165" font-size="11" fill="#dc2626">Cone</text>
+            <text x="300" y="165" font-size="11" fill="#dc2626">Cone</text>
+            <text x="170" y="210" font-size="12" fill="#059669">Total length = 12 cm</text>
+            <text x="170" y="225" font-size="12" fill="#059669">Diameter = 3 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.9 — Cylinder with two cones at ends, like an aeroplane model</div>
+                </div>
+                <div class="options-grid" id="options-2-2">
+                    <button class="option-btn" onclick="checkAnswer('2-2', 0, 1, this)">50π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-2', 1, 1, this)">54π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-2', 2, 1, this)">60π cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-2', 3, 1, this)">66π cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-2">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 3/2 = 1.5 cm</div>
+                    <div class="step"><span class="step-number">2</span>Height of each cone = 2 cm</div>
+                    <div class="step"><span class="step-number">3</span>Height of cylinder = Total length - 2×cone height = 12 - 4 = 8 cm</div>
+                    <div class="step"><span class="step-number">4</span>Volume of air = Volume of cylinder + 2×Volume of cone</div>
+                    <div class="step"><span class="step-number">5</span>= πr²h + 2×(1/3)πr²h_cone</div>
+                    <div class="step"><span class="step-number">6</span>= π×(1.5)²×8 + 2×(1/3)×π×(1.5)²×2</div>
+                    <div class="step"><span class="step-number">7</span>= π×2.25×8 + (4/3)×π×2.25</div>
+                    <div class="step"><span class="step-number">8</span>= 18π + 3π = 21π cm³ = 66 cm³ (using π=22/7)</div>
+                    <div class="final-answer">🎯 Final Answer: 66 cm³ (or 21π cm³)</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">3</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A gulab jamun contains sugar syrup up to about 30% of its volume. Find approximately how much syrup would be found in 45 gulab jamuns, each shaped like a cylinder with two hemispherical ends with length 5 cm and diameter 2.8 cm.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="140" y="120" width="60" height="40" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 140 120 A 20 20 0 0 0 140 160" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 140 120 A 20 20 0 0 1 140 160" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+            <path d="M 200 120 A 20 20 0 0 1 200 160" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <path d="M 200 120 A 20 20 0 0 0 200 160" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="160" y="115" font-size="11" fill="#3b82f6">Cylinder</text>
+            <text x="110" y="145" font-size="11" fill="#dc2626">Hemi</text>
+            <text x="210" y="145" font-size="11" fill="#dc2626">Hemi</text>
+            <text x="150" y="190" font-size="12" fill="#059669">Length = 5 cm, d = 2.8 cm</text>
+            <text x="150" y="250" font-size="12" fill="#64748b">30% syrup by volume</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.15 — Gulab jamun = Cylinder + 2 hemispheres</div>
+                </div>
+                <div class="options-grid" id="options-2-3">
+                    <button class="option-btn" onclick="checkAnswer('2-3', 0, 2, this)">300 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-3', 1, 2, this)">325 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-3', 2, 2, this)">338 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-3', 3, 2, this)">350 cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-3">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius r = 2.8/2 = 1.4 cm</div>
+                    <div class="step"><span class="step-number">2</span>Height of cylindrical part = 5 - 2×1.4 = 2.2 cm</div>
+                    <div class="step"><span class="step-number">3</span>Volume of one gulab jamun = πr²h + (4/3)πr³</div>
+                    <div class="step"><span class="step-number">4</span>= (22/7)×1.4²×2.2 + (4/3)×(22/7)×1.4³</div>
+                    <div class="step"><span class="step-number">5</span>= (22/7)×1.96×2.2 + (88/21)×2.744</div>
+                    <div class="step"><span class="step-number">6</span>= 6.16×2.2 + 11.498 ≈ 13.552 + 11.498 ≈ 25.05 cm³</div>
+                    <div class="step"><span class="step-number">7</span>Syrup in one = 30% of 25.05 ≈ 7.515 cm³</div>
+                    <div class="step"><span class="step-number">8</span>Syrup in 45 = 45 × 7.515 ≈ 338.2 ≈ 338 cm³</div>
+                    <div class="final-answer">🎯 Final Answer: 338 cm³</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">4</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A pen stand made of wood is in the shape of a cuboid with four conical depressions to hold pens. The dimensions of the cuboid are 15 cm by 10 cm by 3.5 cm. The radius of each of the depressions is 0.5 cm and the depth is 1.4 cm. Find the volume of wood in the entire stand.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <rect x="100" y="100" width="150" height="100" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="100" y1="100" x2="120" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="250" y1="100" x2="270" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="80" x2="270" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="100" y1="200" x2="120" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="250" y1="200" x2="270" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="120" y1="180" x2="270" y2="180" stroke="#3b82f6" stroke-width="2"/>
+            <ellipse cx="130" cy="140" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <ellipse cx="160" cy="140" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <ellipse cx="190" cy="140" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <ellipse cx="220" cy="140" rx="8" ry="5" fill="none" stroke="#dc2626" stroke-width="2"/>
+            <text x="140" y="170" font-size="11" fill="#dc2626">4 conical depressions</text>
+            <text x="120" y="250" font-size="12" fill="#64748b">15×10×3.5 cm cuboid</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.16 — Cuboid with 4 conical depressions for pens</div>
+                </div>
+                <div class="options-grid" id="options-2-4">
+                    <button class="option-btn" onclick="checkAnswer('2-4', 0, 2, this)">520.5 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-4', 1, 2, this)">522.5 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-4', 2, 2, this)">523.5 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-4', 3, 2, this)">525 cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-4">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Volume of cuboid = 15×10×3.5 = 525 cm³</div>
+                    <div class="step"><span class="step-number">2</span>Radius of each cone r = 0.5 cm, height (depth) = 1.4 cm</div>
+                    <div class="step"><span class="step-number">3</span>Volume of one conical depression = (1/3)πr²h</div>
+                    <div class="step"><span class="step-number">4</span>= (1/3)×(22/7)×0.5²×1.4</div>
+                    <div class="step"><span class="step-number">5</span>= (1/3)×(22/7)×0.25×1.4 = (22×0.35)/21 = 7.7/21 ≈ 0.3667 cm³</div>
+                    <div class="step"><span class="step-number">6</span>Volume of 4 depressions = 4×0.3667 ≈ 1.467 cm³</div>
+                    <div class="step"><span class="step-number">7</span>Volume of wood = 525 - 1.467 ≈ 523.53 cm³ ≈ 523.5 cm³</div>
+                    <div class="final-answer">🎯 Final Answer: 523.5 cm³</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">5</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A vessel is in the form of an inverted cone. Its height is 8 cm and the radius of its top, which is open, is 5 cm. It is filled with water up to the brim. When lead shots, each of which is a sphere of radius 0.5 cm are dropped into the vessel, one-fourth of the water flows out. Find the number of lead shots dropped in the vessel.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <line x1="150" y1="80" x2="250" y2="80" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="150" y1="80" x2="200" y2="220" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="250" y1="80" x2="200" y2="220" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="180" cy="100" r="5" fill="#f59e0b"/>
+            <circle cx="220" cy="110" r="5" fill="#f59e0b"/>
+            <circle cx="190" cy="130" r="5" fill="#f59e0b"/>
+            <circle cx="210" cy="140" r="5" fill="#f59e0b"/>
+            <circle cx="200" cy="160" r="5" fill="#f59e0b"/>
+            <text x="200" y="75" font-size="12" fill="#1e293b" font-weight="bold">r=5 cm</text>
+            <text x="210" y="150" font-size="12" fill="#f59e0b">Lead shots</text>
+            <text x="160" y="250" font-size="12" fill="#64748b">Inverted cone, h=8 cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.12 — Lead shots displace water in inverted cone</div>
+                </div>
+                <div class="options-grid" id="options-2-5">
+                    <button class="option-btn" onclick="checkAnswer('2-5', 0, 2, this)">80</button>
+                    <button class="option-btn" onclick="checkAnswer('2-5', 1, 2, this)">90</button>
+                    <button class="option-btn" onclick="checkAnswer('2-5', 2, 2, this)">100</button>
+                    <button class="option-btn" onclick="checkAnswer('2-5', 3, 2, this)">110</button>
+                </div>
+                <div class="solution-box" id="solution-2-5">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Volume of cone = (1/3)πr²h = (1/3)×(22/7)×5²×8 = (22×200)/21 = 4400/21 cm³</div>
+                    <div class="step"><span class="step-number">2</span>Water that flows out = 1/4 × 4400/21 = 1100/21 cm³</div>
+                    <div class="step"><span class="step-number">3</span>Volume of one lead shot (sphere) = (4/3)πr³</div>
+                    <div class="step"><span class="step-number">4</span>= (4/3)×(22/7)×(0.5)³ = (4/3)×(22/7)×0.125 = 11/21 cm³</div>
+                    <div class="step"><span class="step-number">5</span>Number of lead shots = (1100/21) ÷ (11/21) = 1100/11 = 100</div>
+                    <div class="step"><span class="step-number">6</span>Therefore, 100 lead shots were dropped.</div>
+                    <div class="final-answer">🎯 Final Answer: 100</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">6</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A solid iron pole consists of a cylinder of height 220 cm and base diameter 24 cm, which is surmounted by another cylinder of height 60 cm and radius 8 cm. Find the mass of the pole, given that 1 cm³ of iron has approximately 8g mass. (Use π = 3.14)</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <line x1="170" y1="40" x2="230" y2="40" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="170" y1="40" x2="170" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="230" y1="40" x2="230" y2="100" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="170" y1="100" x2="230" y2="100" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="150" y1="100" x2="250" y2="100" stroke="#059669" stroke-width="2"/>
+            <line x1="150" y1="100" x2="150" y2="260" stroke="#059669" stroke-width="2"/>
+            <line x1="250" y1="100" x2="250" y2="260" stroke="#059669" stroke-width="2"/>
+            <line x1="150" y1="260" x2="250" y2="260" stroke="#059669" stroke-width="2"/>
+            <text x="190" y="35" font-size="11" fill="#3b82f6" font-weight="bold">Cyl 2</text>
+            <text x="190" y="85" font-size="11" fill="#3b82f6">r=8, h=60</text>
+            <text x="190" y="185" font-size="11" fill="#059669" font-weight="bold">Cyl 1</text>
+            <text x="260" y="180" font-size="11" fill="#059669">r=12, h=220</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.13 — Iron pole = Large cylinder + Small cylinder</div>
+                </div>
+                <div class="options-grid" id="options-2-6">
+                    <button class="option-btn" onclick="checkAnswer('2-6', 0, 1, this)">850 kg</button>
+                    <button class="option-btn" onclick="checkAnswer('2-6', 1, 1, this)">892.3 kg</button>
+                    <button class="option-btn" onclick="checkAnswer('2-6', 2, 1, this)">900 kg</button>
+                    <button class="option-btn" onclick="checkAnswer('2-6', 3, 1, this)">950 kg</button>
+                </div>
+                <div class="solution-box" id="solution-2-6">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>First cylinder: r₁ = 12 cm, h₁ = 220 cm</div>
+                    <div class="step"><span class="step-number">2</span>Volume₁ = πr₁²h₁ = 3.14×12²×220 = 3.14×144×220 = 99,532.8 cm³</div>
+                    <div class="step"><span class="step-number">3</span>Second cylinder: r₂ = 8 cm, h₂ = 60 cm</div>
+                    <div class="step"><span class="step-number">4</span>Volume₂ = πr₂²h₂ = 3.14×8²×60 = 3.14×64×60 = 12,057.6 cm³</div>
+                    <div class="step"><span class="step-number">5</span>Total volume = 99,532.8 + 12,057.6 = 111,590.4 cm³</div>
+                    <div class="step"><span class="step-number">6</span>Mass = 111,590.4 × 8 = 892,723.2 g = 892.72 kg ≈ 892.3 kg</div>
+                    <div class="final-answer">🎯 Final Answer: 892.3 kg</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">7</div>
+                    <div>
+                        <span class="badge badge-vol">Volume</span>
+                        <div class="question-text">A solid consisting of a right circular cone of height 120 cm and radius 60 cm standing on a hemisphere of radius 60 cm is placed upright in a right circular cylinder full of water such that it touches the bottom. Find the volume of water left in the cylinder, if the radius of the cylinder is 60 cm and its height is 180 cm.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <line x1="120" y1="60" x2="280" y2="60" stroke="#7c3aed" stroke-width="2"/>
+            <line x1="120" y1="60" x2="120" y2="240" stroke="#7c3aed" stroke-width="2"/>
+            <line x1="280" y1="60" x2="280" y2="240" stroke="#7c3aed" stroke-width="2"/>
+            <line x1="120" y1="240" x2="280" y2="240" stroke="#7c3aed" stroke-width="2"/>
+            <path d="M 120 180 A 80 30 0 0 0 280 180" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M 120 180 A 80 30 0 0 1 280 180" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="120" y1="180" x2="200" y2="60" stroke="#dc2626" stroke-width="2"/>
+            <line x1="280" y1="180" x2="200" y2="60" stroke="#dc2626" stroke-width="2"/>
+            <text x="190" y="55" font-size="11" fill="#dc2626" font-weight="bold">Cone</text>
+            <text x="190" y="200" font-size="11" fill="#3b82f6" font-weight="bold">Hemisphere</text>
+            <text x="290" y="150" font-size="11" fill="#7c3aed">Cylinder</text>
+            <text x="140" y="250" font-size="12" fill="#64748b">Solid placed in full cylinder</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.14 — Solid displaces water in full cylinder</div>
+                </div>
+                <div class="options-grid" id="options-2-7">
+                    <button class="option-btn" onclick="checkAnswer('2-7', 0, 0, this)">1,108,800 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-7', 1, 0, this)">1,131,400 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-7', 2, 0, this)">1,152,000 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-7', 3, 0, this)">1,200,000 cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-7">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Volume of cone = (1/3)πr²h = (1/3)π×60²×120 = 144,000π cm³</div>
+                    <div class="step"><span class="step-number">2</span>Volume of hemisphere = (2/3)πr³ = (2/3)π×60³ = 144,000π cm³</div>
+                    <div class="step"><span class="step-number">3</span>Volume of solid = 144,000π + 144,000π = 288,000π cm³</div>
+                    <div class="step"><span class="step-number">4</span>Volume of cylinder = πr²h = π×60²×180 = 648,000π cm³</div>
+                    <div class="step"><span class="step-number">5</span>Water left = 648,000π - 288,000π = 360,000π cm³</div>
+                    <div class="step"><span class="step-number">6</span>= 360,000×(22/7) = 7,920,000/7 ≈ 1,131,428.6 cm³ ≈ 1,131,400 cm³</div>
+                    <div class="final-answer">🎯 Final Answer: 1,131,400 cm³ (or 360,000π cm³)</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-header">
+                    <div class="q-number">8</div>
+                    <div>
+                        <span class="badge badge-check">Verification</span>
+                        <div class="question-text">A spherical glass vessel has a cylindrical neck 8 cm long, 2 cm in diameter; the diameter of the spherical part is 8.5 cm. By measuring the amount of water it holds, a child finds its volume to be 345 cm³. Check whether she is correct, taking the above as the inside measurements, and π = 3.14.</div>
+                    </div>
+                </div>
+                <div class="figure-container">
+                    <svg width="400" height="280" viewBox="0 0 400 280">
+            <circle cx="200" cy="160" r="50" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <line x1="185" y1="110" x2="185" y2="60" stroke="#dc2626" stroke-width="2"/>
+            <line x1="215" y1="110" x2="215" y2="60" stroke="#dc2626" stroke-width="2"/>
+            <line x1="185" y1="60" x2="215" y2="60" stroke="#dc2626" stroke-width="2"/>
+            <text x="200" y="165" font-size="11" fill="#3b82f6" font-weight="bold">Sphere</text>
+            <text x="220" y="85" font-size="11" fill="#dc2626">Neck</text>
+            <text x="160" y="250" font-size="12" fill="#64748b">d=8.5 cm, neck: 8cm×2cm</text>
+        </svg>
+                    <div class="figure-caption">Fig. 12.17 — Spherical vessel with cylindrical neck</div>
+                </div>
+                <div class="options-grid" id="options-2-8">
+                    <button class="option-btn" onclick="checkAnswer('2-8', 0, 1, this)">Yes, correct</button>
+                    <button class="option-btn" onclick="checkAnswer('2-8', 1, 1, this)">No, actual volume is about 346.5 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-8', 2, 1, this)">No, actual volume is about 347 cm³</button>
+                    <button class="option-btn" onclick="checkAnswer('2-8', 3, 1, this)">No, actual volume is about 348 cm³</button>
+                </div>
+                <div class="solution-box" id="solution-2-8">
+                    <div class="solution-title">✅ Step-by-Step Solution</div>
+                    <div class="step"><span class="step-number">1</span>Radius of spherical part = 8.5/2 = 4.25 cm</div>
+                    <div class="step"><span class="step-number">2</span>Volume of sphere = (4/3)πr³ = (4/3)×3.14×4.25³</div>
+                    <div class="step"><span class="step-number">3</span>= (4/3)×3.14×76.765625 = 321.39 cm³</div>
+                    <div class="step"><span class="step-number">4</span>Radius of cylindrical neck = 2/2 = 1 cm, height = 8 cm</div>
+                    <div class="step"><span class="step-number">5</span>Volume of cylinder = πr²h = 3.14×1²×8 = 25.12 cm³</div>
+                    <div class="step"><span class="step-number">6</span>Total volume = 321.39 + 25.12 = 346.51 cm³</div>
+                    <div class="step"><span class="step-number">7</span>Child's measurement = 345 cm³</div>
+                    <div class="step"><span class="step-number">8</span>Difference = 346.51 - 345 = 1.51 cm³</div>
+                    <div class="step"><span class="step-number">9</span>The child is approximately correct (within measurement error), but more precisely actual volume ≈ 346.5 cm³</div>
+                    <div class="final-answer">🎯 Final Answer: No, actual volume is about 346.5 cm³ (close but not exactly 345)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULATOR SECTION -->
+        <div id="calculator" class="section">
+            <div class="card" style="text-align: center;">
+                <h2 style="color: var(--primary); font-size: 1.5rem;">🧮 Surface Area & Volume Calculators</h2>
+                <p style="color: var(--text-light);">Interactive tools for all solid geometry calculations</p>
+            </div>
+
+            <div class="calc-grid">
+                <div class="calc-card">
+                    <div class="card-title">📦 Cuboid Calculator</div>
+                    <div class="calc-input-group">
+                        <label>Length (cm)</label>
+                        <input type="number" id="cuboidL" value="8" min="0.1" step="0.1" oninput="updateCuboid()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Breadth (cm)</label>
+                        <input type="number" id="cuboidB" value="4" min="0.1" step="0.1" oninput="updateCuboid()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="cuboidH" value="4" min="0.1" step="0.1" oninput="updateCuboid()">
+                    </div>
+                    <div class="calc-result" id="cuboidSA">Surface Area: 160.00 cm²</div>
+                    <div class="calc-result" id="cuboidVol" style="margin-top: 8px;">Volume: 128.00 cm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">⭕ Cylinder Calculator</div>
+                    <div class="calc-input-group">
+                        <label>Radius (cm)</label>
+                        <input type="number" id="cylR" value="7" min="0.1" step="0.1" oninput="updateCylinder()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="cylH" value="6" min="0.1" step="0.1" oninput="updateCylinder()">
+                    </div>
+                    <div class="calc-result" id="cylCSA">CSA: 264.00 cm²</div>
+                    <div class="calc-result" id="cylTSA" style="margin-top: 8px;">TSA: 572.00 cm²</div>
+                    <div class="calc-result" id="cylVol" style="margin-top: 8px;">Volume: 924.00 cm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🔺 Cone Calculator</div>
+                    <div class="calc-input-group">
+                        <label>Radius (cm)</label>
+                        <input type="number" id="coneR" value="3.5" min="0.1" step="0.1" oninput="updateCone()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="coneH" value="12" min="0.1" step="0.1" oninput="updateCone()">
+                    </div>
+                    <div class="calc-result" id="coneL">Slant Height: 12.50 cm</div>
+                    <div class="calc-result" id="coneCSA" style="margin-top: 8px;">CSA: 137.50 cm²</div>
+                    <div class="calc-result" id="coneVol" style="margin-top: 8px;">Volume: 154.00 cm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🌍 Sphere & Hemisphere</div>
+                    <div class="calc-input-group">
+                        <label>Radius (cm)</label>
+                        <input type="number" id="sphereR" value="7" min="0.1" step="0.1" oninput="updateSphere()">
+                    </div>
+                    <div class="calc-result" id="sphereSA">Sphere SA: 616.00 cm²</div>
+                    <div class="calc-result" id="sphereVol" style="margin-top: 8px;">Sphere Vol: 1437.33 cm³</div>
+                    <div class="calc-result" id="hemiCSA" style="margin-top: 8px;">Hemisphere CSA: 308.00 cm²</div>
+                    <div class="calc-result" id="hemiVol" style="margin-top: 8px;">Hemisphere Vol: 718.67 cm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">💊 Capsule Calculator (Q6 type)</div>
+                    <div class="calc-input-group">
+                        <label>Total Length (mm)</label>
+                        <input type="number" id="capLen" value="14" min="0.1" step="0.1" oninput="updateCapsule()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Diameter (mm)</label>
+                        <input type="number" id="capDia" value="5" min="0.1" step="0.1" oninput="updateCapsule()">
+                    </div>
+                    <div class="calc-result" id="capSA">Surface Area: 220.00 mm²</div>
+                    <div class="calc-result" id="capVol" style="margin-top: 8px;">Volume: 179.59 mm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🏕️ Tent Calculator (Q7 type)</div>
+                    <div class="calc-input-group">
+                        <label>Cylinder Height (m)</label>
+                        <input type="number" id="tentCylH" value="2.1" min="0.1" step="0.1" oninput="updateTent()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Diameter (m)</label>
+                        <input type="number" id="tentDia" value="4" min="0.1" step="0.1" oninput="updateTent()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Cone Slant Height (m)</label>
+                        <input type="number" id="tentSlant" value="2.8" min="0.1" step="0.1" oninput="updateTent()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Canvas Rate (₹/m²)</label>
+                        <input type="number" id="tentRate" value="500" min="1" oninput="updateTent()">
+                    </div>
+                    <div class="calc-result" id="tentArea">Canvas Area: 44.00 m²</div>
+                    <div class="calc-result" id="tentCost" style="margin-top: 8px;">Cost: ₹22,000</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">🍬 Gulab Jamun Calculator (Q3 type)</div>
+                    <div class="calc-input-group">
+                        <label>Length (cm)</label>
+                        <input type="number" id="gulabLen" value="5" min="0.1" step="0.1" oninput="updateGulab()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Diameter (cm)</label>
+                        <input type="number" id="gulabDia" value="2.8" min="0.1" step="0.1" oninput="updateGulab()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Syrup %</label>
+                        <input type="number" id="gulabSyrup" value="30" min="1" max="100" oninput="updateGulab()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Number of Jamuns</label>
+                        <input type="number" id="gulabNum" value="45" min="1" oninput="updateGulab()">
+                    </div>
+                    <div class="calc-result" id="gulabResult">Total Syrup: 338.05 cm³</div>
+                </div>
+
+                <div class="calc-card">
+                    <div class="card-title">⚖️ Mass Calculator (Q6 type)</div>
+                    <div class="calc-input-group">
+                        <label>Solid Type</label>
+                        <select id="massType" onchange="updateMass()">
+                            <option value="cylinder">Cylinder</option>
+                            <option value="cone">Cone</option>
+                            <option value="sphere">Sphere</option>
+                            <option value="cuboid">Cuboid</option>
+                        </select>
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Dimension 1 (cm)</label>
+                        <input type="number" id="massD1" value="12" min="0.1" step="0.1" oninput="updateMass()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Dimension 2 (cm)</label>
+                        <input type="number" id="massD2" value="220" min="0.1" step="0.1" oninput="updateMass()">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>Density (g/cm³)</label>
+                        <input type="number" id="massDensity" value="8" min="0.1" step="0.1" oninput="updateMass()">
+                    </div>
+                    <div class="calc-result" id="massResult">Mass: 796.18 kg</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📚 NCERT Class 10 Mathematics | Chapter 12: Surface Areas and Volumes</p>
+            <p style="margin-top: 8px;">Exercises 12.1 & 12.2 | 17 Questions with Interactive Solutions & SVG Figures</p>
+        </div>
+    </div>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // MCQ Logic
+        function checkAnswer(qId, selected, correct, btn) {
+            const options = document.querySelectorAll(`#options-${qId} .option-btn`);
+            const solution = document.getElementById(`solution-${qId}`);
+
+            options.forEach((opt, idx) => {
+                opt.disabled = true;
+                if (idx === correct) {
+                    opt.classList.add('correct');
+                } else if (idx === selected && selected !== correct) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            solution.classList.add('show');
+            solution.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Calculator Functions
+        const PI = 22/7;
+
+        function updateCuboid() {
+            const l = parseFloat(document.getElementById('cuboidL').value) || 0;
+            const b = parseFloat(document.getElementById('cuboidB').value) || 0;
+            const h = parseFloat(document.getElementById('cuboidH').value) || 0;
+            const sa = 2*(l*b + b*h + h*l);
+            const vol = l*b*h;
+            document.getElementById('cuboidSA').textContent = `Surface Area: ${sa.toFixed(2)} cm²`;
+            document.getElementById('cuboidVol').textContent = `Volume: ${vol.toFixed(2)} cm³`;
+        }
+
+        function updateCylinder() {
+            const r = parseFloat(document.getElementById('cylR').value) || 0;
+            const h = parseFloat(document.getElementById('cylH').value) || 0;
+            const csa = 2*PI*r*h;
+            const tsa = 2*PI*r*(r+h);
+            const vol = PI*r*r*h;
+            document.getElementById('cylCSA').textContent = `CSA: ${csa.toFixed(2)} cm²`;
+            document.getElementById('cylTSA').textContent = `TSA: ${tsa.toFixed(2)} cm²`;
+            document.getElementById('cylVol').textContent = `Volume: ${vol.toFixed(2)} cm³`;
+        }
+
+        function updateCone() {
+            const r = parseFloat(document.getElementById('coneR').value) || 0;
+            const h = parseFloat(document.getElementById('coneH').value) || 0;
+            const l = Math.sqrt(r*r + h*h);
+            const csa = PI*r*l;
+            const vol = (1/3)*PI*r*r*h;
+            document.getElementById('coneL').textContent = `Slant Height: ${l.toFixed(2)} cm`;
+            document.getElementById('coneCSA').textContent = `CSA: ${csa.toFixed(2)} cm²`;
+            document.getElementById('coneVol').textContent = `Volume: ${vol.toFixed(2)} cm³`;
+        }
+
+        function updateSphere() {
+            const r = parseFloat(document.getElementById('sphereR').value) || 0;
+            const sa = 4*PI*r*r;
+            const vol = (4/3)*PI*r*r*r;
+            const hemiCSA = 2*PI*r*r;
+            const hemiVol = (2/3)*PI*r*r*r;
+            document.getElementById('sphereSA').textContent = `Sphere SA: ${sa.toFixed(2)} cm²`;
+            document.getElementById('sphereVol').textContent = `Sphere Vol: ${vol.toFixed(2)} cm³`;
+            document.getElementById('hemiCSA').textContent = `Hemisphere CSA: ${hemiCSA.toFixed(2)} cm²`;
+            document.getElementById('hemiVol').textContent = `Hemisphere Vol: ${hemiVol.toFixed(2)} cm³`;
+        }
+
+        function updateCapsule() {
+            const len = parseFloat(document.getElementById('capLen').value) || 0;
+            const dia = parseFloat(document.getElementById('capDia').value) || 0;
+            const r = dia/2;
+            const h = len - 2*r;
+            const sa = 2*PI*r*h + 4*PI*r*r;
+            const vol = PI*r*r*h + (4/3)*PI*r*r*r;
+            document.getElementById('capSA').textContent = `Surface Area: ${sa.toFixed(2)} mm²`;
+            document.getElementById('capVol').textContent = `Volume: ${vol.toFixed(2)} mm³`;
+        }
+
+        function updateTent() {
+            const h = parseFloat(document.getElementById('tentCylH').value) || 0;
+            const d = parseFloat(document.getElementById('tentDia').value) || 0;
+            const l = parseFloat(document.getElementById('tentSlant').value) || 0;
+            const rate = parseFloat(document.getElementById('tentRate').value) || 0;
+            const r = d/2;
+            const area = 2*PI*r*h + PI*r*l;
+            const cost = area * rate;
+            document.getElementById('tentArea').textContent = `Canvas Area: ${area.toFixed(2)} m²`;
+            document.getElementById('tentCost').textContent = `Cost: ₹${cost.toLocaleString('en-IN')}`;
+        }
+
+        function updateGulab() {
+            const len = parseFloat(document.getElementById('gulabLen').value) || 0;
+            const dia = parseFloat(document.getElementById('gulabDia').value) || 0;
+            const syrupPct = parseFloat(document.getElementById('gulabSyrup').value) || 0;
+            const num = parseFloat(document.getElementById('gulabNum').value) || 0;
+            const r = dia/2;
+            const h = len - 2*r;
+            const vol = PI*r*r*h + (4/3)*PI*r*r*r;
+            const syrup = num * (syrupPct/100) * vol;
+            document.getElementById('gulabResult').textContent = `Total Syrup: ${syrup.toFixed(2)} cm³`;
+        }
+
+        function updateMass() {
+            const type = document.getElementById('massType').value;
+            const d1 = parseFloat(document.getElementById('massD1').value) || 0;
+            const d2 = parseFloat(document.getElementById('massD2').value) || 0;
+            const density = parseFloat(document.getElementById('massDensity').value) || 0;
+            let vol = 0;
+
+            if (type === 'cylinder') {
+                vol = PI*d1*d1*d2; // r=d1, h=d2
+            } else if (type === 'cone') {
+                vol = (1/3)*PI*d1*d1*d2; // r=d1, h=d2
+            } else if (type === 'sphere') {
+                vol = (4/3)*PI*d1*d1*d1; // r=d1
+            } else if (type === 'cuboid') {
+                vol = d1*d1*d2; // l=d1, b=h=d1 (square base)
+            }
+
+            const mass = vol * density / 1000; // convert to kg
+            document.getElementById('massResult').textContent = `Mass: ${mass.toFixed(2)} kg`;
+        }
+
+        // Initialize all calculators
+        updateCuboid();
+        updateCylinder();
+        updateCone();
+        updateSphere();
+        updateCapsule();
+        updateTent();
+        updateGulab();
+        updateMass();
+    </script>
+</body>
+</html>

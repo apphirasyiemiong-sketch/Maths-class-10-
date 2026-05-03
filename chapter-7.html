@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Coordinate Geometry - Interactive Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .option-btn { transition: all 0.3s ease; border: 2px solid #e5e7eb; }
+        .option-btn:hover { border-color: #6366f1; background-color: #eef2ff; }
+        .option-btn.correct { border-color: #10b981; background-color: #d1fae5; }
+        .option-btn.wrong { border-color: #ef4444; background-color: #fee2e2; }
+        .solution-reveal { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
+        .solution-reveal.show { max-height: 3000px; }
+        .tab-active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .math-input { border: 2px solid #e5e7eb; transition: border-color 0.3s; }
+        .math-input:focus { border-color: #6366f1; outline: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        .step-card { border-left: 4px solid #6366f1; background: #f8fafc; padding: 1rem; margin: 0.5rem 0; border-radius: 0 8px 8px 0; }
+        .formula-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 1.5rem; text-align: center; margin: 1rem 0; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="gradient-bg text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shapes text-3xl"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold">Coordinate Geometry</h1>
+                        <p class="text-purple-200">Class 10 NCERT - Chapter 7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto space-x-2 py-3">
+                <button onclick="showTab('notes')" id="tab-notes" class="tab-btn px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all tab-active"><i class="fas fa-sticky-note mr-2"></i>Important Notes</button>
+                <button onclick="showTab('ex71')" id="tab-ex71" class="tab-btn px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all bg-gray-100 hover:bg-gray-200"><i class="fas fa-ruler mr-2"></i>Exercise 7.1</button>
+                <button onclick="showTab('ex72')" id="tab-ex72" class="tab-btn px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all bg-gray-100 hover:bg-gray-200"><i class="fas fa-divide mr-2"></i>Exercise 7.2</button>
+                <button onclick="showTab('calculator')" id="tab-calculator" class="tab-btn px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all bg-gray-100 hover:bg-gray-200"><i class="fas fa-calculator mr-2"></i>Calculators</button>
+                <button onclick="showTab('graphs')" id="tab-graphs" class="tab-btn px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all bg-gray-100 hover:bg-gray-200"><i class="fas fa-chart-line mr-2"></i>Graph Visualizer</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- NOTES SECTION -->
+        <div id="content-notes" class="tab-content animate-fade-in">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Distance Formula -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mr-4"><i class="fas fa-ruler-combined text-indigo-600 text-xl"></i></div>
+                        <h2 class="text-xl font-bold text-gray-800">Distance Formula</h2>
+                    </div>
+                    <div class="formula-box">
+                        <p class="text-lg font-semibold text-indigo-800 mb-2">Distance between two points P(x1, y1) and Q(x2, y2)</p>
+                        <p class="text-2xl font-bold text-indigo-600">PQ = &radic;[(x2 - x1)&sup2; + (y2 - y1)&sup2;]</p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
+                        <p class="font-semibold text-yellow-800">&#128161; Remember:</p>
+                        <p class="text-gray-700">This is just Pythagoras theorem! The horizontal distance is (x2-x1) and vertical distance is (y2-y1). The straight line is the hypotenuse.</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Distance from origin:</strong> If point is (x,y), distance from (0,0) = &radic;(x&sup2; + y&sup2;)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Collinearity Check:</strong> Three points A, B, C are collinear if AB + BC = AC (or any combination where sum of two equals third)</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Types of Triangles:</strong><br>&#8226; Equilateral: All 3 sides equal<br>&#8226; Isosceles: Any 2 sides equal<br>&#8226; Scalene: All sides different<br>&#8226; Right-angled: a&sup2; + b&sup2; = c&sup2;</span></li>
+                    </ul>
+                </div>
+
+                <!-- Section Formula -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4"><i class="fas fa-divide text-purple-600 text-xl"></i></div>
+                        <h2 class="text-xl font-bold text-gray-800">Section Formula</h2>
+                    </div>
+                    <div class="formula-box" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-color: #9333ea;">
+                        <p class="text-lg font-semibold text-purple-800 mb-2">Point P dividing A(x1,y1) and B(x2,y2) internally in ratio m1:m2</p>
+                        <p class="text-xl font-bold text-purple-600">P = [(m1x2 + m2x1)/(m1+m2) , (m1y2 + m2y1)/(m1+m2)]</p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mb-4">
+                        <p class="font-semibold text-yellow-800">&#128161; Remember:</p>
+                        <p class="text-gray-700">The ratio m1:m2 means the point is m1 parts towards B and m2 parts towards A. If ratio is 2:3, point is closer to B.</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Midpoint Formula:</strong> When ratio is 1:1<br>M = [(x1+x2)/2 , (y1+y2)/2]</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Centroid of Triangle:</strong> Intersection point of medians<br>G = [(x1+x2+x3)/3 , (y1+y2+y3)/3]</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span><strong>Trisection Points:</strong> Divide in ratios 1:2 and 2:1</span></li>
+                    </ul>
+                </div>
+
+                <!-- Quadrilateral Properties -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mr-4"><i class="fas fa-square text-amber-600 text-xl"></i></div>
+                        <h2 class="text-xl font-bold text-gray-800">How to Identify Quadrilaterals Using Distance Formula</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 rounded-xl p-4 border-l-4 border-blue-500">
+                            <h3 class="font-bold text-blue-800 mb-2">&#9634; Square</h3>
+                            <ul class="text-gray-700 space-y-1 text-sm">
+                                <li>&#10003; All 4 sides equal</li>
+                                <li>&#10003; Both diagonals equal</li>
+                                <li>&#10003; Diagonals perpendicular (optional check)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
+                            <h3 class="font-bold text-green-800 mb-2">&#9645; Rectangle</h3>
+                            <ul class="text-gray-700 space-y-1 text-sm">
+                                <li>&#10003; Opposite sides equal</li>
+                                <li>&#10003; Both diagonals equal</li>
+                                <li>&#10007; Adjacent sides NOT equal</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-4 border-l-4 border-purple-500">
+                            <h3 class="font-bold text-purple-800 mb-2">&#9670; Rhombus</h3>
+                            <ul class="text-gray-700 space-y-1 text-sm">
+                                <li>&#10003; All 4 sides equal</li>
+                                <li>&#10007; Diagonals NOT equal</li>
+                                <li>&#10003; Diagonals bisect each other at 90&deg;</li>
+                            </ul>
+                        </div>
+                        <div class="bg-pink-50 rounded-xl p-4 border-l-4 border-pink-500">
+                            <h3 class="font-bold text-pink-800 mb-2">&#9649; Parallelogram</h3>
+                            <ul class="text-gray-700 space-y-1 text-sm">
+                                <li>&#10003; Opposite sides equal</li>
+                                <li>&#10003; Diagonals bisect each other</li>
+                                <li>&#10007; Adjacent sides NOT equal</li>
+                                <li>&#10007; Diagonals NOT equal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips & Tricks -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4"><i class="fas fa-star text-red-600 text-xl"></i></div>
+                        <h2 class="text-xl font-bold text-gray-800">Exam Tips & Common Mistakes to Avoid</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="space-y-3">
+                            <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                                <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                                <div><p class="font-semibold text-gray-800">Always Draw Diagram</p><p class="text-gray-600 text-sm">Sketch rough figure before solving. It helps visualize and avoid sign errors.</p></div>
+                            </div>
+                            <div class="flex items-start p-3 bg-orange-50 rounded-lg">
+                                <span class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                                <div><p class="font-semibold text-gray-800">Watch Signs Carefully</p><p class="text-gray-600 text-sm">(-3) - (-5) = +2, not -8. Double check negative number operations.</p></div>
+                            </div>
+                            <div class="flex items-start p-3 bg-yellow-50 rounded-lg">
+                                <span class="bg-yellow-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                                <div><p class="font-semibold text-gray-800">Simplify Radicals</p><p class="text-gray-600 text-sm">&radic;8 = 2&radic;2, &radic;32 = 4&radic;2. Always simplify your final answer.</p></div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start p-3 bg-green-50 rounded-lg">
+                                <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                                <div><p class="font-semibold text-gray-800">Collinearity Check</p><p class="text-gray-600 text-sm">Use area method: Area = &frac12;|x1(y2-y3) + x2(y3-y1) + x3(y1-y2)|. If 0, points are collinear.</p></div>
+                            </div>
+                            <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                                <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                                <div><p class="font-semibold text-gray-800">Equidistant Points</p><p class="text-gray-600 text-sm">Set PA&sup2; = PB&sup2; (not PA = PB) to avoid square roots. Much easier!</p></div>
+                            </div>
+                            <div class="flex items-start p-3 bg-purple-50 rounded-lg">
+                                <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
+                                <div><p class="font-semibold text-gray-800">Point on X-axis</p><p class="text-gray-600 text-sm">Any point on x-axis has y-coordinate = 0. So use (x, 0).</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 7.1 -->
+        <div id="content-ex71" class="tab-content hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Exercise 7.1 - Distance Formula</h2>
+                <p class="text-gray-600">Click an option to check your answer and see step-by-step solution</p>
+            </div>
+            <div class="space-y-6" id="ex71-container"></div>
+        </div>
+
+        <!-- EXERCISE 7.2 -->
+        <div id="content-ex72" class="tab-content hidden">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Exercise 7.2 - Section Formula</h2>
+                <p class="text-gray-600">Click an option to check your answer and see step-by-step solution</p>
+            </div>
+            <div class="space-y-6" id="ex72-container"></div>
+        </div>
+
+        <!-- CALCULATORS -->
+        <div id="content-calculator" class="tab-content hidden">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-ruler text-indigo-600 mr-2"></i>Distance Calculator</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point A (x1, y1)</label><input type="number" id="d-x1" placeholder="x1" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="d-y1" placeholder="y1" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point B (x2, y2)</label><input type="number" id="d-x2" placeholder="x2" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="d-y2" placeholder="y2" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                        </div>
+                        <button onclick="calcDistance()" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Calculate Distance</button>
+                        <div id="dist-result" class="hidden bg-indigo-50 p-4 rounded-xl text-center font-bold text-indigo-800"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-divide text-purple-600 mr-2"></i>Section Formula Calculator</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point A (x1, y1)</label><input type="number" id="s-x1" placeholder="x1" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="s-y1" placeholder="y1" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point B (x2, y2)</label><input type="number" id="s-x2" placeholder="x2" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="s-y2" placeholder="y2" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="number" id="s-m1" placeholder="m1" class="math-input px-3 py-2 rounded-lg">
+                            <input type="number" id="s-m2" placeholder="m2" class="math-input px-3 py-2 rounded-lg">
+                        </div>
+                        <button onclick="calcSection()" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">Calculate Point</button>
+                        <div id="section-result" class="hidden bg-purple-50 p-4 rounded-xl text-center font-bold text-purple-800"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-bullseye text-green-600 mr-2"></i>Midpoint Calculator</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point A (x1, y1)</label><input type="number" id="m-x1" placeholder="x1" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="m-y1" placeholder="y1" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 mb-1">Point B (x2, y2)</label><input type="number" id="m-x2" placeholder="x2" class="math-input w-full px-3 py-2 rounded-lg"><input type="number" id="m-y2" placeholder="y2" class="math-input w-full px-3 py-2 rounded-lg mt-2"></div>
+                        </div>
+                        <button onclick="calcMidpoint()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Calculate Midpoint</button>
+                        <div id="mid-result" class="hidden bg-green-50 p-4 rounded-xl text-center font-bold text-green-800"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-shapes text-amber-600 mr-2"></i>Collinearity Check</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-3 gap-2">
+                            <div><label class="block text-xs font-medium text-gray-700 mb-1">Point A</label><input type="number" id="c-x1" placeholder="x1" class="math-input w-full px-2 py-2 rounded-lg"><input type="number" id="c-y1" placeholder="y1" class="math-input w-full px-2 py-2 rounded-lg mt-2"></div>
+                            <div><label class="block text-xs font-medium text-gray-700 mb-1">Point B</label><input type="number" id="c-x2" placeholder="x2" class="math-input w-full px-2 py-2 rounded-lg"><input type="number" id="c-y2" placeholder="y2" class="math-input w-full px-2 py-2 rounded-lg mt-2"></div>
+                            <div><label class="block text-xs font-medium text-gray-700 mb-1">Point C</label><input type="number" id="c-x3" placeholder="x3" class="math-input w-full px-2 py-2 rounded-lg"><input type="number" id="c-y3" placeholder="y3" class="math-input w-full px-2 py-2 rounded-lg mt-2"></div>
+                        </div>
+                        <button onclick="checkCollinear()" class="w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700 transition">Check Collinearity</button>
+                        <div id="col-result" class="hidden p-4 rounded-xl text-center font-bold"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRAPHS -->
+        <div id="content-graphs" class="tab-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-chart-line text-indigo-600 mr-2"></i>Coordinate Geometry Graph Visualizer</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div><label class="block text-sm font-medium text-gray-700">Point A</label><div class="flex gap-2"><input type="number" id="g-x1" value="2" class="math-input w-full px-2 py-2 rounded-lg" placeholder="x"><input type="number" id="g-y1" value="3" class="math-input w-full px-2 py-2 rounded-lg" placeholder="y"></div></div>
+                    <div><label class="block text-sm font-medium text-gray-700">Point B</label><div class="flex gap-2"><input type="number" id="g-x2" value="4" class="math-input w-full px-2 py-2 rounded-lg" placeholder="x"><input type="number" id="g-y2" value="1" class="math-input w-full px-2 py-2 rounded-lg" placeholder="y"></div></div>
+                    <div><label class="block text-sm font-medium text-gray-700">Point C (optional)</label><div class="flex gap-2"><input type="number" id="g-x3" class="math-input w-full px-2 py-2 rounded-lg" placeholder="x"><input type="number" id="g-y3" class="math-input w-full px-2 py-2 rounded-lg" placeholder="y"></div></div>
+                </div>
+                <button onclick="drawGraph()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition mb-4">Draw Graph</button>
+                <canvas id="graphCanvas" width="800" height="500" class="w-full border rounded-xl bg-gray-50"></canvas>
+                <div id="graph-info" class="mt-4 p-4 bg-gray-100 rounded-xl hidden"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('tab-active');
+                el.classList.add('bg-gray-100');
+            });
+            document.getElementById('tab-' + tabName).classList.add('tab-active');
+            document.getElementById('tab-' + tabName).classList.remove('bg-gray-100');
+        }
+
+        // Calculator functions
+        function calcDistance() {
+            const x1 = parseFloat(document.getElementById('d-x1').value);
+            const y1 = parseFloat(document.getElementById('d-y1').value);
+            const x2 = parseFloat(document.getElementById('d-x2').value);
+            const y2 = parseFloat(document.getElementById('d-y2').value);
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) return;
+            const dist = Math.sqrt((x2-x1)**2 + (y2-y1)**2);
+            const result = document.getElementById('dist-result');
+            result.textContent = 'Distance = ' + dist.toFixed(4) + ' units';
+            result.classList.remove('hidden');
+        }
+
+        function calcSection() {
+            const x1 = parseFloat(document.getElementById('s-x1').value);
+            const y1 = parseFloat(document.getElementById('s-y1').value);
+            const x2 = parseFloat(document.getElementById('s-x2').value);
+            const y2 = parseFloat(document.getElementById('s-y2').value);
+            const m1 = parseFloat(document.getElementById('s-m1').value);
+            const m2 = parseFloat(document.getElementById('s-m2').value);
+            if ([x1,y1,x2,y2,m1,m2].some(isNaN)) return;
+            const x = (m1*x2 + m2*x1) / (m1 + m2);
+            const y = (m1*y2 + m2*y1) / (m1 + m2);
+            const result = document.getElementById('section-result');
+            result.textContent = 'Point P = (' + x.toFixed(4) + ', ' + y.toFixed(4) + ')';
+            result.classList.remove('hidden');
+        }
+
+        function calcMidpoint() {
+            const x1 = parseFloat(document.getElementById('m-x1').value);
+            const y1 = parseFloat(document.getElementById('m-y1').value);
+            const x2 = parseFloat(document.getElementById('m-x2').value);
+            const y2 = parseFloat(document.getElementById('m-y2').value);
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) return;
+            const mx = (x1 + x2) / 2;
+            const my = (y1 + y2) / 2;
+            const result = document.getElementById('mid-result');
+            result.textContent = 'Midpoint M = (' + mx.toFixed(4) + ', ' + my.toFixed(4) + ')';
+            result.classList.remove('hidden');
+        }
+
+        function checkCollinear() {
+            const x1 = parseFloat(document.getElementById('c-x1').value);
+            const y1 = parseFloat(document.getElementById('c-y1').value);
+            const x2 = parseFloat(document.getElementById('c-x2').value);
+            const y2 = parseFloat(document.getElementById('c-y2').value);
+            const x3 = parseFloat(document.getElementById('c-x3').value);
+            const y3 = parseFloat(document.getElementById('c-y3').value);
+            if ([x1,y1,x2,y2,x3,y3].some(isNaN)) return;
+            const area = 0.5 * Math.abs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2));
+            const result = document.getElementById('col-result');
+            if (area < 0.0001) {
+                result.textContent = 'Points are COLLINEAR (Area = 0)';
+                result.className = 'p-4 rounded-xl text-center font-bold bg-green-100 text-green-800';
+            } else {
+                result.textContent = 'Points are NOT collinear (Area = ' + area.toFixed(4) + ')';
+                result.className = 'p-4 rounded-xl text-center font-bold bg-red-100 text-red-800';
+            }
+            result.classList.remove('hidden');
+        }
+
+        // Graph visualization
+        function drawGraph() {
+            const canvas = document.getElementById('graphCanvas');
+            const ctx = canvas.getContext('2d');
+            const x1 = parseFloat(document.getElementById('g-x1').value) || 0;
+            const y1 = parseFloat(document.getElementById('g-y1').value) || 0;
+            const x2 = parseFloat(document.getElementById('g-x2').value) || 0;
+            const y2 = parseFloat(document.getElementById('g-y2').value) || 0;
+            const x3 = parseFloat(document.getElementById('g-x3').value);
+            const y3 = parseFloat(document.getElementById('g-y3').value);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const scale = 30;
+
+            // Draw grid
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            for (let i = -10; i <= 10; i++) {
+                ctx.beginPath();
+                ctx.moveTo(centerX + i*scale, 0);
+                ctx.lineTo(centerX + i*scale, canvas.height);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, centerY - i*scale);
+                ctx.lineTo(canvas.width, centerY - i*scale);
+                ctx.stroke();
+            }
+
+            // Draw axes
+            ctx.strokeStyle = '#374151';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, centerY);
+            ctx.lineTo(canvas.width, centerY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX, canvas.height);
+            ctx.stroke();
+
+            // Draw points
+            function drawPoint(x, y, label, color) {
+                const px = centerX + x * scale;
+                const py = centerY - y * scale;
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#1f2937';
+                ctx.font = 'bold 14px Inter';
+                ctx.fillText(label, px + 10, py - 10);
+            }
+
+            drawPoint(x1, y1, 'A', '#6366f1');
+            drawPoint(x2, y2, 'B', '#ec4899');
+            if (!isNaN(x3) && !isNaN(y3)) drawPoint(x3, y3, 'C', '#10b981');
+
+            // Draw line AB
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(centerX + x1*scale, centerY - y1*scale);
+            ctx.lineTo(centerX + x2*scale, centerY - y2*scale);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Update info
+            const dist = Math.sqrt((x2-x1)**2 + (y2-y1)**2).toFixed(4);
+            const midX = ((x1+x2)/2).toFixed(2);
+            const midY = ((y1+y2)/2).toFixed(2);
+            const info = document.getElementById('graph-info');
+            info.innerHTML = '<strong>Distance AB:</strong> ' + dist + ' units | <strong>Midpoint:</strong> (' + midX + ', ' + midY + ')';
+            info.classList.remove('hidden');
+        }
+
+        window.onload = function() {
+            drawGraph();
+        };
+    </script>
+
+<script>
+// Exercise 7.1 Data
+const ex71Data = [
+    {
+        id: 'q1',
+        question: 'Find the distance between the following pairs of points: (i) (2, 3), (4, 1) (ii) (-5, 7), (-1, 3) (iii) (a, b), (-a, -b)',
+        options: [
+            { id: 'a', text: '(i) sqrt(8), (ii) sqrt(32), (iii) 2*sqrt(a^2+b^2)' },
+            { id: 'b', text: '(i) 2*sqrt(2), (ii) 4*sqrt(2), (iii) 2*sqrt(a^2+b^2)' },
+            { id: 'c', text: '(i) sqrt(10), (ii) sqrt(20), (iii) sqrt(a^2+b^2)' },
+            { id: 'd', text: '(i) 4, (ii) 8, (iii) 2a+2b' }
+        ],
+        correct: 'b',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (i): Distance between (2, 3) and (4, 1)</p>
+            <p class="text-gray-700 mt-1">Using Distance Formula: d = sqrt[(x2-x1)^2 + (y2-y1)^2]</p>
+            <p class="text-gray-700">d = sqrt[(4-2)^2 + (1-3)^2] = sqrt[2^2 + (-2)^2] = sqrt[4 + 4] = sqrt(8) = <strong>2*sqrt(2)</strong></p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (ii): Distance between (-5, 7) and (-1, 3)</p>
+            <p class="text-gray-700 mt-1">d = sqrt[(-1-(-5))^2 + (3-7)^2] = sqrt[4^2 + (-4)^2] = sqrt[16 + 16] = sqrt(32) = <strong>4*sqrt(2)</strong></p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (iii): Distance between (a, b) and (-a, -b)</p>
+            <p class="text-gray-700 mt-1">d = sqrt[(-a-a)^2 + (-b-b)^2] = sqrt[(-2a)^2 + (-2b)^2] = sqrt[4a^2 + 4b^2] = sqrt[4(a^2+b^2)] = <strong>2*sqrt(a^2+b^2)</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'q2',
+        question: 'Find the distance between (0, 0) and (36, 15). Can you now find the distance between towns A and B discussed in Section 7.2?',
+        options: [
+            { id: 'a', text: '39 units; Town distance = 39 km' },
+            { id: 'b', text: '51 units; Town distance = 51 km' },
+            { id: 'c', text: '45 units; Town distance = 45 km' },
+            { id: 'd', text: '36 units; Town distance = 36 km' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Distance between (0, 0) and (36, 15)</p>
+            <p class="text-gray-700 mt-1">d = sqrt[(36-0)^2 + (15-0)^2] = sqrt[1296 + 225] = sqrt(1521) = <strong>39 units</strong></p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Distance between Towns A and B</p>
+            <p class="text-gray-700 mt-1">Town B is 36 km east and 15 km north of Town A.</p>
+            <p class="text-gray-700">Coordinates: A(0, 0), B(36, 15)</p>
+            <p class="text-gray-700">Distance = sqrt[(36)^2 + (15)^2] = sqrt(1521) = <strong>39 km</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'q3',
+        question: 'Determine if the points (1, 5), (2, 3) and (-2, -11) are collinear.',
+        options: [
+            { id: 'a', text: 'Yes, they are collinear' },
+            { id: 'b', text: 'No, they are not collinear' },
+            { id: 'c', text: 'Cannot be determined' },
+            { id: 'd', text: 'They form a right triangle' }
+        ],
+        correct: 'b',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Let A = (1, 5), B = (2, 3), C = (-2, -11)</p>
+            <p class="text-gray-700 mt-1">AB = sqrt[(2-1)^2 + (3-5)^2] = sqrt[1 + 4] = <strong>sqrt(5) approx 2.24</strong></p>
+            <p class="text-gray-700">BC = sqrt[(-2-2)^2 + (-11-3)^2] = sqrt[16 + 196] = sqrt(212) = <strong>2*sqrt(53) approx 14.56</strong></p>
+            <p class="text-gray-700">AC = sqrt[(-2-1)^2 + (-11-5)^2] = sqrt[9 + 256] = <strong>sqrt(265) approx 16.28</strong></p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Check Collinearity</p>
+            <p class="text-gray-700 mt-1">For collinearity: AB + BC = AC</p>
+            <p class="text-gray-700">sqrt(5) + 2*sqrt(53) approx 2.24 + 14.56 = 16.80</p>
+            <p class="text-gray-700">AC = sqrt(265) approx 16.28</p>
+            <p class="text-gray-700">Since AB + BC is not equal to AC, points are <strong>NOT collinear</strong>.</p></div>
+        </div>`
+    },
+    {
+        id: 'q4',
+        question: 'Check whether (5, -2), (6, 4) and (7, -2) are the vertices of an isosceles triangle.',
+        options: [
+            { id: 'a', text: 'Yes, AB = BC = sqrt(37)' },
+            { id: 'b', text: 'Yes, AB = AC' },
+            { id: 'c', text: 'No, all sides are different' },
+            { id: 'd', text: 'Yes, it is equilateral' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Let A = (5, -2), B = (6, 4), C = (7, -2)</p>
+            <p class="text-gray-700 mt-1">AB = sqrt[(6-5)^2 + (4-(-2))^2] = sqrt[1 + 36] = <strong>sqrt(37)</strong></p>
+            <p class="text-gray-700">BC = sqrt[(7-6)^2 + (-2-4)^2] = sqrt[1 + 36] = <strong>sqrt(37)</strong></p>
+            <p class="text-gray-700">AC = sqrt[(7-5)^2 + (-2-(-2))^2] = sqrt[4 + 0] = <strong>2</strong></p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Conclusion</p>
+            <p class="text-gray-700 mt-1">Since AB = BC = sqrt(37), two sides are equal.</p>
+            <p class="text-gray-700">Therefore, it is an <strong>isosceles triangle</strong>.</p></div>
+        </div>`
+    },
+    {
+        id: 'q5',
+        question: 'In a classroom, 4 friends are seated at A(3,4), B(6,7), C(9,4), D(6,1). Champa says ABCD is a square. Chameli disagrees. Who is correct?',
+        options: [
+            { id: 'a', text: 'Champa is correct - It is a square' },
+            { id: 'b', text: 'Chameli is correct - It is a rectangle' },
+            { id: 'c', text: 'It is a rhombus, not a square' },
+            { id: 'd', text: 'It is just a quadrilateral' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Calculate all sides:</p>
+            <p class="text-gray-700 mt-1">AB = sqrt[(6-3)^2 + (7-4)^2] = sqrt[9+9] = sqrt(18) = 3*sqrt(2)</p>
+            <p class="text-gray-700">BC = sqrt[(9-6)^2 + (4-7)^2] = sqrt[9+9] = sqrt(18) = 3*sqrt(2)</p>
+            <p class="text-gray-700">CD = sqrt[(6-9)^2 + (1-4)^2] = sqrt[9+9] = sqrt(18) = 3*sqrt(2)</p>
+            <p class="text-gray-700">DA = sqrt[(3-6)^2 + (4-1)^2] = sqrt[9+9] = sqrt(18) = 3*sqrt(2)</p>
+            <p class="text-gray-700 font-semibold mt-2">All sides equal</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Calculate diagonals:</p>
+            <p class="text-gray-700 mt-1">AC = sqrt[(9-3)^2 + (4-4)^2] = sqrt(36) = 6</p>
+            <p class="text-gray-700">BD = sqrt[(6-6)^2 + (1-7)^2] = sqrt(36) = 6</p>
+            <p class="text-gray-700 font-semibold mt-2">Diagonals equal</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Conclusion</p>
+            <p class="text-gray-700 mt-1">All sides equal AND diagonals equal means <strong>Square</strong></p>
+            <p class="text-gray-700"><strong>Champa is correct!</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'q6',
+        question: 'Name the type of quadrilateral formed by: (i) (-1,-2),(1,0),(-1,2),(-3,0) (ii) (-3,5),(3,1),(0,3),(-1,-4) (iii) (4,5),(7,6),(4,3),(1,2)',
+        options: [
+            { id: 'a', text: '(i) Square (ii) No special name (iii) Parallelogram' },
+            { id: 'b', text: '(i) Rectangle (ii) Trapezium (iii) Rhombus' },
+            { id: 'c', text: '(i) Rhombus (ii) Square (iii) Rectangle' },
+            { id: 'd', text: 'All are parallelograms' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (i): (-1,-2), (1,0), (-1,2), (-3,0)</p>
+            <p class="text-gray-700 mt-1">All sides = sqrt[(1-(-1))^2 + (0-(-2))^2] = sqrt(8) = 2*sqrt(2) (equal)</p>
+            <p class="text-gray-700">Diagonals: AC = 4, BD = 4 (equal)</p>
+            <p class="text-gray-700 font-semibold">Result: Square</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (ii): (-3,5), (3,1), (0,3), (-1,-4)</p>
+            <p class="text-gray-700 mt-1">AB = sqrt(52), BC = sqrt(13), CD = sqrt(26), DA = sqrt(85)</p>
+            <p class="text-gray-700">All sides different, no pattern</p>
+            <p class="text-gray-700 font-semibold">Result: No special quadrilateral</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Part (iii): (4,5), (7,6), (4,3), (1,2)</p>
+            <p class="text-gray-700 mt-1">AB = CD = sqrt(10), BC = DA = sqrt(10) (opposite sides equal)</p>
+            <p class="text-gray-700">Diagonals: AC = 2, BD = sqrt(52) (not equal)</p>
+            <p class="text-gray-700 font-semibold">Result: Parallelogram (not rectangle)</p></div>
+        </div>`
+    },
+    {
+        id: 'q7',
+        question: 'Find the point on the x-axis which is equidistant from (2, -5) and (-2, 9).',
+        options: [
+            { id: 'a', text: '(-7, 0)' },
+            { id: 'b', text: '(7, 0)' },
+            { id: 'c', text: '(0, -7)' },
+            { id: 'd', text: '(-5, 0)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Let point be (x, 0) on x-axis</p>
+            <p class="text-gray-700 mt-1">Distance from (2, -5) = Distance from (-2, 9)</p>
+            <p class="text-gray-700">sqrt[(x-2)^2 + (0-(-5))^2] = sqrt[(x-(-2))^2 + (0-9)^2]</p>
+            <p class="text-gray-700">sqrt[(x-2)^2 + 25] = sqrt[(x+2)^2 + 81]</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Square both sides:</p>
+            <p class="text-gray-700 mt-1">(x-2)^2 + 25 = (x+2)^2 + 81</p>
+            <p class="text-gray-700">x^2 - 4x + 4 + 25 = x^2 + 4x + 4 + 81</p>
+            <p class="text-gray-700">-4x + 29 = 4x + 85</p>
+            <p class="text-gray-700">-8x = 56</p>
+            <p class="text-gray-700 font-bold">x = -7</p></div>
+        </div>`
+    },
+    {
+        id: 'q8',
+        question: 'Find values of y for which distance between P(2, -3) and Q(10, y) is 10 units.',
+        options: [
+            { id: 'a', text: 'y = 3 or y = -9' },
+            { id: 'b', text: 'y = 3 or y = 9' },
+            { id: 'c', text: 'y = -3 or y = -9' },
+            { id: 'd', text: 'y = 0 or y = 6' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Given: PQ = 10</p>
+            <p class="text-gray-700 mt-1">sqrt[(10-2)^2 + (y-(-3))^2] = 10</p>
+            <p class="text-gray-700">sqrt[64 + (y+3)^2] = 10</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Square both sides:</p>
+            <p class="text-gray-700 mt-1">64 + (y+3)^2 = 100</p>
+            <p class="text-gray-700">(y+3)^2 = 36</p>
+            <p class="text-gray-700">y+3 = plus or minus 6</p>
+            <p class="text-gray-700">y = 6-3 = <strong>3</strong> or y = -6-3 = <strong>-9</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'q9',
+        question: 'If Q(0,1) is equidistant from P(5,-3) and R(x,6), find x and distances QR, PR.',
+        options: [
+            { id: 'a', text: 'x = plus or minus 4, QR = sqrt(41), PR = sqrt(82)' },
+            { id: 'b', text: 'x = plus or minus 3, QR = sqrt(52), PR = sqrt(104)' },
+            { id: 'c', text: 'x = plus or minus 5, QR = sqrt(50), PR = sqrt(100)' },
+            { id: 'd', text: 'x = plus or minus 2, QR = sqrt(37), PR = sqrt(74)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Given: PQ = RQ</p>
+            <p class="text-gray-700 mt-1">PQ = sqrt[(5-0)^2 + (-3-1)^2] = sqrt[25 + 16] = <strong>sqrt(41)</strong></p>
+            <p class="text-gray-700">RQ = sqrt[(x-0)^2 + (6-1)^2] = sqrt[x^2 + 25]</p>
+            <p class="text-gray-700">Setting equal: sqrt(41) = sqrt[x^2 + 25]</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Solve for x:</p>
+            <p class="text-gray-700 mt-1">41 = x^2 + 25</p>
+            <p class="text-gray-700">x^2 = 16</p>
+            <p class="text-gray-700 font-bold">x = plus or minus 4</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Distances:</p>
+            <p class="text-gray-700 mt-1">QR = sqrt(41) (same as PQ)</p>
+            <p class="text-gray-700">PR = sqrt[(5-4)^2 + (-3-6)^2] = sqrt[1 + 81] = <strong>sqrt(82)</strong> (when x=4)</p></div>
+        </div>`
+    },
+    {
+        id: 'q10',
+        question: 'Find relation between x and y such that (x,y) is equidistant from (3,6) and (-3,4).',
+        options: [
+            { id: 'a', text: '3x + y = 5' },
+            { id: 'b', text: '3x - y = 5' },
+            { id: 'c', text: 'x + 3y = 5' },
+            { id: 'd', text: 'x - 3y = 5' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card"><p class="font-semibold text-indigo-800">Let A = (3, 6), B = (-3, 4), P = (x, y)</p>
+            <p class="text-gray-700 mt-1">PA = PB (equidistant)</p>
+            <p class="text-gray-700">sqrt[(x-3)^2 + (y-6)^2] = sqrt[(x+3)^2 + (y-4)^2]</p></div>
+            <div class="step-card"><p class="font-semibold text-indigo-800">Square both sides:</p>
+            <p class="text-gray-700 mt-1">(x-3)^2 + (y-6)^2 = (x+3)^2 + (y-4)^2</p>
+            <p class="text-gray-700">x^2 - 6x + 9 + y^2 - 12y + 36 = x^2 + 6x + 9 + y^2 - 8y + 16</p>
+            <p class="text-gray-700">-6x - 12y + 45 = 6x - 8y + 25</p>
+            <p class="text-gray-700">-12x - 4y + 20 = 0</p>
+            <p class="text-gray-700 font-bold">3x + y = 5</p></div>
+        </div>`
+    }
+];
+
+// Exercise 7.2 Data
+const ex72Data = [
+    {
+        id: 'e2q1',
+        question: 'Find coordinates of point dividing join of (-1, 7) and (4, -3) in ratio 2:3.',
+        options: [
+            { id: 'a', text: '(1, 3)' },
+            { id: 'b', text: '(2, 1)' },
+            { id: 'c', text: '(0, 2)' },
+            { id: 'd', text: '(3, 0)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Given: A(-1, 7), B(4, -3), Ratio m1:m2 = 2:3</p>
+            <p class="text-gray-700 mt-1">Using Section Formula:</p>
+            <p class="text-gray-700">x = (m1*x2 + m2*x1)/(m1+m2) = (2*4 + 3*(-1))/(2+3) = (8-3)/5 = 5/5 = <strong>1</strong></p>
+            <p class="text-gray-700">y = (m1*y2 + m2*y1)/(m1+m2) = (2*(-3) + 3*7)/5 = (-6+21)/5 = 15/5 = <strong>3</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'e2q2',
+        question: 'Find coordinates of points of trisection of line segment joining (4, -1) and (-2, -3).',
+        options: [
+            { id: 'a', text: '(2, -5/3) and (0, -7/3)' },
+            { id: 'b', text: '(3, -2) and (1, -3)' },
+            { id: 'c', text: '(2, -2) and (0, -3)' },
+            { id: 'd', text: '(3, -5/3) and (1, -7/3)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Trisection means dividing in ratio 1:2 and 2:1</p>
+            <p class="text-gray-700 mt-1"><strong>First point P</strong> (ratio 1:2 from A):</p>
+            <p class="text-gray-700">x = (1*(-2) + 2*4)/(1+2) = (-2+8)/3 = 6/3 = <strong>2</strong></p>
+            <p class="text-gray-700">y = (1*(-3) + 2*(-1))/(1+2) = (-3-2)/3 = -5/3</p>
+            <p class="text-gray-700">P = <strong>(2, -5/3)</strong></p></div>
+            <div class="step-card border-l-purple-500">
+            <p class="text-gray-700 mt-1"><strong>Second point Q</strong> (ratio 2:1 from A):</p>
+            <p class="text-gray-700">x = (2*(-2) + 1*4)/(2+1) = (-4+4)/3 = <strong>0</strong></p>
+            <p class="text-gray-700">y = (2*(-3) + 1*(-1))/(2+1) = (-6-1)/3 = -7/3</p>
+            <p class="text-gray-700">Q = <strong>(0, -7/3)</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'e2q3',
+        question: 'Niharika posts green flag at 1/4th of AD on 2nd line. Preet posts red flag at 1/5th of AD on 8th line. Find distance between flags and position of blue flag halfway between them.',
+        options: [
+            { id: 'a', text: 'Distance = sqrt(41) m, Blue flag at (5, 22.5)' },
+            { id: 'b', text: 'Distance = sqrt(61) m, Blue flag at (5, 22.5)' },
+            { id: 'c', text: 'Distance = sqrt(41) m, Blue flag at (5, 20)' },
+            { id: 'd', text: 'Distance = sqrt(61) m, Blue flag at (5, 25)' }
+        ],
+        correct: 'b',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Setting up coordinates (A at origin)</p>
+            <p class="text-gray-700 mt-1">AD has 100 flower pots at 1m intervals, so AD = 100m</p>
+            <p class="text-gray-700">Green flag (Niharika): 2nd line, 1/4 * 100 = 25m -> <strong>(2, 25)</strong></p>
+            <p class="text-gray-700">Red flag (Preet): 8th line, 1/5 * 100 = 20m -> <strong>(8, 20)</strong></p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Distance between flags:</p>
+            <p class="text-gray-700 mt-1">d = sqrt[(8-2)^2 + (20-25)^2] = sqrt[36 + 25] = <strong>sqrt(61) m</strong></p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Blue flag (midpoint):</p>
+            <p class="text-gray-700 mt-1">x = (2+8)/2 = <strong>5</strong></p>
+            <p class="text-gray-700">y = (25+20)/2 = <strong>22.5</strong></p>
+            <p class="text-gray-700">Blue flag at <strong>(5, 22.5)</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'e2q4',
+        question: 'Find ratio in which line segment joining (-3, 10) and (6, -8) is divided by (-1, 6).',
+        options: [
+            { id: 'a', text: '2:7 internally' },
+            { id: 'b', text: '7:2 internally' },
+            { id: 'c', text: '2:7 externally' },
+            { id: 'd', text: '7:2 externally' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Let ratio be k:1</p>
+            <p class="text-gray-700 mt-1">Using section formula for x-coordinate:</p>
+            <p class="text-gray-700">-1 = (k*6 + 1*(-3))/(k+1)</p>
+            <p class="text-gray-700">-1(k+1) = 6k - 3</p>
+            <p class="text-gray-700">-k - 1 = 6k - 3</p>
+            <p class="text-gray-700">2 = 7k</p>
+            <p class="text-gray-700 font-bold">k = 2/7</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Ratio = 2/7 : 1 = 2:7</p>
+            <p class="text-gray-700 mt-1">Verify with y-coordinate:</p>
+            <p class="text-gray-700">y = (2*(-8) + 7*10)/(2+7) = (-16+70)/9 = 54/9 = 6</p>
+            <p class="text-gray-700 font-bold">Ratio is 2:7 internally</p></div>
+        </div>`
+    },
+    {
+        id: 'e2q5',
+        question: 'Find ratio in which x-axis divides line segment joining A(1, -5) and B(-4, 5). Also find coordinates of division point.',
+        options: [
+            { id: 'a', text: '1:1 at (-3/2, 0)' },
+            { id: 'b', text: '2:3 at (-1, 0)' },
+            { id: 'c', text: '1:1 at (-1.5, 0)' },
+            { id: 'd', text: '3:2 at (-2, 0)' }
+        ],
+        correct: 'c',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Let ratio be k:1</p>
+            <p class="text-gray-700 mt-1">Point on x-axis has y-coordinate = 0</p>
+            <p class="text-gray-700">Using section formula for y:</p>
+            <p class="text-gray-700">0 = (k*5 + 1*(-5))/(k+1)</p>
+            <p class="text-gray-700">0 = 5k - 5</p>
+            <p class="text-gray-700 font-bold">k = 1</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Ratio = 1:1</p>
+            <p class="text-gray-700 mt-1">x-coordinate = (1*(-4) + 1*1)/(1+1) = (-4+1)/2 = -3/2 = <strong>-1.5</strong></p>
+            <p class="text-gray-700 font-bold">Point = (-3/2, 0) or (-1.5, 0)</p></div>
+        </div>`
+    },
+    {
+        id: 'e2q6',
+        question: 'If (1, 2), (4, y), (x, 6) and (3, 5) are vertices of a parallelogram in order, find x and y.',
+        options: [
+            { id: 'a', text: 'x = 6, y = 3' },
+            { id: 'b', text: 'x = 5, y = 4' },
+            { id: 'c', text: 'x = 6, y = 4' },
+            { id: 'd', text: 'x = 5, y = 3' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">In parallelogram, diagonals bisect each other</p>
+            <p class="text-gray-700 mt-1">Midpoint of AC = Midpoint of BD</p>
+            <p class="text-gray-700">A(1,2), B(4,y), C(x,6), D(3,5)</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">For x-coordinate:</p>
+            <p class="text-gray-700 mt-1">(1+x)/2 = (4+3)/2</p>
+            <p class="text-gray-700">1+x = 7</p>
+            <p class="text-gray-700 font-bold">x = 6</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">For y-coordinate:</p>
+            <p class="text-gray-700 mt-1">(2+6)/2 = (y+5)/2</p>
+            <p class="text-gray-700">8 = y+5</p>
+            <p class="text-gray-700 font-bold">y = 3</p></div>
+        </div>`
+    },
+    {
+        id: 'e2q7',
+        question: 'Find coordinates of point A where AB is diameter of circle with centre (2, -3) and B is (1, 4).',
+        options: [
+            { id: 'a', text: '(3, -10)' },
+            { id: 'b', text: '(3, 10)' },
+            { id: 'c', text: '(-3, -10)' },
+            { id: 'd', text: '(-3, 10)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Centre is midpoint of diameter AB</p>
+            <p class="text-gray-700 mt-1">Let A = (x, y), B = (1, 4), Centre = (2, -3)</p>
+            <p class="text-gray-700">Midpoint formula: ((x+1)/2, (y+4)/2) = (2, -3)</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Solve for x:</p>
+            <p class="text-gray-700 mt-1">(x+1)/2 = 2</p>
+            <p class="text-gray-700">x+1 = 4</p>
+            <p class="text-gray-700 font-bold">x = 3</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Solve for y:</p>
+            <p class="text-gray-700 mt-1">(y+4)/2 = -3</p>
+            <p class="text-gray-700">y+4 = -6</p>
+            <p class="text-gray-700 font-bold">y = -10</p></div>
+        </div>`
+    },
+    {
+        id: 'e2q8',
+        question: 'If A(-2, -2) and B(2, -4), find P such that AP = (3/7)AB and P lies on AB.',
+        options: [
+            { id: 'a', text: '(-2/7, -20/7)' },
+            { id: 'b', text: '(2/7, -20/7)' },
+            { id: 'c', text: '(-2/7, 20/7)' },
+            { id: 'd', text: '(2/7, 20/7)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">AP = (3/7)AB means AP:PB = 3:4</p>
+            <p class="text-gray-700 mt-1">Because AP + PB = AB, so PB = AB - (3/7)AB = (4/7)AB</p>
+            <p class="text-gray-700">Therefore ratio AP:PB = 3:4</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Using section formula with m1:m2 = 3:4</p>
+            <p class="text-gray-700 mt-1">x = (3*2 + 4*(-2))/(3+4) = (6-8)/7 = -2/7</p>
+            <p class="text-gray-700">y = (3*(-4) + 4*(-2))/(3+4) = (-12-8)/7 = -20/7</p>
+            <p class="text-gray-700 font-bold">P = (-2/7, -20/7)</p></div>
+        </div>`
+    },
+    {
+        id: 'e2q9',
+        question: 'Find coordinates of points which divide line segment joining A(-2, 2) and B(2, 8) into four equal parts.',
+        options: [
+            { id: 'a', text: '(-1, 7/2), (0, 5), (1, 13/2)' },
+            { id: 'b', text: '(-1, 3), (0, 5), (1, 7)' },
+            { id: 'c', text: '(-1, 7/2), (0, 4), (1, 13/2)' },
+            { id: 'd', text: '(-3/2, 3), (0, 5), (3/2, 7)' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Four equal parts means ratios 1:3, 1:1, 3:1</p>
+            <p class="text-gray-700 mt-1"><strong>Point P</strong> (ratio 1:3 from A):</p>
+            <p class="text-gray-700">x = (1*2 + 3*(-2))/(1+3) = (2-6)/4 = -1</p>
+            <p class="text-gray-700">y = (1*8 + 3*2)/(1+3) = (8+6)/4 = 14/4 = 7/2</p>
+            <p class="text-gray-700">P = <strong>(-1, 7/2)</strong></p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800"><strong>Point Q</strong> (midpoint, ratio 1:1):</p>
+            <p class="text-gray-700 mt-1">x = (-2+2)/2 = <strong>0</strong></p>
+            <p class="text-gray-700">y = (2+8)/2 = <strong>5</strong></p>
+            <p class="text-gray-700">Q = <strong>(0, 5)</strong></p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800"><strong>Point R</strong> (ratio 3:1 from A):</p>
+            <p class="text-gray-700 mt-1">x = (3*2 + 1*(-2))/(3+1) = (6-2)/4 = 1</p>
+            <p class="text-gray-700">y = (3*8 + 1*2)/(3+1) = (24+2)/4 = 26/4 = 13/2</p>
+            <p class="text-gray-700">R = <strong>(1, 13/2)</strong></p></div>
+        </div>`
+    },
+    {
+        id: 'e2q10',
+        question: 'Find area of rhombus if vertices are (3,0), (4,5), (-1,4) and (-2,-1) in order.',
+        options: [
+            { id: 'a', text: '24 square units' },
+            { id: 'b', text: '12 square units' },
+            { id: 'c', text: '20 square units' },
+            { id: 'd', text: '30 square units' }
+        ],
+        correct: 'a',
+        solution: `<div class="space-y-3">
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Area of rhombus = 1/2 * d1 * d2</p>
+            <p class="text-gray-700 mt-1">Let A(3,0), B(4,5), C(-1,4), D(-2,-1)</p>
+            <p class="text-gray-700">Diagonal AC = sqrt[(-1-3)^2 + (4-0)^2] = sqrt[16+16] = sqrt(32) = 4*sqrt(2)</p>
+            <p class="text-gray-700">Diagonal BD = sqrt[(-2-4)^2 + (-1-5)^2] = sqrt[36+36] = sqrt(72) = 6*sqrt(2)</p></div>
+            <div class="step-card border-l-purple-500"><p class="font-semibold text-purple-800">Calculate Area:</p>
+            <p class="text-gray-700 mt-1">Area = 1/2 * 4*sqrt(2) * 6*sqrt(2)</p>
+            <p class="text-gray-700">Area = 1/2 * 24 * 2 = <strong>24 square units</strong></p></div>
+        </div>`
+    }
+];
+
+// Function to render exercises
+function renderExercises(containerId, data) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    data.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow-lg overflow-hidden';
+
+        let optionsHtml = '';
+        q.options.forEach(opt => {
+            optionsHtml += `
+                <button onclick="showSolution('${q.id}', '${opt.id}')" class="option-btn w-full text-left px-4 py-3 rounded-xl flex items-center mb-2" id="${q.id}-opt-${opt.id}">
+                    <span class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center mr-3 font-bold">${opt.id.toUpperCase()}</span>
+                    <span>${opt.text}</span>
+                </button>
+            `;
+        });
+
+        card.innerHTML = `
+            <div class="p-6">
+                <div class="flex items-start mb-4">
+                    <span class="bg-indigo-600 text-white rounded-lg px-3 py-1 font-bold mr-3">Q${index + 1}</span>
+                    <p class="text-lg font-semibold text-gray-800">${q.question}</p>
+                </div>
+                <div class="ml-12 space-y-2">
+                    ${optionsHtml}
+                </div>
+            </div>
+            <div id="solution-${q.id}" class="solution-reveal bg-gray-50 px-6">
+                <div class="py-6 border-t">
+                    <h3 class="font-bold text-lg text-gray-800 mb-4"><i class="fas fa-lightbulb mr-2 text-indigo-600"></i>Step-by-Step Solution</h3>
+                    ${q.solution}
+                    <div class="mt-4 p-4 bg-green-100 rounded-xl">
+                        <p class="text-green-800 font-bold"><i class="fas fa-check-circle mr-2"></i>Correct Answer: Option ${q.correct.toUpperCase()}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+// MCQ Solution reveal
+function showSolution(qid, option) {
+    // Find correct answer from data
+    let correct = '';
+    let allData = [...ex71Data, ...ex72Data];
+    for (let q of allData) {
+        if (q.id === qid) {
+            correct = q.correct;
+            break;
+        }
+    }
+
+    // Reset all options for this question
+    document.querySelectorAll('[id^="' + qid + '-opt-"]').forEach(btn => {
+        btn.classList.remove('correct', 'wrong');
+    });
+
+    // Mark selected option
+    const selectedBtn = document.getElementById(qid + '-opt-' + option);
+    if (correct === option) {
+        selectedBtn.classList.add('correct');
+    } else {
+        selectedBtn.classList.add('wrong');
+        // Show correct answer
+        document.getElementById(qid + '-opt-' + correct).classList.add('correct');
+    }
+
+    // Show solution
+    document.getElementById('solution-' + qid).classList.add('show');
+}
+
+// Render exercises on page load
+document.addEventListener('DOMContentLoaded', function() {
+    renderExercises('ex71-container', ex71Data);
+    renderExercises('ex72-container', ex72Data);
+});
+</script>
+
+</body>
+</html>

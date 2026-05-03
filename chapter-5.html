@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 10 - Chapter 5: Arithmetic Progressions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .nav-container {
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        .nav-container h1 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .nav-container p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.15);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        .section { margin-bottom: 3rem; }
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover { box-shadow: var(--shadow-lg); }
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .note-card {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-left: 4px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: 8px;
+        }
+        .note-card h3 {
+            color: var(--primary-dark);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.8);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+        .question-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .q-badge {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .question-text {
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.6;
+            flex: 1;
+        }
+        .sub-parts { margin-left: 2.5rem; margin-top: 0.75rem; }
+        .sub-part {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .option {
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+        }
+        .option:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .option.correct {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+        .option.wrong {
+            border-color: var(--danger);
+            background: var(--danger-light);
+        }
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .option.correct .option-letter {
+            background: var(--success);
+            color: white;
+        }
+        .option.wrong .option-letter {
+            background: var(--danger);
+            color: white;
+        }
+        .solution-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .solution-toggle:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .solution {
+            display: none;
+            margin-top: 1rem;
+            padding: 1.25rem;
+            background: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .solution.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .solution h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+        .step {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            border-left: 2px solid #bfdbfe;
+        }
+        .step-number {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .calculator {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .calculator h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .input-group {
+            margin-bottom: 0.875rem;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.375rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.625rem 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .calc-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .calc-btn:hover { background: var(--primary-dark); }
+        .calc-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--primary-light);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--primary-dark);
+            display: none;
+        }
+        .calc-result.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        .math {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f1f5f9;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            border: none;
+            font-size: 1.25rem;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        .ex54-badge {
+            display: inline-block;
+            background: var(--warning-light);
+            color: var(--warning);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        @media (max-width: 640px) {
+            .nav-container { padding: 1rem; }
+            .nav-container h1 { font-size: 1.4rem; }
+            .container { padding: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .notes-grid { grid-template-columns: 1fr; }
+            .calc-grid { grid-template-columns: 1fr; }
+        }
+    
+        /* Section Navigation Bar */
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.6rem 1rem;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
+            border: 1px solid #bae6fd;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        }
+        .section-nav-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-right: 0.5rem;
+        }
+        .section-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: white;
+            border: 1px solid #bfdbfe;
+            transition: all 0.15s;
+        }
+        .section-nav a:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="nav-container">
+    <h1>📐 Arithmetic Progressions</h1>
+    <p>NCERT Class 10 Mathematics — Chapter 5 (Exercises 5.1 to 5.4)</p>
+    <div class="nav-links">
+        <a href="#notes">📝 Important Notes</a>
+        <a href="#ex51">Exercise 5.1</a>
+        <a href="#ex52">Exercise 5.2</a>
+        <a href="#ex53">Exercise 5.3</a>
+        <a href="#ex54">Exercise 5.4</a>
+        <a href="#calculators">🧮 Calculators</a>
+    </div>
+</div>
+
+<div class="container">
+
+<section class="section" id="notes">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">Important Notes & Formulas</h2>
+    <div class="notes-grid">
+        <div class="note-card">
+            <h3>🔑 Definition of AP</h3>
+            <p>A sequence <span class="math">a₁, a₂, a₃, ...</span> is an AP if the difference between consecutive terms is constant.</p>
+            <p style="margin-top:0.5rem"><strong>Condition:</strong> <span class="formula">a₂ − a₁ = a₃ − a₂ = ... = d</span></p>
+        </div>
+        <div class="note-card">
+            <h3>📐 nth Term Formula</h3>
+            <p>The nth term of an AP with first term <span class="math">a</span> and common difference <span class="math">d</span>:</p>
+            <p><span class="formula">aₙ = a + (n − 1)d</span></p>
+        </div>
+        <div class="note-card">
+            <h3>➕ Sum of n Terms</h3>
+            <p>Two equivalent formulas:</p>
+            <p><span class="formula">Sₙ = n/2 [2a + (n−1)d]</span></p>
+            <p><span class="formula">Sₙ = n/2 [a + l]</span> (where <span class="math">l</span> = last term)</p>
+        </div>
+        <div class="note-card">
+            <h3>🎯 Key Properties</h3>
+            <p>• If terms are in AP, then <span class="math">aₙ − aₘ = (n−m)d</span></p>
+            <p>• <span class="math">d = (aₙ − aₘ)/(n − m)</span></p>
+            <p>• If <span class="math">Sₙ</span> is given, <span class="math">aₙ = Sₙ − Sₙ₋₁</span></p>
+        </div>
+        <div class="note-card">
+            <h3>📊 Common Difference</h3>
+            <p>Always calculate:</p>
+            <p><span class="formula">d = a₂ − a₁ = a₃ − a₂</span></p>
+            <p>If differences are not equal, the sequence is <strong>not</strong> an AP.</p>
+        </div>
+        <div class="note-card">
+            <h3>💡 Quick Tips</h3>
+            <p>• For word problems, identify <span class="math">a</span> and <span class="math">d</span> first</p>
+            <p>• "Sum of first n terms" → use <span class="math">Sₙ</span> formula</p>
+            <p>• "Which term" → set <span class="math">aₙ = value</span> and solve for <span class="math">n</span></p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="ex51">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">Exercise 5.1</h2>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">1</div>
+            <div class="question-text">In which of the following situations does the list of numbers involved make an arithmetic progression, and why?</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> The taxi fare after each km when the fare is ₹15 for the first km and ₹8 for each additional km.<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, true, 'q1i')"><div class="option-letter">A</div><div>Yes, it forms an AP with <span class="math">a = 15, d = 8</span></div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1i')"><div class="option-letter">B</div><div>No, it does not form an AP</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1i')"><div class="option-letter">C</div><div>Yes, with <span class="math">a = 15, d = 15</span></div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1i')"><div class="option-letter">D</div><div>Yes, with <span class="math">a = 8, d = 15</span></div></div>
+                </div>
+                <div class="solution" id="q1i-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> Fare for 1st km = ₹15</div>
+                    <div class="step"><span class="step-number">Step 2:</span> Fare for 2nd km = ₹15 + ₹8 = ₹23</div>
+                    <div class="step"><span class="step-number">Step 3:</span> Fare for 3rd km = ₹23 + ₹8 = ₹31</div>
+                    <div class="step"><span class="step-number">Step 4:</span> Sequence: 15, 23, 31, ...</div>
+                    <div class="step"><span class="step-number">Step 5:</span> <span class="math">d = 23 − 15 = 8</span> and <span class="math">31 − 23 = 8</span></div>
+                    <div class="step"><span class="step-number">Conclusion:</span> <strong>Yes, it forms an AP</strong> with first term <span class="math">a = 15</span> and common difference <span class="math">d = 8</span>.</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> The amount of air present in a cylinder when a vacuum pump removes 1/4 of the air remaining in the cylinder at a time.<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false, 'q1ii')"><div class="option-letter">A</div><div>Yes, it forms an AP</div></div>
+                    <div class="option" onclick="checkMCQ(this, true, 'q1ii')"><div class="option-letter">B</div><div>No, it does not form an AP (it forms a GP)</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1ii')"><div class="option-letter">C</div><div>Yes, with decreasing difference</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1ii')"><div class="option-letter">D</div><div>Cannot be determined</div></div>
+                </div>
+                <div class="solution" id="q1ii-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> Let initial air = <span class="math">V</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> After 1st pump: <span class="math">V − V/4 = 3V/4</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> After 2nd pump: <span class="math">3V/4 × 3/4 = 9V/16</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> Sequence: <span class="math">V, 3V/4, 9V/16, ...</span></div>
+                    <div class="step"><span class="step-number">Step 5:</span> Differences: <span class="math">−V/4, −3V/16</span> (not equal)</div>
+                    <div class="step"><span class="step-number">Conclusion:</span> <strong>No, it does not form an AP.</strong> It forms a Geometric Progression (GP) with common ratio <span class="math">r = 3/4</span>.</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> The cost of digging a well after every metre of digging, when it costs ₹150 for the first metre and rises by ₹50 for each subsequent metre.<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, true, 'q1iii')"><div class="option-letter">A</div><div>Yes, with <span class="math">a = 150, d = 50</span></div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iii')"><div class="option-letter">B</div><div>No, cost increases non-uniformly</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iii')"><div class="option-letter">C</div><div>Yes, with <span class="math">a = 50, d = 150</span></div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iii')"><div class="option-letter">D</div><div>Yes, with <span class="math">a = 150, d = 200</span></div></div>
+                </div>
+                <div class="solution" id="q1iii-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> Cost for 1st metre = ₹150</div>
+                    <div class="step"><span class="step-number">Step 2:</span> Cost for 2nd metre = ₹150 + ₹50 = ₹200</div>
+                    <div class="step"><span class="step-number">Step 3:</span> Cost for 3rd metre = ₹200 + ₹50 = ₹250</div>
+                    <div class="step"><span class="step-number">Step 4:</span> Sequence: 150, 200, 250, ...</div>
+                    <div class="step"><span class="step-number">Step 5:</span> <span class="math">d = 200 − 150 = 50</span></div>
+                    <div class="step"><span class="step-number">Conclusion:</span> <strong>Yes, it forms an AP</strong> with <span class="math">a = 150, d = 50</span>.</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> The amount of money in the account every year, when ₹10000 is deposited at compound interest at 8% per annum.<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iv')"><div class="option-letter">A</div><div>Yes, it forms an AP with <span class="math">d = 800</span></div></div>
+                    <div class="option" onclick="checkMCQ(this, true, 'q1iv')"><div class="option-letter">B</div><div>No, compound interest does not form an AP</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iv')"><div class="option-letter">C</div><div>Yes, with constant ratio</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q1iv')"><div class="option-letter">D</div><div>Only simple interest forms AP</div></div>
+                </div>
+                <div class="solution" id="q1iv-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> Principal = ₹10000, Rate = 8% p.a.</div>
+                    <div class="step"><span class="step-number">Step 2:</span> After 1 year: <span class="math">10000 × 1.08 = 10800</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> After 2 years: <span class="math">10800 × 1.08 = 11664</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> After 3 years: <span class="math">11664 × 1.08 = 12597.12</span></div>
+                    <div class="step"><span class="step-number">Step 5:</span> Differences: 800, 864, 933.12 (not equal)</div>
+                    <div class="step"><span class="step-number">Conclusion:</span> <strong>No, it does not form an AP.</strong> Compound interest grows exponentially, not linearly. Simple interest would form an AP.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">2</div>
+            <div class="question-text">Write first four terms of the AP, when the first term <span class="math">a</span> and the common difference <span class="math">d</span> are given as follows:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">a = 10, d = 10</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q2i')">Show Solution</button>
+                <div class="solution" id="q2i">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">aₙ = a + (n−1)d</span></div>
+                    <div class="step"><span class="step-number">a₁</span> = 10 + 0 = <strong>10</strong></div>
+                    <div class="step"><span class="step-number">a₂</span> = 10 + 10 = <strong>20</strong></div>
+                    <div class="step"><span class="step-number">a₃</span> = 10 + 20 = <strong>30</strong></div>
+                    <div class="step"><span class="step-number">a₄</span> = 10 + 30 = <strong>40</strong></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>10, 20, 30, 40</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">a = −2, d = 0</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q2ii')">Show Solution</button>
+                <div class="solution" id="q2ii">
+                    <div class="step"><span class="step-number">a₁</span> = −2 + 0 = <strong>−2</strong></div>
+                    <div class="step"><span class="step-number">a₂</span> = −2 + 0 = <strong>−2</strong></div>
+                    <div class="step"><span class="step-number">a₃</span> = −2 + 0 = <strong>−2</strong></div>
+                    <div class="step"><span class="step-number">a₄</span> = −2 + 0 = <strong>−2</strong></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>−2, −2, −2, −2</strong> (constant AP)</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">a = 4, d = −3</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q2iii')">Show Solution</button>
+                <div class="solution" id="q2iii">
+                    <div class="step"><span class="step-number">a₁</span> = 4 + 0 = <strong>4</strong></div>
+                    <div class="step"><span class="step-number">a₂</span> = 4 + (−3) = <strong>1</strong></div>
+                    <div class="step"><span class="step-number">a₃</span> = 4 + (−6) = <strong>−2</strong></div>
+                    <div class="step"><span class="step-number">a₄</span> = 4 + (−9) = <strong>−5</strong></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>4, 1, −2, −5</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">a = −1, d = 1/2</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q2iv')">Show Solution</button>
+                <div class="solution" id="q2iv">
+                    <div class="step"><span class="step-number">a₁</span> = −1 + 0 = <strong>−1</strong></div>
+                    <div class="step"><span class="step-number">a₂</span> = −1 + 1/2 = <strong>−1/2</strong></div>
+                    <div class="step"><span class="step-number">a₃</span> = −1 + 1 = <strong>0</strong></div>
+                    <div class="step"><span class="step-number">a₄</span> = −1 + 3/2 = <strong>1/2</strong></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>−1, −1/2, 0, 1/2</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(v)</strong> <span class="math">a = −1.25, d = −0.25</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q2v')">Show Solution</button>
+                <div class="solution" id="q2v">
+                    <div class="step"><span class="step-number">a₁</span> = −1.25 + 0 = <strong>−1.25</strong></div>
+                    <div class="step"><span class="step-number">a₂</span> = −1.25 + (−0.25) = <strong>−1.50</strong></div>
+                    <div class="step"><span class="step-number">a₃</span> = −1.25 + (−0.50) = <strong>−1.75</strong></div>
+                    <div class="step"><span class="step-number">a₄</span> = −1.25 + (−0.75) = <strong>−2.00</strong></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>−1.25, −1.50, −1.75, −2.00</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">3</div>
+            <div class="question-text">For the following APs, write the first term and the common difference:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">3, 1, −1, −3, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q3i')">Show Solution</button>
+                <div class="solution" id="q3i">
+                    <div class="step"><span class="step-number">First term:</span> <span class="math">a = 3</span></div>
+                    <div class="step"><span class="step-number">d</span> = 1 − 3 = <strong>−2</strong></div>
+                    <div class="step">Verify: −1 − 1 = −2 ✓</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">−5, −1, 3, 7, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q3ii')">Show Solution</button>
+                <div class="solution" id="q3ii">
+                    <div class="step"><span class="step-number">First term:</span> <span class="math">a = −5</span></div>
+                    <div class="step"><span class="step-number">d</span> = −1 − (−5) = <strong>4</strong></div>
+                    <div class="step">Verify: 3 − (−1) = 4 ✓</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">1/3, 5/3, 9/3, 13/3, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q3iii')">Show Solution</button>
+                <div class="solution" id="q3iii">
+                    <div class="step"><span class="step-number">First term:</span> <span class="math">a = 1/3</span></div>
+                    <div class="step"><span class="step-number">d</span> = 5/3 − 1/3 = <strong>4/3</strong></div>
+                    <div class="step">Verify: 9/3 − 5/3 = 4/3 ✓</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">0.6, 1.7, 2.8, 3.9, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q3iv')">Show Solution</button>
+                <div class="solution" id="q3iv">
+                    <div class="step"><span class="step-number">First term:</span> <span class="math">a = 0.6</span></div>
+                    <div class="step"><span class="step-number">d</span> = 1.7 − 0.6 = <strong>1.1</strong></div>
+                    <div class="step">Verify: 2.8 − 1.7 = 1.1 ✓</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">4</div>
+            <div class="question-text">Which of the following are APs? If they form an AP, find the common difference <span class="math">d</span> and write three more terms.</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">2, 4, 8, 16, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4i')">Show Solution</button>
+                <div class="solution" id="q4i">
+                    <div class="step"><span class="step-number">Check:</span> 4 − 2 = 2, 8 − 4 = 4</div>
+                    <div class="step">Since 2 ≠ 4, <strong>Not an AP</strong> (It's a GP with r = 2)</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">2, 5/2, 3, 7/2, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4ii')">Show Solution</button>
+                <div class="solution" id="q4ii">
+                    <div class="step"><span class="step-number">Check:</span> 5/2 − 2 = 1/2, 3 − 5/2 = 1/2, 7/2 − 3 = 1/2</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = 1/2</span></div>
+                    <div class="step">Next terms: 7/2 + 1/2 = <strong>4</strong>, 4 + 1/2 = <strong>9/2</strong>, 9/2 + 1/2 = <strong>5</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">−1.2, −3.2, −5.2, −7.2, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4iii')">Show Solution</button>
+                <div class="solution" id="q4iii">
+                    <div class="step"><span class="step-number">Check:</span> −3.2 − (−1.2) = −2, −5.2 − (−3.2) = −2</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = −2</span></div>
+                    <div class="step">Next terms: −9.2, −11.2, −13.2</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">−10, −6, −2, 2, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4iv')">Show Solution</button>
+                <div class="solution" id="q4iv">
+                    <div class="step"><span class="step-number">Check:</span> −6 − (−10) = 4, −2 − (−6) = 4</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = 4</span></div>
+                    <div class="step">Next terms: 6, 10, 14</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(v)</strong> <span class="math">3, 3+√2, 3+2√2, 3+3√2, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4v')">Show Solution</button>
+                <div class="solution" id="q4v">
+                    <div class="step"><span class="step-number">Check:</span> (3+√2) − 3 = √2, (3+2√2) − (3+√2) = √2</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = √2</span></div>
+                    <div class="step">Next terms: 3+4√2, 3+5√2, 3+6√2</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(vi)</strong> <span class="math">0.2, 0.22, 0.222, 0.2222, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4vi')">Show Solution</button>
+                <div class="solution" id="q4vi">
+                    <div class="step"><span class="step-number">Check:</span> 0.22 − 0.2 = 0.02, 0.222 − 0.22 = 0.002</div>
+                    <div class="step">Since 0.02 ≠ 0.002, <strong>Not an AP</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(vii)</strong> <span class="math">0, −4, −8, −12, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4vii')">Show Solution</button>
+                <div class="solution" id="q4vii">
+                    <div class="step"><span class="step-number">Check:</span> −4 − 0 = −4, −8 − (−4) = −4</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = −4</span></div>
+                    <div class="step">Next terms: −16, −20, −24</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(viii)</strong> <span class="math">−1/2, −1/2, −1/2, −1/2, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4viii')">Show Solution</button>
+                <div class="solution" id="q4viii">
+                    <div class="step"><span class="step-number">Check:</span> −1/2 − (−1/2) = 0</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = 0</span> (constant AP)</div>
+                    <div class="step">Next terms: −1/2, −1/2, −1/2</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ix)</strong> <span class="math">1, 3, 9, 27, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4ix')">Show Solution</button>
+                <div class="solution" id="q4ix">
+                    <div class="step"><span class="step-number">Check:</span> 3 − 1 = 2, 9 − 3 = 6</div>
+                    <div class="step">Since 2 ≠ 6, <strong>Not an AP</strong> (It's a GP with r = 3)</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(x)</strong> <span class="math">a, 2a, 3a, 4a, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4x')">Show Solution</button>
+                <div class="solution" id="q4x">
+                    <div class="step"><span class="step-number">Check:</span> 2a − a = a, 3a − 2a = a</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = a</span></div>
+                    <div class="step">Next terms: 5a, 6a, 7a</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(xi)</strong> <span class="math">a, a², a³, a⁴, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4xi')">Show Solution</button>
+                <div class="solution" id="q4xi">
+                    <div class="step"><span class="step-number">Check:</span> a² − a = a(a−1), a³ − a² = a²(a−1)</div>
+                    <div class="step">These are equal only if a = 0 or a = 1. In general, <strong>Not an AP</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(xii)</strong> <span class="math">√2, √8, √18, √32, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4xii')">Show Solution</button>
+                <div class="solution" id="q4xii">
+                    <div class="step"><span class="step-number">Simplify:</span> √2, 2√2, 3√2, 4√2</div>
+                    <div class="step"><span class="step-number">Check:</span> 2√2 − √2 = √2, 3√2 − 2√2 = √2</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = √2</span></div>
+                    <div class="step">Next terms: 5√2, 6√2, 7√2</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(xiii)</strong> <span class="math">√3, √6, √9, √12, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4xiii')">Show Solution</button>
+                <div class="solution" id="q4xiii">
+                    <div class="step"><span class="step-number">Check:</span> √6 − √3 ≈ 2.45 − 1.73 = 0.72</div>
+                    <div class="step">√9 − √6 = 3 − 2.45 = 0.55</div>
+                    <div class="step">Since 0.72 ≠ 0.55, <strong>Not an AP</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(xiv)</strong> <span class="math">1², 3², 5², 7², ...</span> i.e., <span class="math">1, 9, 25, 49, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4xiv')">Show Solution</button>
+                <div class="solution" id="q4xiv">
+                    <div class="step"><span class="step-number">Check:</span> 9 − 1 = 8, 25 − 9 = 16</div>
+                    <div class="step">Since 8 ≠ 16, <strong>Not an AP</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(xv)</strong> <span class="math">1², 5², 7², 73, ...</span> i.e., <span class="math">1, 25, 49, 73, ...</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q4xv')">Show Solution</button>
+                <div class="solution" id="q4xv">
+                    <div class="step"><span class="step-number">Check:</span> 25 − 1 = 24, 49 − 25 = 24, 73 − 49 = 24</div>
+                    <div class="step"><strong>Yes, AP</strong> with <span class="math">d = 24</span></div>
+                    <div class="step">Next terms: 97, 121, 145</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="ex52">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">Exercise 5.2</h2>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">1</div>
+            <div class="question-text">Fill in the blanks in the following table, given that <span class="math">a</span> is the first term, <span class="math">d</span> the common difference and <span class="math">aₙ</span> the nth term of the AP:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">a = 7, d = 3, n = 8</span>, find <span class="math">aₙ</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-1i')">Show Solution</button>
+                <div class="solution" id="q52-1i">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">aₙ = a + (n−1)d</span></div>
+                    <div class="step"><span class="step-number">Substitute:</span> <span class="math">a₈ = 7 + (8−1)×3 = 7 + 21 = 28</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>28</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">a = −18, n = 10, aₙ = 0</span>, find <span class="math">d</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-1ii')">Show Solution</button>
+                <div class="solution" id="q52-1ii">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">0 = −18 + (10−1)d</span></div>
+                    <div class="step"><span class="step-number">Solve:</span> <span class="math">9d = 18 → d = 2</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>d = 2</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">d = −3, n = 18, aₙ = −5</span>, find <span class="math">a</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-1iii')">Show Solution</button>
+                <div class="solution" id="q52-1iii">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">−5 = a + (18−1)×(−3)</span></div>
+                    <div class="step"><span class="step-number">Solve:</span> <span class="math">−5 = a − 51 → a = 46</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>a = 46</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">a = −18.9, d = 2.5, aₙ = 3.6</span>, find <span class="math">n</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-1iv')">Show Solution</button>
+                <div class="solution" id="q52-1iv">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">3.6 = −18.9 + (n−1)×2.5</span></div>
+                    <div class="step"><span class="step-number">Solve:</span> <span class="math">22.5 = (n−1)×2.5 → n−1 = 9 → n = 10</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>n = 10</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(v)</strong> <span class="math">a = 3.5, d = 0, n = 105</span>, find <span class="math">aₙ</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-1v')">Show Solution</button>
+                <div class="solution" id="q52-1v">
+                    <div class="step"><span class="step-number">Formula:</span> <span class="math">a₁₀₅ = 3.5 + (105−1)×0</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>3.5</strong> (constant AP)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">2</div>
+            <div class="question-text">Choose the correct choice in the following and justify:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> 30th term of the AP: 10, 7, 4, ... , is<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2i')"><div class="option-letter">A</div><div>97</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2i')"><div class="option-letter">B</div><div>77</div></div>
+                    <div class="option" onclick="checkMCQ(this, true, 'q52-2i')"><div class="option-letter">C</div><div>−77</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2i')"><div class="option-letter">D</div><div>−87</div></div>
+                </div>
+                <div class="solution" id="q52-2i-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 10, d = 7 − 10 = −3</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> Using <span class="math">aₙ = a + (n−1)d</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₃₀ = 10 + (30−1)×(−3)</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> <span class="math">a₃₀ = 10 + 29×(−3) = 10 − 87 = −77</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>Option C (−77)</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> 11th term of the AP: <span class="math">−3, −1/2, 2, ...</span> , is<br><br>
+                <div class="options">
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2ii')"><div class="option-letter">A</div><div>28</div></div>
+                    <div class="option" onclick="checkMCQ(this, true, 'q52-2ii')"><div class="option-letter">B</div><div>22</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2ii')"><div class="option-letter">C</div><div>−38</div></div>
+                    <div class="option" onclick="checkMCQ(this, false, 'q52-2ii')"><div class="option-letter">D</div><div>−48½</div></div>
+                </div>
+                <div class="solution" id="q52-2ii-sol">
+                    <h4>✅ Step-by-Step Solution</h4>
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = −3, d = −1/2 − (−3) = 5/2</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> Using <span class="math">aₙ = a + (n−1)d</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₁₁ = −3 + (11−1)×(5/2)</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> <span class="math">a₁₁ = −3 + 10×(5/2) = −3 + 25 = 22</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>Option B (22)</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">3</div>
+            <div class="question-text">In the following APs, find the missing terms in the boxes:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">2, ⬜, 26</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-3i')">Show Solution</button>
+                <div class="solution" id="q52-3i">
+                    <div class="step"><span class="step-number">Step 1:</span> Let missing term be <span class="math">x</span>. Then <span class="math">a = 2, a₃ = 26</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₃ = a + 2d → 26 = 2 + 2d → d = 12</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> Missing term = <span class="math">2 + 12 = 14</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>14</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">⬜, 13, ⬜, 3</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-3ii')">Show Solution</button>
+                <div class="solution" id="q52-3ii">
+                    <div class="step"><span class="step-number">Step 1:</span> Let terms be <span class="math">a, 13, a₃, 3</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₄ = a + 3d = 3</span> and <span class="math">a₂ = a + d = 13</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> From <span class="math">a + d = 13</span> and <span class="math">a + 3d = 3</span>: subtract to get <span class="math">2d = −10 → d = −5</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> <span class="math">a = 13 − (−5) = 18</span>, <span class="math">a₃ = 13 + (−5) = 8</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>18, 8</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">5, ⬜, ⬜, 9½</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-3iii')">Show Solution</button>
+                <div class="solution" id="q52-3iii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 5, a₄ = 19/2</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">5 + 3d = 19/2 → 3d = 9/2 → d = 3/2</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₂ = 5 + 3/2 = 13/2 = 6½</span>, <span class="math">a₃ = 13/2 + 3/2 = 8</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>6½, 8</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">−4, ⬜, ⬜, ⬜, ⬜, 6</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-3iv')">Show Solution</button>
+                <div class="solution" id="q52-3iv">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = −4, a₆ = 6</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">−4 + 5d = 6 → 5d = 10 → d = 2</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> Terms: −4, <strong>−2</strong>, <strong>0</strong>, <strong>2</strong>, <strong>4</strong>, 6</div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(v)</strong> <span class="math">⬜, 38, ⬜, ⬜, ⬜, −22</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-3v')">Show Solution</button>
+                <div class="solution" id="q52-3v">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₂ = 38, a₆ = −22</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">a + d = 38</span> and <span class="math">a + 5d = −22</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> Subtract: <span class="math">4d = −60 → d = −15</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> <span class="math">a = 38 − (−15) = 53</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>53, 23, 8, −7</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">4</div><div class="question-text">Which term of the AP: 3, 8, 13, 18, ... is 78?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-4')">Show Solution</button>
+        <div class="solution" id="q52-4">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 3, d = 5</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Let <span class="math">aₙ = 78</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">3 + (n−1)×5 = 78</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">(n−1)×5 = 75 → n−1 = 15 → n = 16</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>16th term</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">5</div><div class="question-text">Find the number of terms in each of the following APs:</div></div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">7, 13, 19, ..., 205</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-5i')">Show Solution</button>
+                <div class="solution" id="q52-5i">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 7, d = 6, l = 205</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">205 = 7 + (n−1)×6</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">198 = (n−1)×6 → n−1 = 33 → n = 34</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>34 terms</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">18, 15½, 13, ..., −47</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q52-5ii')">Show Solution</button>
+                <div class="solution" id="q52-5ii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 18, d = 15½ − 18 = −5/2, l = −47</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">−47 = 18 + (n−1)×(−5/2)</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">−65 = (n−1)×(−5/2) → n−1 = 26 → n = 27</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>27 terms</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">6</div><div class="question-text">Check whether −150 is a term of the AP: 11, 8, 5, 2, ...</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-6')">Show Solution</button>
+        <div class="solution" id="q52-6">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 11, d = −3</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Let <span class="math">aₙ = −150</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">11 + (n−1)×(−3) = −150</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">(n−1)×(−3) = −161 → n−1 = 161/3 ≈ 53.67</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">n = 54.67</span> which is not a positive integer</div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>No, −150 is not a term of this AP.</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">7</div><div class="question-text">Find the 31st term of an AP whose 11th term is 38 and the 16th term is 73.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-7')">Show Solution</button>
+        <div class="solution" id="q52-7">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₁₁ = a + 10d = 38</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₁₆ = a + 15d = 73</span> ... (ii)</div>
+            <div class="step"><span class="step-number">Step 3:</span> (ii) − (i): <span class="math">5d = 35 → d = 7</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> From (i): <span class="math">a + 70 = 38 → a = −32</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">a₃₁ = −32 + 30×7 = −32 + 210 = 178</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>178</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">8</div><div class="question-text">An AP consists of 50 terms of which 3rd term is 12 and the last term is 106. Find the 29th term.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-8')">Show Solution</button>
+        <div class="solution" id="q52-8">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₃ = a + 2d = 12</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₅₀ = a + 49d = 106</span> ... (ii)</div>
+            <div class="step"><span class="step-number">Step 3:</span> (ii) − (i): <span class="math">47d = 94 → d = 2</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> From (i): <span class="math">a + 4 = 12 → a = 8</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">a₂₉ = 8 + 28×2 = 8 + 56 = 64</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>64</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">9</div><div class="question-text">If the 3rd and the 9th terms of an AP are 4 and −8 respectively, which term of this AP is zero?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-9')">Show Solution</button>
+        <div class="solution" id="q52-9">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₃ = a + 2d = 4</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₉ = a + 8d = −8</span> ... (ii)</div>
+            <div class="step"><span class="step-number">Step 3:</span> (ii) − (i): <span class="math">6d = −12 → d = −2</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> From (i): <span class="math">a + 2(−2) = 4 → a = 8</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> Let <span class="math">aₙ = 0</span>: <span class="math">8 + (n−1)×(−2) = 0</span></div>
+            <div class="step"><span class="step-number">Step 6:</span> <span class="math">(n−1)×(−2) = −8 → n−1 = 4 → n = 5</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>5th term</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">10</div><div class="question-text">The 17th term of an AP exceeds its 10th term by 7. Find the common difference.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-10')">Show Solution</button>
+        <div class="solution" id="q52-10">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₁₇ − a₁₀ = 7</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">(a + 16d) − (a + 9d) = 7</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">7d = 7 → d = 1</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>d = 1</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">11</div><div class="question-text">Which term of the AP: 3, 15, 27, 39, ... will be 132 more than its 54th term?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-11')">Show Solution</button>
+        <div class="solution" id="q52-11">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 3, d = 12</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₅₄ = 3 + 53×12 = 3 + 636 = 639</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> Required term = <span class="math">639 + 132 = 771</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> Let <span class="math">aₙ = 771</span>: <span class="math">3 + (n−1)×12 = 771</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">(n−1)×12 = 768 → n−1 = 64 → n = 65</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>65th term</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">12</div><div class="question-text">Two APs have the same common difference. The difference between their 100th terms is 100, what is the difference between their 1000th terms?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-12')">Show Solution</button>
+        <div class="solution" id="q52-12">
+            <div class="step"><span class="step-number">Step 1:</span> Let first terms be <span class="math">a₁</span> and <span class="math">a₂</span>, common difference = <span class="math">d</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₁₀₀(1st) − a₁₀₀(2nd) = (a₁ + 99d) − (a₂ + 99d) = a₁ − a₂ = 100</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₁₀₀₀(1st) − a₁₀₀₀(2nd) = (a₁ + 999d) − (a₂ + 999d) = a₁ − a₂ = 100</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>100</strong> (The difference remains constant for any term)</div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">13</div><div class="question-text">How many three-digit numbers are divisible by 7?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-13')">Show Solution</button>
+        <div class="solution" id="q52-13">
+            <div class="step"><span class="step-number">Step 1:</span> First 3-digit number divisible by 7 = 105, Last = 994</div>
+            <div class="step"><span class="step-number">Step 2:</span> AP: 105, 112, 119, ..., 994 with <span class="math">d = 7</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">994 = 105 + (n−1)×7</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">889 = (n−1)×7 → n−1 = 127 → n = 128</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>128</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">14</div><div class="question-text">How many multiples of 4 lie between 10 and 250?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-14')">Show Solution</button>
+        <div class="solution" id="q52-14">
+            <div class="step"><span class="step-number">Step 1:</span> First multiple of 4 after 10 = 12, Last before 250 = 248</div>
+            <div class="step"><span class="step-number">Step 2:</span> AP: 12, 16, 20, ..., 248 with <span class="math">d = 4</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">248 = 12 + (n−1)×4</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">236 = (n−1)×4 → n−1 = 59 → n = 60</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>60</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">15</div><div class="question-text">For what value of <span class="math">n</span>, are the <span class="math">n</span>th terms of two APs: 63, 65, 67, ... and 3, 10, 17, ... equal?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-15')">Show Solution</button>
+        <div class="solution" id="q52-15">
+            <div class="step"><span class="step-number">Step 1:</span> 1st AP: <span class="math">a = 63, d = 2 → aₙ = 63 + (n−1)×2 = 61 + 2n</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> 2nd AP: <span class="math">a = 3, d = 7 → aₙ = 3 + (n−1)×7 = 7n − 4</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> Set equal: <span class="math">61 + 2n = 7n − 4</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">65 = 5n → n = 13</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>n = 13</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">16</div><div class="question-text">Determine the AP whose third term is 16 and the 7th term exceeds the 5th term by 12.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-16')">Show Solution</button>
+        <div class="solution" id="q52-16">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₃ = a + 2d = 16</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₇ − a₅ = 12 → (a + 6d) − (a + 4d) = 12 → 2d = 12 → d = 6</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> From (i): <span class="math">a + 12 = 16 → a = 4</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>AP: 4, 10, 16, 22, ...</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">17</div><div class="question-text">Find the 20th term from the last term of the AP: 3, 8, 13, ..., 253.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-17')">Show Solution</button>
+        <div class="solution" id="q52-17">
+            <div class="step"><span class="step-number">Method:</span> Reverse the AP. Last term becomes first.</div>
+            <div class="step"><span class="step-number">Step 1:</span> Reverse AP: 253, 248, ..., 13, 8, 3 with <span class="math">d = −5</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₂₀ = 253 + (20−1)×(−5) = 253 − 95 = 158</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>158</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">18</div><div class="question-text">The sum of the 4th and 8th terms of an AP is 24 and the sum of the 6th and 10th terms is 44. Find the first three terms of the AP.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-18')">Show Solution</button>
+        <div class="solution" id="q52-18">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₄ + a₈ = (a+3d) + (a+7d) = 2a + 10d = 24 → a + 5d = 12</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₆ + a₁₀ = (a+5d) + (a+9d) = 2a + 14d = 44 → a + 7d = 22</span> ... (ii)</div>
+            <div class="step"><span class="step-number">Step 3:</span> (ii) − (i): <span class="math">2d = 10 → d = 5</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> From (i): <span class="math">a + 25 = 12 → a = −13</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>First three terms: −13, −8, −3</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">19</div><div class="question-text">Subba Rao started work in 1995 at an annual salary of ₹5000 and received an increment of ₹200 each year. In which year did his income reach ₹7000?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-19')">Show Solution</button>
+        <div class="solution" id="q52-19">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 5000, 5200, 5400, ... with <span class="math">a = 5000, d = 200</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Let <span class="math">aₙ = 7000</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">5000 + (n−1)×200 = 7000</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">(n−1)×200 = 2000 → n−1 = 10 → n = 11</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> Year = <span class="math">1995 + 10 = 2005</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>Year 2005</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">20</div><div class="question-text">Ramkali saved ₹5 in the first week of a year and then increased her weekly savings by ₹1.75. If in the <span class="math">n</span>th week, her weekly savings become ₹20.75, find <span class="math">n</span>.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q52-20')">Show Solution</button>
+        <div class="solution" id="q52-20">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 5, 6.75, 8.5, ... with <span class="math">a = 5, d = 1.75</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Let <span class="math">aₙ = 20.75</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">5 + (n−1)×1.75 = 20.75</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">(n−1)×1.75 = 15.75 → n−1 = 9 → n = 10</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>n = 10</strong></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="ex53">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">Exercise 5.3</h2>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">1</div>
+            <div class="question-text">Find the sum of the following APs:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">2, 7, 12, ...</span>, to 10 terms.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-1i')">Show Solution</button>
+                <div class="solution" id="q53-1i">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 2, d = 5, n = 10</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₀ = 10/2 [2×2 + (10−1)×5] = 5[4 + 45] = 5×49 = 245</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>245</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">−37, −33, −29, ...</span>, to 12 terms.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-1ii')">Show Solution</button>
+                <div class="solution" id="q53-1ii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = −37, d = 4, n = 12</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₂ = 12/2 [2×(−37) + 11×4] = 6[−74 + 44] = 6×(−30) = −180</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>−180</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">0.6, 1.7, 2.8, ...</span>, to 100 terms.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-1iii')">Show Solution</button>
+                <div class="solution" id="q53-1iii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 0.6, d = 1.1, n = 100</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₀₀ = 100/2 [2×0.6 + 99×1.1] = 50[1.2 + 108.9] = 50×110.1 = 5505</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>5505</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> <span class="math">1/15, 1/12, 1/10, ...</span>, to 11 terms.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-1iv')">Show Solution</button>
+                <div class="solution" id="q53-1iv">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 1/15, d = 1/12 − 1/15 = 1/60, n = 11</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₁ = 11/2 [2/15 + 10/60] = 11/2 [2/15 + 1/6] = 11/2 × 9/30 = 33/20</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>33/20 = 1.65</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">2</div>
+            <div class="question-text">Find the sums given below:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">7 + 10½ + 14 + ... + 84</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-2i')">Show Solution</button>
+                <div class="solution" id="q53-2i">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 7, d = 3.5, l = 84</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> Find <span class="math">n</span>: <span class="math">84 = 7 + (n−1)×3.5 → 77 = (n−1)×3.5 → n = 23</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₂₃ = 23/2 [7 + 84] = 23/2 × 91 = 1046.5</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>1046.5 or 2093/2</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">34 + 32 + 30 + ... + 10</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-2ii')">Show Solution</button>
+                <div class="solution" id="q53-2ii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 34, d = −2, l = 10</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> Find <span class="math">n</span>: <span class="math">10 = 34 + (n−1)×(−2) → n = 13</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₁₃ = 13/2 [34 + 10] = 13/2 × 44 = 286</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>286</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> <span class="math">−5 + (−8) + (−11) + ... + (−230)</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-2iii')">Show Solution</button>
+                <div class="solution" id="q53-2iii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = −5, d = −3, l = −230</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> Find <span class="math">n</span>: <span class="math">−230 = −5 + (n−1)×(−3) → n = 76</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₇₆ = 76/2 [(−5) + (−230)] = 38×(−235) = −8930</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>−8930</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">3</div>
+            <div class="question-text">In an AP:</div>
+        </div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> Given <span class="math">a = 5, d = 3, aₙ = 50</span>, find <span class="math">n</span> and <span class="math">Sₙ</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3i')">Show Solution</button>
+                <div class="solution" id="q53-3i">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">50 = 5 + (n−1)×3 → 45 = 3(n−1) → n = 16</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₆ = 16/2 [5 + 50] = 8×55 = 440</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>n = 16, Sₙ = 440</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> Given <span class="math">a = 7, a₁₃ = 35</span>, find <span class="math">d</span> and <span class="math">S₁₃</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3ii')">Show Solution</button>
+                <div class="solution" id="q53-3ii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">35 = 7 + 12d → d = 28/12 = 7/3</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₃ = 13/2 [7 + 35] = 13/2 × 42 = 273</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>d = 7/3, S₁₃ = 273</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iii)</strong> Given <span class="math">a₁₂ = 37, d = 3</span>, find <span class="math">a</span> and <span class="math">S₁₂</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3iii')">Show Solution</button>
+                <div class="solution" id="q53-3iii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">37 = a + 11×3 → a = 37 − 33 = 4</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₂ = 12/2 [2×4 + 11×3] = 6[8 + 33] = 246</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>a = 4, S₁₂ = 246</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(iv)</strong> Given <span class="math">a₃ = 15, S₁₀ = 125</span>, find <span class="math">d</span> and <span class="math">a₁₀</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3iv')">Show Solution</button>
+                <div class="solution" id="q53-3iv">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a + 2d = 15</span> ... (i)</div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₀ = 10/2 [2a + 9d] = 125 → 2a + 9d = 25</span> ... (ii)</div>
+                    <div class="step"><span class="step-number">Step 3:</span> From (i): <span class="math">a = 15 − 2d</span>. Substitute: <span class="math">2(15−2d) + 9d = 25 → d = −1</span></div>
+                    <div class="step"><span class="step-number">Step 4:</span> <span class="math">a = 17, a₁₀ = 17 + 9×(−1) = 8</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>d = −1, a₁₀ = 8</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(v)</strong> Given <span class="math">d = 5, S₉ = 75</span>, find <span class="math">a</span> and <span class="math">a₉</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3v')">Show Solution</button>
+                <div class="solution" id="q53-3v">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">S₉ = 9/2 [2a + 8×5] = 75 → 9(a + 20) = 75 → a = 25/3 − 20 = −35/3</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₉ = −35/3 + 8×5 = 85/3</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>a = −35/3, a₉ = 85/3</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(vi)</strong> Given <span class="math">a = 2, d = 8, Sₙ = 90</span>, find <span class="math">n</span> and <span class="math">aₙ</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3vi')">Show Solution</button>
+                <div class="solution" id="q53-3vi">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">90 = n/2 [4 + (n−1)×8] = n(4n − 2) = 4n² − 2n</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">4n² − 2n − 90 = 0 → 2n² − n − 45 = 0 → (2n+9)(n−5) = 0 → n = 5</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₅ = 2 + 4×8 = 34</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>n = 5, aₙ = 34</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(vii)</strong> Given <span class="math">a = 8, aₙ = 62, Sₙ = 210</span>, find <span class="math">n</span> and <span class="math">d</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3vii')">Show Solution</button>
+                <div class="solution" id="q53-3vii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">Sₙ = n/2 [8 + 62] = 210 → 35n = 210 → n = 6</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">62 = 8 + 5d → d = 54/5 = 10.8</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>n = 6, d = 54/5 = 10.8</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(viii)</strong> Given <span class="math">aₙ = 4, d = 2, Sₙ = −14</span>, find <span class="math">n</span> and <span class="math">a</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3viii')">Show Solution</button>
+                <div class="solution" id="q53-3viii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a + (n−1)×2 = 4 → a = 6 − 2n</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">Sₙ = n/2 [a + 4] = −14 → n(10 − 2n) = −28 → n² − 5n − 14 = 0 → n = 7</span></div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">a = 6 − 14 = −8</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>n = 7, a = −8</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ix)</strong> Given <span class="math">a = 3, n = 8, S = 192</span>, find <span class="math">d</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3ix')">Show Solution</button>
+                <div class="solution" id="q53-3ix">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">192 = 8/2 [6 + 7d] = 4(6 + 7d)</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">48 = 6 + 7d → d = 6</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>d = 6</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(x)</strong> Given <span class="math">l = 28, S = 144</span>, and there are total 9 terms. Find <span class="math">a</span>.<br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-3x')">Show Solution</button>
+                <div class="solution" id="q53-3x">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">S₉ = 9/2 [a + 28] = 144</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">9(a + 28) = 288 → a = 4</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>a = 4</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">4</div><div class="question-text">How many terms of the AP: 9, 17, 25, ... must be taken to give a sum of 636?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-4')">Show Solution</button>
+        <div class="solution" id="q53-4">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 9, d = 8</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">636 = n/2 [18 + (n−1)×8] = n(4n + 5)</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">4n² + 5n − 636 = 0 → n = 12</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>n = 12</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">5</div><div class="question-text">The first term of an AP is 5, the last term is 45 and the sum is 400. Find the number of terms and the common difference.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-5')">Show Solution</button>
+        <div class="solution" id="q53-5">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">Sₙ = n/2 [5 + 45] = 400 → 25n = 400 → n = 16</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">45 = 5 + 15d → d = 40/15 = 8/3</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>n = 16, d = 8/3</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">6</div><div class="question-text">The first and the last terms of an AP are 17 and 350 respectively. If the common difference is 9, how many terms are there and what is their sum?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-6')">Show Solution</button>
+        <div class="solution" id="q53-6">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">350 = 17 + (n−1)×9 → 333 = 9(n−1) → n = 38</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₃₈ = 38/2 [17 + 350] = 19×367 = 6973</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>n = 38, S = 6973</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">7</div><div class="question-text">Find the sum of first 22 terms of an AP in which <span class="math">d = 7</span> and 22nd term is 149.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-7')">Show Solution</button>
+        <div class="solution" id="q53-7">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₂₂ = a + 21×7 = 149 → a = 2</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₂₂ = 22/2 [2 + 149] = 11×151 = 1661</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>1661</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">8</div><div class="question-text">Find the sum of first 51 terms of an AP whose second and third terms are 14 and 18 respectively.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-8')">Show Solution</button>
+        <div class="solution" id="q53-8">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">d = 18 − 14 = 4</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₂ = a + d = 14 → a = 10</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₅₁ = 51/2 [20 + 50×4] = 51×110 = 5610</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>5610</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">9</div><div class="question-text">If the sum of first 7 terms of an AP is 49 and that of 17 terms is 289, find the sum of first <span class="math">n</span> terms.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-9')">Show Solution</button>
+        <div class="solution" id="q53-9">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">S₇ = 7/2 [2a + 6d] = 49 → a + 3d = 7</span> ... (i)</div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₇ = 17/2 [2a + 16d] = 289 → a + 8d = 17</span> ... (ii)</div>
+            <div class="step"><span class="step-number">Step 3:</span> (ii) − (i): <span class="math">5d = 10 → d = 2</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> From (i): <span class="math">a = 1</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">Sₙ = n/2 [2 + (n−1)×2] = n²</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>Sₙ = n²</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">10</div><div class="question-text">Show that <span class="math">a₁, a₂, ..., aₙ, ...</span> form an AP where <span class="math">aₙ</span> is defined as below. Also find the sum of the first 15 terms in each case.</div></div>
+        <div class="sub-parts">
+            <div class="sub-part">
+                <strong>(i)</strong> <span class="math">aₙ = 3 + 4n</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-10i')">Show Solution</button>
+                <div class="solution" id="q53-10i">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₁ = 7, a₂ = 11, a₃ = 15</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">d = 11 − 7 = 4</span> (constant)</div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₁₅ = 15/2 [14 + 14×4] = 15/2 × 70 = 525</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>AP with d = 4, S₁₅ = 525</strong></div>
+                </div>
+            </div>
+            <div class="sub-part">
+                <strong>(ii)</strong> <span class="math">aₙ = 9 − 5n</span><br>
+                <button class="solution-toggle" onclick="toggleSolution('q53-10ii')">Show Solution</button>
+                <div class="solution" id="q53-10ii">
+                    <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₁ = 4, a₂ = −1, a₃ = −6</span></div>
+                    <div class="step"><span class="step-number">Step 2:</span> <span class="math">d = −1 − 4 = −5</span> (constant)</div>
+                    <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₁₅ = 15/2 [8 + 14×(−5)] = 15/2 × (−62) = −465</span></div>
+                    <div class="step"><span class="step-number">Answer:</span> <strong>AP with d = −5, S₁₅ = −465</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">11</div><div class="question-text">If the sum of the first <span class="math">n</span> terms of an AP is <span class="math">4n − n²</span>, what is the first term? What is the sum of first two terms? What is the second term? Similarly, find the 3rd, the 10th and the <span class="math">n</span>th terms.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-11')">Show Solution</button>
+        <div class="solution" id="q53-11">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">S₁ = 4(1) − 1 = 3 → First term = 3</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₂ = 8 − 4 = 4 → Sum of first two terms = 4</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">a₂ = S₂ − S₁ = 4 − 3 = 1</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">S₃ = 12 − 9 = 3 → a₃ = 3 − 4 = −1</span></div>
+            <div class="step"><span class="step-number">Step 5:</span> <span class="math">d = 1 − 3 = −2</span></div>
+            <div class="step"><span class="step-number">Step 6:</span> <span class="math">a₁₀ = 3 + 9×(−2) = −15</span></div>
+            <div class="step"><span class="step-number">Step 7:</span> <span class="math">aₙ = 3 + (n−1)×(−2) = 5 − 2n</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>First term = 3, S₂ = 4, a₂ = 1, a₃ = −1, a₁₀ = −15, aₙ = 5 − 2n</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">12</div><div class="question-text">Find the sum of the first 40 positive integers divisible by 6.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-12')">Show Solution</button>
+        <div class="solution" id="q53-12">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 6, 12, 18, ... with <span class="math">a = 6, d = 6, n = 40</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₄₀ = 40/2 [12 + 39×6] = 20 × 246 = 4920</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>4920</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">13</div><div class="question-text">Find the sum of the first 15 multiples of 8.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-13')">Show Solution</button>
+        <div class="solution" id="q53-13">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 8, 16, 24, ... with <span class="math">a = 8, d = 8, n = 15</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₁₅ = 15/2 [16 + 14×8] = 15/2 × 128 = 960</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>960</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">14</div><div class="question-text">Find the sum of the odd numbers between 0 and 50.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-14')">Show Solution</button>
+        <div class="solution" id="q53-14">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 1, 3, 5, ..., 49 with <span class="math">a = 1, d = 2, l = 49</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">49 = 1 + (n−1)×2 → n = 25</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₂₅ = 25/2 [1 + 49] = 25/2 × 50 = 625</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>625</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">15</div><div class="question-text">A contract on construction job specifies a penalty for delay of completion beyond a certain date as follows: ₹200 for the first day, ₹250 for the second day, ₹300 for the third day, etc. How much money the contractor has to pay as penalty, if he has delayed the work by 30 days?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-15')">Show Solution</button>
+        <div class="solution" id="q53-15">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 200, 250, 300, ... with <span class="math">a = 200, d = 50, n = 30</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">S₃₀ = 30/2 [400 + 29×50] = 15 × 1850 = 27750</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>₹27,750</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">16</div><div class="question-text">A sum of ₹700 is to be used to give seven cash prizes to students. If each prize is ₹20 less than its preceding prize, find the value of each of the prizes.</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-16')">Show Solution</button>
+        <div class="solution" id="q53-16">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">n = 7, d = −20, S₇ = 700</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">700 = 7/2 [2a + 6×(−20)] = 7(a − 60)</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">100 = a − 60 → a = 160</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>Prizes: ₹160, ₹140, ₹120, ₹100, ₹80, ₹60, ₹40</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">17</div><div class="question-text">In a school, students thought of planting trees. It was decided that the number of trees that each section of each class will plant will be the same as the class in which they are studying (e.g., Class I plants 1 tree, Class II plants 2 trees, etc. till Class XII). There are three sections of each class. How many trees will be planted?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-17')">Show Solution</button>
+        <div class="solution" id="q53-17">
+            <div class="step"><span class="step-number">Step 1:</span> Trees per class: 1, 2, 3, ..., 12 (3 sections each)</div>
+            <div class="step"><span class="step-number">Step 2:</span> Sum for one section: <span class="math">S₁₂ = 12/2 [1 + 12] = 78</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> Total trees = <span class="math">78 × 3 = 234</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>234 trees</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">18</div><div class="question-text">A spiral is made up of successive semicircles, with centres alternately at A and B, starting with centre at A, of radii 0.5 cm, 1.0 cm, 1.5 cm, 2.0 cm, ... What is the total length of such a spiral made up of thirteen consecutive semicircles? (Take π = 22/7)</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-18')">Show Solution</button>
+        <div class="solution" id="q53-18">
+            <div class="step"><span class="step-number">Step 1:</span> Length of semicircle = <span class="math">πr</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Lengths: <span class="math">0.5π, 1.0π, 1.5π, ...</span> (13 terms)</div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">a = 0.5π, d = 0.5π, n = 13</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">S₁₃ = 13/2 [π + 12×0.5π] = 13/2 × 7π = 91π/2 = 91/2 × 22/7 = 143</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>143 cm</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">19</div><div class="question-text">200 logs are stacked in the following manner: 20 logs in the bottom row, 19 in the next row, 18 in the row next to it and so on. In how many rows are the 200 logs placed and how many logs are in the top row?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-19')">Show Solution</button>
+        <div class="solution" id="q53-19">
+            <div class="step"><span class="step-number">Step 1:</span> AP: 20, 19, 18, ... with <span class="math">a = 20, d = −1, Sₙ = 200</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">200 = n/2 [40 + (n−1)×(−1)] = n/2 [41 − n]</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">400 = 41n − n² → n² − 41n + 400 = 0 → (n−16)(n−25) = 0</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> For <span class="math">n = 25</span>: <span class="math">a₂₅ = 20 + 24×(−1) = −4</span> (invalid)</div>
+            <div class="step"><span class="step-number">Step 5:</span> For <span class="math">n = 16</span>: <span class="math">a₁₆ = 20 + 15×(−1) = 5</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>16 rows, 5 logs in top row</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header"><div class="q-badge">20</div><div class="question-text">In a potato race, a bucket is placed at the starting point, which is 5 m from the first potato, and the other potatoes are placed 3 m apart in a straight line. There are ten potatoes in the line. A competitor starts from the bucket, picks up the nearest potato, runs back with it, drops it in the bucket, runs back to pick up the next potato, and so on. What is the total distance the competitor has to run?</div></div>
+        <button class="solution-toggle" onclick="toggleSolution('q53-20')">Show Solution</button>
+        <div class="solution" id="q53-20">
+            <div class="step"><span class="step-number">Step 1:</span> Distance to 1st potato and back = <span class="math">2×5 = 10</span> m</div>
+            <div class="step"><span class="step-number">Step 2:</span> Distance to 2nd potato and back = <span class="math">2×(5+3) = 16</span> m</div>
+            <div class="step"><span class="step-number">Step 3:</span> Distances form AP: 10, 16, 22, ... (10 terms) with <span class="math">a = 10, d = 6</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">S₁₀ = 10/2 [20 + 9×6] = 5 × 74 = 370</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>370 metres</strong></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="ex54">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">Exercise 5.4 <span class="ex54-badge">Optional</span></h2>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">1</div>
+            <div class="question-text">Which term of the AP: 121, 117, 113, ... is its first negative term?</div>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('q54-1')">Show Solution</button>
+        <div class="solution" id="q54-1">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a = 121, d = −4</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Let <span class="math">aₙ < 0</span>: <span class="math">121 + (n−1)×(−4) < 0</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">121 − 4n + 4 < 0 → 125 < 4n → n > 31.25</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> Smallest integer <span class="math">n = 32</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>32nd term is the first negative term</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">2</div>
+            <div class="question-text">The sum of the third and the seventh terms of an AP is 6 and their product is 8. Find the sum of first sixteen terms of the AP.</div>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('q54-2')">Show Solution</button>
+        <div class="solution" id="q54-2">
+            <div class="step"><span class="step-number">Step 1:</span> <span class="math">a₃ + a₇ = (a+2d) + (a+6d) = 2a + 8d = 6 → a + 4d = 3</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> <span class="math">a₃ × a₇ = (a+2d)(a+6d) = 8</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> From (i): <span class="math">a = 3 − 4d</span>. Substitute: <span class="math">(3−2d)(3+2d) = 8 → 9 − 4d² = 8 → d² = 1/4 → d = ±1/2</span></div>
+            <div class="step"><span class="step-number">Case 1:</span> <span class="math">d = 1/2 → a = 1 → S₁₆ = 16/2 [2 + 15×1/2] = 8 × 9.5 = 76</span></div>
+            <div class="step"><span class="step-number">Case 2:</span> <span class="math">d = −1/2 → a = 5 → S₁₆ = 16/2 [10 + 15×(−1/2)] = 8 × 2.5 = 20</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>S₁₆ = 76 or 20</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">3</div>
+            <div class="question-text">A ladder has rungs 25 cm apart. The rungs decrease uniformly in length from 45 cm at the bottom to 25 cm at the top. If the top and the bottom rungs are 2½ m apart, what is the length of the wood required for the rungs?</div>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('q54-3')">Show Solution</button>
+        <div class="solution" id="q54-3">
+            <div class="step"><span class="step-number">Step 1:</span> Distance = 250 cm, gap = 25 cm → Number of rungs = <span class="math">250/25 + 1 = 11</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> AP: 45, ..., 25 with <span class="math">n = 11</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> <span class="math">S₁₁ = 11/2 [45 + 25] = 11/2 × 70 = 385</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>385 cm of wood required</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">4</div>
+            <div class="question-text">The houses of a row are numbered consecutively from 1 to 49. Show that there is a value of <span class="math">x</span> such that the sum of the numbers of the houses preceding the house numbered <span class="math">x</span> is equal to the sum of the numbers of the houses following it. Find this value of <span class="math">x</span>.</div>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('q54-4')">Show Solution</button>
+        <div class="solution" id="q54-4">
+            <div class="step"><span class="step-number">Step 1:</span> Sum of houses before <span class="math">x</span>: <span class="math">Sₓ₋₁ = (x−1)x/2</span></div>
+            <div class="step"><span class="step-number">Step 2:</span> Sum of houses after <span class="math">x</span>: <span class="math">S₄₉ − Sₓ = 49×50/2 − x(x+1)/2 = 1225 − x(x+1)/2</span></div>
+            <div class="step"><span class="step-number">Step 3:</span> Set equal: <span class="math">(x−1)x/2 = 1225 − x(x+1)/2</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">x² − x = 2450 − x² − x → 2x² = 2450 → x² = 1225 → x = 35</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>x = 35</strong></div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question-header">
+            <div class="q-badge">5</div>
+            <div class="question-text">A small terrace at a football ground comprises of 15 steps each of which is 50 m long and built of solid concrete. Each step has a rise of ¼ m and a tread of ½ m. Calculate the total volume of concrete required to build the terrace.</div>
+        </div>
+        <button class="solution-toggle" onclick="toggleSolution('q54-5')">Show Solution</button>
+        <div class="solution" id="q54-5">
+            <div class="step"><span class="step-number">Step 1:</span> Volume of 1st step = <span class="math">1/4 × 1/2 × 50 = 25/4</span> m³</div>
+            <div class="step"><span class="step-number">Step 2:</span> Volume of 2nd step = <span class="math">2/4 × 1/2 × 50 = 50/4</span> m³</div>
+            <div class="step"><span class="step-number">Step 3:</span> Volumes form AP: <span class="math">25/4, 50/4, 75/4, ...</span> (15 terms) with <span class="math">a = 25/4, d = 25/4</span></div>
+            <div class="step"><span class="step-number">Step 4:</span> <span class="math">S₁₅ = 15/2 [25/4 + 15×25/4] = 15/2 × 400/4 = 15/2 × 100 = 750</span></div>
+            <div class="step"><span class="step-number">Answer:</span> <strong>750 m³</strong></div>
+        </div>
+    </div>
+</section>
+
+<!-- CALCULATORS SECTION -->
+<section class="section" id="calculators">
+    
+<!-- Section Navigation -->
+<div class="section-nav">
+    <span class="section-nav-label">📍 Quick Jump:</span>
+    <a href="#notes">Notes</a>
+    <a href="#ex51">Ex 5.1</a>
+    <a href="#ex52">Ex 5.2</a>
+    <a href="#ex53">Ex 5.3</a>
+    <a href="#ex54">Ex 5.4</a>
+    <a href="#calculators">Calculators</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆ Top</a>
+</div>
+
+    <h2 class="section-title">🧮 AP Calculators</h2>
+
+    <div class="calc-grid">
+        <!-- Calculator 1: nth Term -->
+        <div class="calculator">
+            <h3>📐 Find nth Term</h3>
+            <div class="input-group">
+                <label>First Term (a)</label>
+                <input type="number" id="c1-a" placeholder="e.g., 5" step="any">
+            </div>
+            <div class="input-group">
+                <label>Common Difference (d)</label>
+                <input type="number" id="c1-d" placeholder="e.g., 3" step="any">
+            </div>
+            <div class="input-group">
+                <label>Term Number (n)</label>
+                <input type="number" id="c1-n" placeholder="e.g., 10" step="1">
+            </div>
+            <button class="calc-btn" onclick="calcNthTerm()">Calculate nth Term</button>
+            <div class="calc-result" id="c1-result"></div>
+        </div>
+
+        <!-- Calculator 2: Sum of n Terms -->
+        <div class="calculator">
+            <h3>➕ Sum of n Terms</h3>
+            <div class="input-group">
+                <label>First Term (a)</label>
+                <input type="number" id="c2-a" placeholder="e.g., 2" step="any">
+            </div>
+            <div class="input-group">
+                <label>Common Difference (d)</label>
+                <input type="number" id="c2-d" placeholder="e.g., 5" step="any">
+            </div>
+            <div class="input-group">
+                <label>Number of Terms (n)</label>
+                <input type="number" id="c2-n" placeholder="e.g., 10" step="1">
+            </div>
+            <button class="calc-btn" onclick="calcSum()">Calculate Sum</button>
+            <div class="calc-result" id="c2-result"></div>
+        </div>
+
+        <!-- Calculator 3: Find Common Difference -->
+        <div class="calculator">
+            <h3>📊 Find Common Difference (d)</h3>
+            <div class="input-group">
+                <label>First Term (a)</label>
+                <input type="number" id="c3-a" placeholder="e.g., 3" step="any">
+            </div>
+            <div class="input-group">
+                <label>nth Term Value</label>
+                <input type="number" id="c3-an" placeholder="e.g., 48" step="any">
+            </div>
+            <div class="input-group">
+                <label>Term Number (n)</label>
+                <input type="number" id="c3-n" placeholder="e.g., 10" step="1">
+            </div>
+            <button class="calc-btn" onclick="calcD()">Calculate d</button>
+            <div class="calc-result" id="c3-result"></div>
+        </div>
+
+        <!-- Calculator 4: Find Number of Terms -->
+        <div class="calculator">
+            <h3>🔢 Find Number of Terms</h3>
+            <div class="input-group">
+                <label>First Term (a)</label>
+                <input type="number" id="c4-a" placeholder="e.g., 7" step="any">
+            </div>
+            <div class="input-group">
+                <label>Common Difference (d)</label>
+                <input type="number" id="c4-d" placeholder="e.g., 3" step="any">
+            </div>
+            <div class="input-group">
+                <label>Last Term (l)</label>
+                <input type="number" id="c4-l" placeholder="e.g., 61" step="any">
+            </div>
+            <button class="calc-btn" onclick="calcN()">Calculate n</button>
+            <div class="calc-result" id="c4-result"></div>
+        </div>
+
+        <!-- Calculator 5: Find First Term -->
+        <div class="calculator">
+            <h3>🏁 Find First Term (a)</h3>
+            <div class="input-group">
+                <label>nth Term Value</label>
+                <input type="number" id="c5-an" placeholder="e.g., 50" step="any">
+            </div>
+            <div class="input-group">
+                <label>Common Difference (d)</label>
+                <input type="number" id="c5-d" placeholder="e.g., 5" step="any">
+            </div>
+            <div class="input-group">
+                <label>Term Number (n)</label>
+                <input type="number" id="c5-n" placeholder="e.g., 10" step="1">
+            </div>
+            <button class="calc-btn" onclick="calcA()">Calculate a</button>
+            <div class="calc-result" id="c5-result"></div>
+        </div>
+
+        <!-- Calculator 6: Sum given First and Last Term -->
+        <div class="calculator">
+            <h3>➕ Sum (Given First & Last Term)</h3>
+            <div class="input-group">
+                <label>First Term (a)</label>
+                <input type="number" id="c6-a" placeholder="e.g., 5" step="any">
+            </div>
+            <div class="input-group">
+                <label>Last Term (l)</label>
+                <input type="number" id="c6-l" placeholder="e.g., 45" step="any">
+            </div>
+            <div class="input-group">
+                <label>Number of Terms (n)</label>
+                <input type="number" id="c6-n" placeholder="e.g., 9" step="1">
+            </div>
+            <button class="calc-btn" onclick="calcSumFL()">Calculate Sum</button>
+            <div class="calc-result" id="c6-result"></div>
+        </div>
+    </div>
+</section>
+
+</div><!-- end container -->
+
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<script>
+// MCQ Checker
+function checkMCQ(element, isCorrect, qid) {
+    const parent = element.parentElement;
+    const options = parent.querySelectorAll('.option');
+    const solution = document.getElementById(qid + '-sol');
+
+    options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        opt.classList.remove('correct', 'wrong');
+    });
+
+    if (isCorrect) {
+        element.classList.add('correct');
+    } else {
+        element.classList.add('wrong');
+        options.forEach(opt => {
+            if (opt.onclick.toString().includes('true')) {
+                opt.classList.add('correct');
+            }
+        });
+    }
+
+    if (solution) {
+        solution.classList.add('active');
+    }
+}
+
+// Solution Toggle
+function toggleSolution(id) {
+    const sol = document.getElementById(id);
+    if (sol) {
+        sol.classList.toggle('active');
+    }
+}
+
+// Calculator Functions
+function calcNthTerm() {
+    const a = parseFloat(document.getElementById('c1-a').value);
+    const d = parseFloat(document.getElementById('c1-d').value);
+    const n = parseInt(document.getElementById('c1-n').value);
+    const result = document.getElementById('c1-result');
+
+    if (isNaN(a) || isNaN(d) || isNaN(n)) {
+        result.textContent = '⚠️ Please fill all fields';
+        result.classList.add('show');
+        return;
+    }
+
+    const an = a + (n - 1) * d;
+    result.innerHTML = `<div>Formula: aₙ = a + (n−1)d</div><div style="margin-top:0.5rem">a<sub>${n}</sub> = ${a} + (${n}−1)×${d}</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>a<sub>${n}</sub> = ${an}</strong></div>`;
+    result.classList.add('show');
+}
+
+function calcSum() {
+    const a = parseFloat(document.getElementById('c2-a').value);
+    const d = parseFloat(document.getElementById('c2-d').value);
+    const n = parseInt(document.getElementById('c2-n').value);
+    const result = document.getElementById('c2-result');
+
+    if (isNaN(a) || isNaN(d) || isNaN(n)) {
+        result.textContent = '⚠️ Please fill all fields';
+        result.classList.add('show');
+        return;
+    }
+
+    const sum = (n / 2) * (2 * a + (n - 1) * d);
+    result.innerHTML = `<div>Formula: Sₙ = n/2 [2a + (n−1)d]</div><div style="margin-top:0.5rem">S<sub>${n}</sub> = ${n}/2 [2×${a} + (${n}−1)×${d}]</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>S<sub>${n}</sub> = ${sum}</strong></div>`;
+    result.classList.add('show');
+}
+
+function calcD() {
+    const a = parseFloat(document.getElementById('c3-a').value);
+    const an = parseFloat(document.getElementById('c3-an').value);
+    const n = parseInt(document.getElementById('c3-n').value);
+    const result = document.getElementById('c3-result');
+
+    if (isNaN(a) || isNaN(an) || isNaN(n) || n <= 1) {
+        result.textContent = '⚠️ Please fill all fields (n > 1)';
+        result.classList.add('show');
+        return;
+    }
+
+    const d = (an - a) / (n - 1);
+    result.innerHTML = `<div>Formula: d = (aₙ − a)/(n − 1)</div><div style="margin-top:0.5rem">d = (${an} − ${a})/(${n} − 1)</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>d = ${d}</strong></div>`;
+    result.classList.add('show');
+}
+
+function calcN() {
+    const a = parseFloat(document.getElementById('c4-a').value);
+    const d = parseFloat(document.getElementById('c4-d').value);
+    const l = parseFloat(document.getElementById('c4-l').value);
+    const result = document.getElementById('c4-result');
+
+    if (isNaN(a) || isNaN(d) || isNaN(l)) {
+        result.textContent = '⚠️ Please fill all fields';
+        result.classList.add('show');
+        return;
+    }
+
+    if (d === 0 && a !== l) {
+        result.textContent = '❌ No solution (d = 0 but a ≠ l)';
+        result.classList.add('show');
+        return;
+    }
+
+    const n = ((l - a) / d) + 1;
+
+    if (n <= 0 || !Number.isInteger(n)) {
+        result.innerHTML = `<div>n = ${n.toFixed(4)}</div><div style="margin-top:0.5rem;color:var(--danger)">⚠️ n is not a positive integer. This value may not be a valid term in the AP.</div>`;
+    } else {
+        result.innerHTML = `<div>Formula: n = [(l − a)/d] + 1</div><div style="margin-top:0.5rem">n = [(${l} − ${a})/${d}] + 1</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>n = ${n}</strong></div>`;
+    }
+    result.classList.add('show');
+}
+
+function calcA() {
+    const an = parseFloat(document.getElementById('c5-an').value);
+    const d = parseFloat(document.getElementById('c5-d').value);
+    const n = parseInt(document.getElementById('c5-n').value);
+    const result = document.getElementById('c5-result');
+
+    if (isNaN(an) || isNaN(d) || isNaN(n)) {
+        result.textContent = '⚠️ Please fill all fields';
+        result.classList.add('show');
+        return;
+    }
+
+    const a = an - (n - 1) * d;
+    result.innerHTML = `<div>Formula: a = aₙ − (n−1)d</div><div style="margin-top:0.5rem">a = ${an} − (${n}−1)×${d}</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>a = ${a}</strong></div>`;
+    result.classList.add('show');
+}
+
+function calcSumFL() {
+    const a = parseFloat(document.getElementById('c6-a').value);
+    const l = parseFloat(document.getElementById('c6-l').value);
+    const n = parseInt(document.getElementById('c6-n').value);
+    const result = document.getElementById('c6-result');
+
+    if (isNaN(a) || isNaN(l) || isNaN(n)) {
+        result.textContent = '⚠️ Please fill all fields';
+        result.classList.add('show');
+        return;
+    }
+
+    const sum = (n / 2) * (a + l);
+    result.innerHTML = `<div>Formula: Sₙ = n/2 [a + l]</div><div style="margin-top:0.5rem">S<sub>${n}</sub> = ${n}/2 [${a} + ${l}]</div><div style="margin-top:0.5rem;font-size:1.1rem">✅ <strong>S<sub>${n}</sub> = ${sum}</strong></div>`;
+    result.classList.add('show');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
