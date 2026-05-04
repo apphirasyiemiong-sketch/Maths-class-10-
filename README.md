@@ -3,7 +3,6 @@
 Free Class 10 Mathematics solved questions with step-by-step explanations, calculator tools, and interactive visualizers.
 
 **Live site:** [apphirasyiem.github.io/Maths-class-10](https://apphirasyiemiong-sketch.github.io/Maths-class-10-/)  
-*(Replace with your actual GitHub Pages URL)*
 
 ## What's Inside
 
