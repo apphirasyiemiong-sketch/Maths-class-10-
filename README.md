@@ -13,7 +13,7 @@ Free Class 10 Mathematics solved questions with step-by-step explanations, calcu
 ## Support
 
 - 💖 [GitHub Sponsors](https://github.com/sponsors/apphirasyiem)
-- 🇮🇳 UPI: `yourname@upi` (sncrystal@jio)
+- 🇮🇳 UPI:(sncrystal@jio)
 - ⭐ Star this repository
 
 ## License
