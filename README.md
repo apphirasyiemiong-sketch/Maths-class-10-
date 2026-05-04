@@ -35,7 +35,7 @@ If this helped you, consider supporting the project:
 
 - 💖 [GitHub Sponsors](https://github.com/sponsors/apphirasyiem)
 - ⭐ Star this repository
-
+- 🇮🇳 UPI: `sncrystal@jio`
 ## License
 
 Free for all students. Share with classmates.
