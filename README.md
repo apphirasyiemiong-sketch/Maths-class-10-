@@ -39,7 +39,7 @@ Free Class 10 Mathematics solved questions with step-by-step explanations, calcu
 
 If this helped you, consider supporting the project:
 
-- ☕ [Buy Me a Coffee](your-ko-fi-link)
+- ☕ [Upi Id](sncrystal@jio)
 - 💖 [GitHub Sponsors](https://github.com/sponsors/apphirasyiem)
 - ⭐ Star this repository
 
